@@ -14,7 +14,8 @@ public class MainViewController {
 
     @FXML
     private Button startBtn ;
-
+    @FXML
+    private Button quitBtn;
 
 
     @FXML
@@ -27,6 +28,10 @@ public class MainViewController {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+        });
+        
+        quitBtn.setOnAction(event -> {
+            System.exit(0);
         });
     }
 }

@@ -14,7 +14,7 @@
             <Image url="@Images/Background_field.gif" />
          </image>
       </ImageView>
-      <Button layoutX="130.0" layoutY="501.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" stylesheets="@UIController.css" text="Quit">
+      <Button fx:id="quitBtn" layoutX="130.0" layoutY="501.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" stylesheets="@UIController.css" text="Quit">
          <font>
             <Font name="JoystixMonospace-Regular" size="37.0" />
          </font>
