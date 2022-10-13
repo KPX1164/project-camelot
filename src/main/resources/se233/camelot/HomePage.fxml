@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="1250.0" fitWidth="2046.0" layoutX="-35.0" layoutY="-117.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Background_field.gif" />
+            <Image url="@Images/Background_field.gif" />
          </image>
       </ImageView>
       <Button layoutX="130.0" layoutY="501.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" stylesheets="@UIController.css" text="Quit">

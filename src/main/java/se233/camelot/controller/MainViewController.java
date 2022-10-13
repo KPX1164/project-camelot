@@ -5,7 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import se233.camelot.Launcher;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import java.io.IOException;
 
 
@@ -14,8 +15,11 @@ public class MainViewController {
     @FXML
     private Button startBtn ;
 
+
+
     @FXML
     public void initialize()  {
+
         startBtn.setOnAction( e -> {
             FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("CharacterPage.fxml"));
             try {
