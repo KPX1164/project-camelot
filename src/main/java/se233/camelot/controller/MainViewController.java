@@ -17,7 +17,7 @@ public class MainViewController {
     @FXML
     public void initialize()  {
         startBtn.setOnAction( e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("charSe.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("CharacterPage.fxml"));
             try {
                 Launcher.stage.getScene().setRoot(fxmlLoader.load());
             } catch (IOException ex) {

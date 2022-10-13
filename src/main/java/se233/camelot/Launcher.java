@@ -22,7 +22,7 @@ public class Launcher extends Application {
         this.stage = stage ;
         hs = getHostServices();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("start.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("HomePage.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         this.stage.setTitle("Head soccer");
