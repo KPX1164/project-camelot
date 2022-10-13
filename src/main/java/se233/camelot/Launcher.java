@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import se233.camelot.controller.MusicController;
 
 import java.io.IOException;
 
@@ -18,21 +19,19 @@ public class Launcher extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public static MediaPlayer bgPlay;
+    public static MediaPlayer bgPlayer;
+    public static MusicController musicController = new MusicController() ;
 
     @Override
     public void start(Stage stage) throws IOException {
-        Media bgSong = new Media(getClass().getResource("Audios/Base.mp3").toString());
-        bgPlay = new MediaPlayer(bgSong);
-        bgPlay.setAutoPlay(true);
-        bgPlay.setCycleCount(100);
-        bgPlay.setVolume(0.5);
+        musicController.play("main");
+
         this.stage = stage ;
         hs = getHostServices();
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("HomePage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         this.stage.setTitle("Head soccer");
-
+        this.stage.setResizable(false);
         this.stage.setScene(scene);
         this.stage.show();
     }
