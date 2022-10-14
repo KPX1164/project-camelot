@@ -3,6 +3,8 @@ package se233.camelot.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.media.MediaPlayer;
 import se233.camelot.Launcher;
 import se233.camelot.view.Platform;
@@ -12,24 +14,29 @@ import java.io.IOException;
 public class CharacterViewController {
 
     @FXML
-    private Button playBtn;
+    private Toggle p1c1;
     @FXML
-    private Button backBtn;
+    private Toggle p1c2;
+    @FXML
+    private Toggle p1c3;
+    @FXML
+    private Toggle p2c1;
+    @FXML
+    private Toggle p2c2;
+    @FXML
+    private Toggle p2c3;
+
     @FXML
     public void initialize() {
-        playBtn.setOnAction( event -> {
-            Platform platform = new Platform() ;
-            Launcher.musicController.play("game");
-            Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
-            Launcher.stage.getScene().setOnKeyReleased( keyEvent -> {
-                platform.getKeys().remove(keyEvent.getCode());
-                System.out.println(keyEvent.getCode());
-            });
-            Launcher.stage.getScene().setRoot(platform);
-        });
+        ToggleGroup player1 = new ToggleGroup();
+        p1c1.setToggleGroup(player1);
+        p1c2.setToggleGroup(player1);
+        p1c3.setToggleGroup(player1);
 
-        backBtn.setOnAction(event -> {
-            //back
-        });
+        ToggleGroup player2 = new ToggleGroup();
+        p2c1.setToggleGroup(player2);
+        p2c2.setToggleGroup(player2);
+        p2c3.setToggleGroup(player2);
+
     }
 }

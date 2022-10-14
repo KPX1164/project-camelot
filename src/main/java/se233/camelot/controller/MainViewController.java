@@ -4,9 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import se233.camelot.Launcher;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
+import java.awt.*;
 import java.io.IOException;
 
 
@@ -16,6 +19,10 @@ public class MainViewController {
     private Button startBtn ;
     @FXML
     private Button quitBtn;
+    @FXML
+    private ImageView askLayer;
+//    @FXML
+//    private ImageView overLayerTwo;
 
 
     @FXML
@@ -31,7 +38,10 @@ public class MainViewController {
         });
         
         quitBtn.setOnAction(event -> {
-            System.exit(0);
+
+            askLayer.setVisible(true);
+//            overLayerTwo.setVisible(true);
+//            System.exit(0);
         });
     }
 }
