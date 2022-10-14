@@ -28,6 +28,8 @@ public class CharacterViewController {
     private Toggle p2c2;
     @FXML
     private Toggle p2c3;
+    @FXML
+    private Button homeBtn;
 
     @FXML
     public void initialize() {
@@ -52,19 +54,12 @@ public class CharacterViewController {
 //            Launcher.stage.getScene().setRoot(platform);
 //
 //        });
-//
-//        backBtn.setOnAction(event -> {
-//            Launcher.musicController.play("main");
-//            FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("HomePage.fxml"));
-//            try {
-//                Scene scene = new Scene(fxmlLoader.load());
-//                Launcher.stage.setScene(scene);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        });
 
+
+        homeBtn.setOnAction(event -> {
+            SceneController.navigateTo("HomeView");
+        });
+        
         ToggleGroup player1 = new ToggleGroup();
         p1c1.setToggleGroup(player1);
         p1c2.setToggleGroup(player1);

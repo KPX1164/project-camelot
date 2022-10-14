@@ -28,7 +28,7 @@ public class Launcher extends Application {
 
         this.stage = stage ;
         hs = getHostServices();
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("HomePage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("HomeView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         this.stage.setTitle("Head soccer");
         this.stage.setResizable(false);
