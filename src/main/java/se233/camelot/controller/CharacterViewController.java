@@ -30,36 +30,38 @@ public class CharacterViewController {
     private Toggle p2c3;
     @FXML
     private Button homeBtn;
+    @FXML
+    private Button playBtn;
 
     @FXML
     public void initialize() {
 
-//        playBtn.setOnAction( event -> {
-//            Platform platform = new Platform() ;
-//            GameLoop gameLoop = new GameLoop(platform);
-//            DrawingLoop drawingLoop = new DrawingLoop(platform);
-//            GameTimer gameTimer = new GameTimer(platform,60);
-//
-//            Thread gameLoopThread = new Thread(gameLoop);
-//            gameLoopThread.setDaemon(true);
-//            gameLoopThread.start();
-//
-//            new Thread(drawingLoop).start();
-//            new Thread(gameTimer).start();
-//
-//
-//            Launcher.musicController.play("game");
-//            Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
-//            Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
-//            Launcher.stage.getScene().setRoot(platform);
-//
-//        });
+        playBtn.setOnAction( event -> {
+            Platform platform = new Platform() ;
+            GameLoop gameLoop = new GameLoop(platform);
+            DrawingLoop drawingLoop = new DrawingLoop(platform);
+            GameTimer gameTimer = new GameTimer(platform,60);
+
+            Thread gameLoopThread = new Thread(gameLoop);
+            gameLoopThread.setDaemon(true);
+            gameLoopThread.start();
+
+            new Thread(drawingLoop).start();
+            new Thread(gameTimer).start();
+
+
+            Launcher.musicController.play("game");
+            Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
+            Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
+            Launcher.stage.getScene().setRoot(platform);
+
+        });
 
 
         homeBtn.setOnAction(event -> {
             SceneController.navigateTo("HomeView");
         });
-        
+
         ToggleGroup player1 = new ToggleGroup();
         p1c1.setToggleGroup(player1);
         p1c2.setToggleGroup(player1);
