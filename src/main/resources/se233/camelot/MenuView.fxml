@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se233.camelot.controller.MenuViewController">
+   <children>
+      <ImageView fitHeight="1250.0" fitWidth="2046.0" layoutX="-35.0" layoutY="-117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Background_field.gif" />
+         </image>
+      </ImageView>
+      <Button id="colouredBtn" fx:id="settingBtn" layoutX="170.0" layoutY="480.0" maxWidth="200.0" minHeight="50.0" minWidth="300.0" mnemonicParsing="false" stylesheets="@UIController.css" text="Setting">
+         <font>
+            <Font name="JoystixMonospace-Regular" size="37.0" />
+         </font>
+      </Button>
+      <Button id="colouredBtn" fx:id="playBtn" layoutX="170.0" layoutY="380.0" maxHeight="100.0" maxWidth="250.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" stylesheets="@UIController.css" text="Play">
+         <font>
+            <Font name="JoystixMonospace-Regular" size="37.0" />
+         </font></Button>
+      <Label layoutX="150.0" layoutY="111.0" text="project Camelot">
+         <font>
+            <Font name="JoystixMonospace-Regular" size="77.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="352.0" fitWidth="393.0" layoutX="560.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Excalibur.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="417.0" fitWidth="388.0" layoutX="465.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Shadow.png" />
+         </image>
+      </ImageView>
+      <Button id="colouredBtn" fx:id="creditBtn" layoutX="170.0" layoutY="580.0" maxWidth="200.0" minHeight="50.0" minWidth="300.0" mnemonicParsing="false" stylesheets="@UIController.css" text="Credit">
+         <font>
+            <Font name="JoystixMonospace-Regular" size="37.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

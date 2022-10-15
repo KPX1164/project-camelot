@@ -31,12 +31,12 @@ public class CharacterViewController {
     @FXML
     private Button homeBtn;
     @FXML
-    private Button playBtn;
+    private Button readyBtn;
 
     @FXML
     public void initialize() {
 
-        playBtn.setOnAction( event -> {
+        readyBtn.setOnAction( event -> {
             Platform platform = new Platform() ;
             GameLoop gameLoop = new GameLoop(platform);
             DrawingLoop drawingLoop = new DrawingLoop(platform);
@@ -59,7 +59,7 @@ public class CharacterViewController {
 
 
         homeBtn.setOnAction(event -> {
-            SceneController.navigateTo("HomeView");
+            SceneController.navigateTo("MenuView");
         });
 
         ToggleGroup player1 = new ToggleGroup();

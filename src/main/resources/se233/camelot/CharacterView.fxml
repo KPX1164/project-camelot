@@ -27,7 +27,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" stroke="BLACK" strokeType="INSIDE" style="-fx-opacity: 0.7;" width="1280.0" />
-      <Button id="homeBtn" fx:id="homeBtn" layoutX="40.0" layoutY="617.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="@UIController.css" textFill="TRANSPARENT" />
+      <Button id="homeBtn" fx:id="homeBtn" layoutX="40.0" layoutY="620.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="@UIController.css" textFill="TRANSPARENT" />
       <Label layoutX="177.0" layoutY="144.0" text="Player 1" textFill="WHITE">
          <font>
             <Font name="JoystixMonospace-Regular" size="27.0" />
@@ -44,5 +44,10 @@
       <ToggleButton id="p2c1" fx:id="p2c1" layoutX="730.0" layoutY="210.0" mnemonicParsing="false" prefHeight="128.0" prefWidth="128.0" stylesheets="@UIController.css" />
       <ToggleButton id="p2c2" fx:id="p2c2" layoutX="890.0" layoutY="210.0" mnemonicParsing="false" prefHeight="128.0" prefWidth="128.0" stylesheets="@UIController.css" />
       <ToggleButton id="p2c3" fx:id="p2c3" layoutX="1050.0" layoutY="210.0" mnemonicParsing="false" prefHeight="128.0" prefWidth="128.0" stylesheets="@UIController.css" />
+      <Button fx:id="readyBtn" layoutX="1090.0" layoutY="617.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" stylesheets="@UIController.css" text="Ready" textFill="WHITE">
+         <font>
+            <Font name="JoystixMonospace-Regular" size="27.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

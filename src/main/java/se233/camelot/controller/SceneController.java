@@ -14,8 +14,8 @@ public class SceneController {
     private Scene scene;
     private Parent root;
 
-    public static void navigateTo(String scence){
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(scence+".fxml"));
+    public static void navigateTo(String scene){
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(scene+".fxml"));
         try {
             Launcher.stage.getScene().setRoot(fxmlLoader.load());
         } catch (IOException ex) {

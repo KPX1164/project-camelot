@@ -26,7 +26,7 @@ public class MainViewController {
     public void initialize()  {
 
         startBtn.setOnAction( e -> {
-            SceneController.navigateTo("CharacterView");
+            SceneController.navigateTo("MenuView");
         });
         
         quitBtn.setOnAction(event -> {
