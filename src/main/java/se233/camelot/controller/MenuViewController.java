@@ -22,7 +22,7 @@ public class MenuViewController {
         });
 
         settingBtn.setOnAction(event -> {
-            SceneController.navigateTo("CharacterView");
+            SceneController.navigateTo("SettingView");
         });
 
         creditBtn.setOnAction(event -> {

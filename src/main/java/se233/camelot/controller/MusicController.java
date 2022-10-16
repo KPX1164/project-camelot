@@ -32,7 +32,7 @@ public class MusicController {
         Launcher.bgPlayer = new MediaPlayer(this.musicMap.get(song));
         Launcher.bgPlayer.setAutoPlay(true);
         Launcher.bgPlayer.setCycleCount(100);
-        Launcher.bgPlayer.setVolume(0.5);
+        Launcher.bgPlayer.setVolume(1);
     }
 
 }
