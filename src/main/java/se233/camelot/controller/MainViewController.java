@@ -19,6 +19,21 @@ public class MainViewController {
     private Button startBtn ;
     @FXML
     private Button quitBtn;
+    @FXML
+    private ImageView overLayerH;
+    @FXML
+    private ImageView askLayer;
+    @FXML
+    private ImageView yesView;
+    @FXML
+    private Button yesBtn;
+    @FXML
+    private ImageView noView;
+    @FXML
+    private Button noBtn;
+    @FXML
+    private ImageView parinyaLayer;
+
 
 
 
@@ -30,7 +45,26 @@ public class MainViewController {
         });
         
         quitBtn.setOnAction(event -> {
-            System.exit(0);
+            overLayerH.setVisible(true);
+            askLayer.setVisible(true);
+            parinyaLayer.setVisible(true);
+            yesView.setVisible(true);
+            yesBtn.setVisible(true);
+            noView.setVisible(true);
+            noBtn.setVisible(true);
+
+            yesBtn.setOnAction(yesEvent ->{
+                System.exit(0);
+            });
+            noBtn.setOnAction(noEvent ->{
+                overLayerH.setVisible(false);
+                askLayer.setVisible(false);
+                parinyaLayer.setVisible(false);
+                yesView.setVisible(false);
+                yesBtn.setVisible(false);
+                noView.setVisible(false);
+                noBtn.setVisible(false);
+            });
         });
     }
 }

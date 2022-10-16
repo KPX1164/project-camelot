@@ -91,3 +91,10 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
 }
+
+#yesBtn{
+  -fx-background-image: url('Images/yes.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}

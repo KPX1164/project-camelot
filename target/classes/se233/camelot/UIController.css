@@ -6,3 +6,95 @@
     -fx-background-color: #07f7f7;
     -fx-background-radius: 7 7 7 7;
 }
+#homeBtn{
+  -fx-background-image: url('Images/homeIcon.png');
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  }
+
+#p1c1 {
+  -fx-background-image: url('Images/character1.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+#p1c1:selected{
+  -fx-background-image: url('Images/character1s.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+
+
+#p1c2 {
+  -fx-background-image: url('Images/character2.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+#p1c2:selected{
+  -fx-background-image: url('Images/character2s.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+
+#p1c3 {
+  -fx-background-image: url('Images/character3.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+#p1c3:selected{
+  -fx-background-image: url('Images/character3s.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+
+#p2c1 {
+  -fx-background-image: url('Images/character1.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+#p2c1:selected{
+  -fx-background-image: url('Images/character1s.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+
+
+#p2c2 {
+  -fx-background-image: url('Images/character2.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+#p2c2:selected{
+  -fx-background-image: url('Images/character2s.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+
+#p2c3 {
+  -fx-background-image: url('Images/character3.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+#p2c3:selected{
+  -fx-background-image: url('Images/character3s.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+
+#yesBtn{
+  -fx-background-image: url('Images/yes.png');
+  -fx-background-color: white;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}

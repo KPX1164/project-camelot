@@ -5,7 +5,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se233.camelot.controller.MainViewController">
@@ -39,11 +38,32 @@
             <Image url="@Images/Shadow.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" stroke="BLACK" strokeType="INSIDE" style="-fx-opacity: 0.7;" visible="false" width="1280.0" />
-      <ImageView fx:id="askLayer" fitHeight="216.0" fitWidth="660.0" layoutX="19.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="overlayer" fx:id="overLayerH" fitHeight="1029.0" fitWidth="1551.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.7;" visible="false">
          <image>
-            <Image fx:id="overLayerTwo" url="@Images/Ask.gif" />
+            <Image url="@Images/Black.jpg" />
          </image>
       </ImageView>
+      <ImageView fx:id="askLayer" fitHeight="216.0" fitWidth="660.0" layoutX="103.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@Images/Ask.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="parinyaLayer" fitHeight="294.0" fitWidth="314.0" layoutX="18.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@Images/Parinya.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="yesView" fitHeight="85.0" fitWidth="200.0" layoutX="850.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@Images/yes.png" />
+         </image>
+      </ImageView>
+      <Button id="yesBtn" fx:id="yesBtn" layoutX="850.0" layoutY="430.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="200.0" style="-fx-opacity: 0;" visible="false" />
+      <ImageView fx:id="noView" fitHeight="150.0" fitWidth="200.0" layoutX="850.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@Images/no.png" />
+         </image>
+      </ImageView>
+      <Button id="noBtn" fx:id="noBtn" layoutX="850.0" layoutY="550.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="200.0" style="-fx-opacity: 0;" visible="false" />
    </children>
 </Pane>
