@@ -18,11 +18,11 @@ public class GameTimer implements Runnable {
     Platform platform ;
 
 
-    public GameTimer(Platform platform, long duration) {
-
-        this.duration = duration ;
+    public GameTimer(Platform platform) {
         this.running = true ;
         this.platform = platform ;
+        this.duration = platform.MATCHDURATION ;
+
     }
 
     public void updateTimeCountDown() {
@@ -62,15 +62,8 @@ public class GameTimer implements Runnable {
                     alert.setHeaderText(null);
                     alert.setContentText("Time UP!");
                     alert.showAndWait();
-                    FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("HomePage.fxml"));
-                    try {
-                        Scene scene = new Scene(fxmlLoader.load());
-                        Launcher.stage.setScene(scene);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    SceneController.navigateTo("HomeView");
 
-                    System.exit(0);
                 }
         );
 

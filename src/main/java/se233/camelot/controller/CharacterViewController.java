@@ -40,7 +40,7 @@ public class CharacterViewController {
             Platform platform = new Platform() ;
             GameLoop gameLoop = new GameLoop(platform);
             DrawingLoop drawingLoop = new DrawingLoop(platform);
-            GameTimer gameTimer = new GameTimer(platform,60);
+            GameTimer gameTimer = new GameTimer(platform);
 
             Thread gameLoopThread = new Thread(gameLoop);
             gameLoopThread.setDaemon(true);

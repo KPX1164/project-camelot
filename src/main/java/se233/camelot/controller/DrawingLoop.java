@@ -11,6 +11,7 @@ public class DrawingLoop implements Runnable {
     private int frameRate ;
     private float interval ;
     private boolean running ;
+    private int frameFlag ;
 
     public DrawingLoop(Platform platform){
 
@@ -18,6 +19,7 @@ public class DrawingLoop implements Runnable {
         this.frameRate = 30 ;
         this.interval = 1000.0f / frameRate ;
         this.running = true ;
+        this.frameFlag = 0 ;
     }
 
     private void checkDrawCollisions(ArrayList<Character> characters){
@@ -36,22 +38,17 @@ public class DrawingLoop implements Runnable {
     @Override
     public void run() {
         while (running) {
-            float time = System.currentTimeMillis();
-            checkDrawCollisions(Platform.getCharacters());
-            paint(Platform.getCharacters());
+            checkDrawCollisions(platform.getCharacters());
+            paint(platform.getCharacters());
+            try {
+                Thread.sleep(1000/this.frameRate);
+                this.frameFlag += 1 ;
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
-            time = System.currentTimeMillis() - time;
-            if (time < interval) {
-                try {
-                    Thread.sleep((long) (interval - time));
-                } catch (InterruptedException e) {
-                }
-            } else {
-                try {
-                    Thread.sleep((long) (interval - (interval % time)));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            if(frameFlag == (platform.MATCHDURATION + 1) * this.frameRate){
+                break;
             }
         }
     }

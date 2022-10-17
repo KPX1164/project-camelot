@@ -1,10 +1,11 @@
 package se233.camelot.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se233.camelot.model.Character;
 import se233.camelot.view.Platform;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 
 public class GameLoop implements Runnable {
@@ -12,12 +13,14 @@ public class GameLoop implements Runnable {
     private int frameRate ;
     private float interval ;
     private boolean running ;
+    private int frameFlag ;
 
     public GameLoop(Platform platform){
         this.platform = platform ;
         this.frameRate = 10 ;
         this.interval = 1000.0f / frameRate ;
         this.running = true ;
+        this.frameFlag = 0 ;
     }
 
     private void update(ArrayList<Character> characters ) {
@@ -53,26 +56,16 @@ public class GameLoop implements Runnable {
     public void run() {
 
         while (running){
-            float time = System.currentTimeMillis();
             update(Platform.getCharacters());
-
-
-            time = System.currentTimeMillis() - time ;
-            if(time < interval){
-                try{
-                    Thread.sleep((long)(interval-time));
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-            }else{
-                try{
-                    Thread.sleep((long)(interval - (interval%time)));
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-
-                }
+            try {
+                Thread.sleep(1000/this.frameRate);
+                this.frameFlag += 1  ;
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-
+            if(frameFlag == (platform.MATCHDURATION ) * this.frameRate){
+                break;
+            }
         }
     }
 }

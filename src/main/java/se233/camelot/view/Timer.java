@@ -8,8 +8,6 @@ import javafx.scene.text.FontWeight;
 
 public class Timer extends Pane {
     Label time ;
-
-
     public Timer(int x , int y){
         time = new Label("0000");
         setTranslateX(x);
@@ -20,7 +18,6 @@ public class Timer extends Pane {
     }
 
     public void setTime(int timeLeft){
-
         this.time.setText(Integer.toString(timeLeft));
     }
 }
