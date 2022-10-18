@@ -34,8 +34,8 @@ public class Character extends Pane {
     int xVelocity = 0;
     int xAcceleration = 2;
     int yAcceleration = 1;
-    int xMaxVelocity = 10;
-    int yMaxVelocity = 20;
+    int xMaxVelocity = 11;
+    int yMaxVelocity = 21;
 
     //Animation state
     private ImageView imageView;
@@ -155,7 +155,26 @@ public class Character extends Pane {
         }
     }
 
+    public void collided(Character c) {
 
+        if (isMovingLeft) {
+            x = this.x + c.getxVelocity();
+            c.setX(c.getX() - this.xVelocity*(4));
+            stop();
+        } else if (isMovingRight) {
+            x = this.x - c.getxVelocity();
+            c.setX(c.getX() + this.xVelocity*(4));
+            stop();
+        }
+    }
+
+    public boolean isMovingRight() {
+        return isMovingRight;
+    }
+
+    public boolean isMovingLeft() {
+        return isMovingLeft;
+    }
 
     public int getOffSetX() {
         return offSetX;
@@ -180,8 +199,20 @@ public class Character extends Pane {
         return x;
     }
 
+    public int getxVelocity() {
+        return xVelocity;
+    }
+
     public int getY() {
         return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public KeyCode getLeftKey() {

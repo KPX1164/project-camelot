@@ -12,7 +12,7 @@ public class Timer extends Pane {
         time = new Label("0000");
         setTranslateX(x);
         setTranslateY(y);
-        time.setFont(Font.font("Verdana", FontWeight.BOLD , 30));
+        time.setFont(Font.font("Verdana", FontWeight.BOLD , 46));
         time.setTextFill(Color.web("#FFF"));
         this.getChildren().addAll(time);
     }
