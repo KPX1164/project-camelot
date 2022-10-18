@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 public class Platform extends Pane {
-    public static final long MATCHDURATION = 5 ;
+    public static final long MATCHDURATION = 60 ;
     public static final int WIDTH = 1280 ;
     public static  final int HEIGHT = 720 ;
     public static final int GROUND = 620 ;
@@ -36,6 +36,7 @@ public class Platform extends Pane {
         this.setHeight(HEIGHT);
         this.setWidth(WIDTH);
 
+
         this.characters = new ArrayList<Character>();
         characters.add(new Character(140,GROUND-128,620,GROUND-128, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.cutMan,KeyCode.Z,KeyCode.X));
         characters.add(new Character(920,GROUND-128,620,GROUND-128, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.cutMan,KeyCode.K,KeyCode.L));
@@ -46,9 +47,11 @@ public class Platform extends Pane {
             this.getChildren().add(ch) ;
         });
 
-        this.timer = new Timer(300,300);
+        this.timer = new Timer(624,20);
         this.getChildren().add(timer);
 
+        this.ball = new Ball(624,250);
+        this.getChildren().add(ball);
     }
     public Keys getKeys() {
         return keys;
