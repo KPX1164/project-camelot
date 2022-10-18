@@ -26,8 +26,8 @@ public class MainViewController {
     public void initialize()  {
 
         tapBtn.setOnAction( e -> {
-//            SceneController.navigateTo("SceneLoaderView");
-            SceneController.navigateTo("MenuView");
+            SceneController.navigateTo("SceneLoaderView");
+//            SceneController.navigateTo("MenuView");
 
         });
 

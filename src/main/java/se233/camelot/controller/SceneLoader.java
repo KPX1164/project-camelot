@@ -1,18 +1,31 @@
 package se233.camelot.controller;
 
 import javafx.fxml.FXML;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class SceneLoader {
 
     @FXML
     public void initialize()  {
-        try{
-            Thread.sleep(1000);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-            SceneController.navigateTo("MenuView");
-
+        new Reminder(2);
     }
 
+    public class Reminder {
+        Timer timer;
+
+        public Reminder(int seconds) {
+            timer = new Timer();
+            timer.schedule(new RemindTask(), seconds*1000);
+        }
+
+        class RemindTask extends TimerTask {
+            public void run() {
+                timer.cancel(); //Terminate the timer thread
+                SceneController.navigateTo("MenuView");
+            }
+        }
+
+    }
 }

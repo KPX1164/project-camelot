@@ -42,7 +42,7 @@ public class Ball extends Pane {
 
     public void checkReachFloor() {
         if (y >= Platform.GROUND - BALL_HEIGHT) {
-            if(Math.floor(yVelocity) >= 1){
+            if(Math.floor(yVelocity) > 4){
                 yVelocity = - yVelocity * 0.65 ;
             }else{
                 yVelocity = 0;
