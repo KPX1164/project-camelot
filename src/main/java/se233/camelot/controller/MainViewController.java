@@ -17,6 +17,8 @@ public class MainViewController {
 
     @FXML
     private Button tapBtn ;
+    @FXML
+    private ImageView changeScene;
 
 
 
@@ -24,7 +26,9 @@ public class MainViewController {
     public void initialize()  {
 
         tapBtn.setOnAction( e -> {
+//            SceneController.navigateTo("SceneLoaderView");
             SceneController.navigateTo("MenuView");
+
         });
 
     }
