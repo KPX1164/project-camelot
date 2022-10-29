@@ -15,9 +15,14 @@ public class MusicController {
 
         Media mainTheme = new Media(Launcher.class.getResource("Audios/CosmosintheLostbelt.mp3").toString());
         Media gameTheme = new Media(Launcher.class.getResource("Audios/Coronation.mp3").toString());
+        Media loadScene = new Media(Launcher.class.getResource("Audios/LoadSound.mp3").toString());
+
+
 
         this.musicMap.put("main",mainTheme);
         this.musicMap.put("game", gameTheme);
+        this.musicMap.put("load", loadScene);
+
 
     }
 
