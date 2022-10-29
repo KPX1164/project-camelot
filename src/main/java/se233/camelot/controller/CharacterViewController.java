@@ -22,6 +22,8 @@ import java.util.concurrent.*;
 
 public class CharacterViewController {
 
+//    private Map<String, CharacterType> playerMap = new HashMap<>();
+    private ArrayList<CharacterType> playerMap = new ArrayList<>() ;
     @FXML
     private Toggle p1c1;
     @FXML
@@ -41,9 +43,47 @@ public class CharacterViewController {
     @FXML
     public void initialize() {
 
+        playerMap.add(CharacterType.megaMan);
+        playerMap.add(CharacterType.megaMan);
+        ToggleGroup player1 = new ToggleGroup();
+        p1c1.setToggleGroup(player1);
+        p1c2.setToggleGroup(player1);
+        p1c3.setToggleGroup(player1);
+
+        ToggleGroup player2 = new ToggleGroup();
+        p2c1.setToggleGroup(player2);
+        p2c2.setToggleGroup(player2);
+        p2c3.setToggleGroup(player2);
+
+        p2c1.setSelected(true);
+        p1c1.setSelected(true);
+
         readyBtn.setOnAction( event -> {
 
-            Platform platform = new Platform(player) ;
+
+            if (p1c1.isSelected()){
+                playerMap.set(0, CharacterType.megaMan);
+            }
+            if (p1c2.isSelected()){
+                playerMap.set(0, CharacterType.zeroMan);
+            }
+            if (p1c3.isSelected()){
+                playerMap.set(0,CharacterType.saber );
+            }
+            if (p2c1.isSelected()){
+                playerMap.set(1,CharacterType.megaMan );
+            }
+            if (p2c2.isSelected()){
+                playerMap.set(1,CharacterType.zeroMan );
+            }
+            if (p2c3.isSelected()){
+                playerMap.set(1,CharacterType.saber );
+            }
+
+
+            System.out.println(playerMap);
+
+            Platform platform = new Platform(playerMap) ;
             GameLoop gameLoop = new GameLoop(platform);
             DrawingLoop drawingLoop = new DrawingLoop(platform);
             GameTimer gameTimer = new GameTimer(platform);
@@ -68,34 +108,7 @@ public class CharacterViewController {
             SceneController.navigateTo("MenuView");
         });
 
-        ToggleGroup player1 = new ToggleGroup();
-        p1c1.setToggleGroup(player1);
-        p1c2.setToggleGroup(player1);
-        p1c3.setToggleGroup(player1);
 
-        ToggleGroup player2 = new ToggleGroup();
-        p2c1.setToggleGroup(player2);
-        p2c2.setToggleGroup(player2);
-        p2c3.setToggleGroup(player2);
-
-        if (p1c1.isSelected()){
-            player.add(CharacterType.megaMan);
-        }
-        if (p1c2.isSelected()){
-            player.add(CharacterType.zeroMan);
-        }
-        if (p1c3.isSelected()){
-            player.add(CharacterType.saber);
-        }
-        if (p2c1.isSelected()){
-            player.add(CharacterType.megaMan);
-        }
-        if (p2c2.isSelected()){
-            player.add(CharacterType.zeroMan);
-        }
-        if (p2c3.isSelected()){
-            player.add(CharacterType.saber);
-        }
 
     }
 

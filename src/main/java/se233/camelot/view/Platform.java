@@ -12,6 +12,7 @@ import se233.camelot.model.CharacterType;
 import se233.camelot.model.Keys;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class Platform extends Pane {

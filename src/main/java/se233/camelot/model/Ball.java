@@ -71,7 +71,6 @@ public class Ball extends Pane {
         if(c.isMovingRight()){
             this.yVelocity = c.getxVelocity() * -0.7 ;
             this.xVelocity += c.getxVelocity() * 1.2 ;
-//            x = this.x + c.getxVelocity()*100;
         }
 
         if(c.isMovingLeft()){
@@ -81,7 +80,7 @@ public class Ball extends Pane {
 
         if(c.isIdle()){
             this.xVelocity = -0.2 * (this.xVelocity) ;
-            c.setX((int) (c.getX() + Math.round(xVelocity * -3))) ;
+            c.setX((int) (c.getX() + Math.round(xVelocity * -2))) ;
 //            this.xVelocity = 0 ;
         }
 
