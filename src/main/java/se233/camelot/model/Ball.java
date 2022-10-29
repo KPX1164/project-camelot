@@ -15,9 +15,9 @@ public class Ball extends Pane {
 
     private double yVelocity = 3;
     private double xVelocity = 0;
-    private double gravity =  0.25 ;
+    private double gravity =  0.35 ;
 
-    private double rotate = 1;
+    private double rotate = 0;
 
     private ImageView imageView ;
     public final int BALL_HEIGHT = 32 ;
@@ -29,7 +29,6 @@ public class Ball extends Pane {
         this.startX = x ;
         this.startY = y ;
 
-        this.xVelocity = 10 ;
         this.setTranslateX(x);
         this.setTranslateY(y);
 
@@ -43,7 +42,7 @@ public class Ball extends Pane {
     public void repaint() {
         moveY();
         moveX();
-//        this.ballRolling();
+        this.ballRolling();
     }
 
     public void checkReachFloor() {
@@ -53,7 +52,6 @@ public class Ball extends Pane {
             }else{
                 yVelocity = 0;
                 this.y = Platform.GROUND - BALL_HEIGHT ;
-//                rotate = 0 ;
             }
 
         }
@@ -61,66 +59,78 @@ public class Ball extends Pane {
     public void checkReachGameWall() {
         if (x <= 0) {
             x = 0;
+            ballBouncing();
         } else if (x + this.getWidth() >= Platform.WIDTH) {
             x = Platform.WIDTH - (int) (this.getWidth());
+            ballBouncing();
         }
+
     }
 
     public void collided(Character c) {
-//        if(c.isMovingRight()){
+        if(c.isMovingRight()){
+            this.yVelocity = c.getxVelocity() * -0.7 ;
+            this.xVelocity += c.getxVelocity() * 1.2 ;
 //            x = this.x + c.getxVelocity()*100;
-//        }
-//
-//        if(c.isMovingLeft()){
-//            x = this.x - c.getxVelocity()*100;
-//        }
+        }
+
+        if(c.isMovingLeft()){
+            this.yVelocity = c.getxVelocity() * -0.7 ;
+            this.xVelocity -= c.getxVelocity() * 1.2 ;
+        }
+
+        if(c.isIdle()){
+            this.xVelocity = -0.2 * (this.xVelocity) ;
+            c.setX((int) (c.getX() + Math.round(xVelocity * -3))) ;
+//            this.xVelocity = 0 ;
+        }
 
     }
 
     public void moveY() {
         setTranslateY(y);
-        this.ballRolling();
         y = (int)(y + yVelocity);
         yVelocity += gravity ;
     }
 
     public void moveX() {
-        this.trace();
+//        this.trace();
         setTranslateX(x);
-        this.ballRolling();
         x = (int)(x + xVelocity) ;
         ballAirResistance();
     }
 
     public void ballRolling() {
 //        double ballForce = Math.abs(this.xVelocity) + Math.abs(this.yVelocity) ;
-//        if(this.xVelocity == 0 && Math.round(this.yVelocity) == 0 ){
-//            this.rotate = 0 ;
-//        }else{
-//            if(yVelocity == 0){
-//                if(xVelocity > 0){
-//                    this.rotate = 2 ;
-//
-//                }else if(xVelocity < 0){
-//                    this.rotate = -2 ;
-//                }
-//            }else{
-//                this.rotate = 0.5 ;
-//            }
-//
-//        }
-            this.setRotate(this.getRotate() + rotate);
+        if(this.xVelocity != 0 ){
+
+            if(xVelocity > 0){
+                this.rotate = 3 ;
+            }else if(xVelocity < 0){
+                this.rotate = -3 ;
+            }
+
+        }else{
+            this.rotate = 0 ;
+
+        }
+        this.setRotate(this.getRotate() + rotate);
     }
 
     public void ballAirResistance() {
-        if( Math.floor(this.xVelocity) > 1 ){
-            this.xVelocity = 0.95 * (this.xVelocity) ;
-        }else if (Math.floor(this.xVelocity) < 1){
-            this.xVelocity = 0.95 * (this.xVelocity) ;
+        if( (Math.abs(this.xVelocity)) >= 1){
+            this.xVelocity = 0.98 * (this.xVelocity) ;
         }else{
             this.xVelocity = 0 ;
         }
+    }
 
+    public void ballBouncing() {
+        if( (Math.abs(this.xVelocity)) >= 1.5){
+            this.xVelocity = -0.8 * (this.xVelocity) ;
+        }else{
+            this.xVelocity = 0 ;
+        }
     }
 
     public int getX() {
