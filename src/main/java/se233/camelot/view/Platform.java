@@ -39,8 +39,8 @@ public class Platform extends Pane {
 
 
         this.characters = new ArrayList<Character>();
-        characters.add(new Character(140,GROUND-128,620,GROUND-128, KeyCode.A,KeyCode.D,KeyCode.W, characterTypes.get(0),KeyCode.Z,KeyCode.X));
-        characters.add(new Character(920,GROUND-128,620,GROUND-128, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, characterTypes.get(1),KeyCode.K,KeyCode.L));
+        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, characterTypes.get(0),KeyCode.Z,KeyCode.X));
+        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, characterTypes.get(1),KeyCode.K,KeyCode.L));
 
 
         this.getChildren().addAll(backgroundImg);
@@ -65,8 +65,8 @@ public class Platform extends Pane {
 
 
         this.characters = new ArrayList<Character>();
-        characters.add(new Character(140,GROUND-128,620,GROUND-128, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.megaMan,KeyCode.Z,KeyCode.X));
-        characters.add(new Character(920,GROUND-128,620,GROUND-128, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.saber,KeyCode.K,KeyCode.L));
+        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.megaMan,KeyCode.Z,KeyCode.X));
+        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.saber,KeyCode.K,KeyCode.L));
 
 
         this.getChildren().addAll(backgroundImg);

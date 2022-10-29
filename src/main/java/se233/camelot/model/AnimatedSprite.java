@@ -29,4 +29,24 @@ public class AnimatedSprite extends ImageView {
         final int y = curRowIndex * height + offsetY;
         this.setViewport(new Rectangle2D(x, y, width, height));
     }
+
+    int jumpCols ;
+    int curJumpRowsIndex ;
+    int jumpIndex ;
+    int curJumpColsIndex ;
+    public void jump() {
+        jumpCols = 11 ;
+        curJumpColsIndex = jumpIndex % jumpCols ;
+        curJumpRowsIndex = jumpIndex / jumpCols ;
+        jumpIndex = (jumpIndex+1)% (jumpCols*1);
+
+        final int x = curJumpColsIndex * width + offsetX;
+        final int y = curJumpRowsIndex * height + 60;
+        this.setViewport(new Rectangle2D(x, y, width, height));
+
+//        curColumnIndex = curIndex % columns;
+//        curRowIndex = curIndex / columns;
+//        curIndex = (curIndex+1) % (columns * rows);
+//        interpolate();
+    }
 }

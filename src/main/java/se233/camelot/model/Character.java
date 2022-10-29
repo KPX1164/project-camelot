@@ -75,17 +75,17 @@ public class Character extends Pane {
 
 
         //get image
-        if (characterType.equals(CharacterType.saber)){
-            this.characterImg = new Image(Launcher.class.getResource("assets/saber.png").toString());
+        if (this.characterType.equals(CharacterType.saber)){
+            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/SaberSheet.png"));
 //            this.getChildren().addAll(new ImageView(characterImg));
-            this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,65 ,58);
+            this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,171 ,153);
 
-        }else if (characterType.equals(CharacterType.megaMan)) {
-            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/MegamanSheet.png"));
-            this.imageView = new AnimatedSprite(characterImg, 5, 4, 1, offsetX, offsetY, 550, 500);
+        }else if (this.characterType.equals(CharacterType.megaMan)) {
+            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/megaMan.png"));
+            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
         }else{
-            this.characterImg = new Image(Launcher.class.getResource("assets/MarioSheet.png").toString());
-
+            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
+//            this.getChildren().addAll(new ImageView(characterImg));
             this.imageView = new AnimatedSprite(characterImg, 4, 4, 1, offsetX, offsetY, 16, 32);
         }
 
