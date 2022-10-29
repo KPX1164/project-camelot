@@ -17,7 +17,7 @@ public class Ball extends Pane {
     private double xVelocity = 0;
     private double gravity =  0.35 ;
 
-    private double rotate = 0;
+    private double rotate = 3;
 
     private ImageView imageView ;
     public final int BALL_HEIGHT = 32 ;
@@ -104,9 +104,9 @@ public class Ball extends Pane {
         if(this.xVelocity != 0 ){
 
             if(xVelocity > 0){
-                this.rotate = 3 ;
+                this.rotate = 5 ;
             }else if(xVelocity < 0){
-                this.rotate = -3 ;
+                this.rotate = -5 ;
             }
 
         }else{

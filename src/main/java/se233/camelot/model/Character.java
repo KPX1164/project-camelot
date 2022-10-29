@@ -86,7 +86,7 @@ public class Character extends Pane {
         }else{
             this.characterImg = new Image(Launcher.class.getResource("assets/zeroMan.png").toString());
 
-            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 100, 100);
+            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 80);
 
         }
 
