@@ -38,9 +38,6 @@ public class CharacterViewController {
     private Button homeBtn;
     @FXML
     private Button readyBtn;
-//    ArrayList<CharacterType> player = new ArrayList<>();
-    private Map<String,CharacterType> = new HashMap();
-
     @FXML
     public void initialize() {
 
