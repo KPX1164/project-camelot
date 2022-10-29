@@ -42,9 +42,9 @@ public class GameLoop implements Runnable {
 
             }
 
-//            if(platform.getKeys().isPressed(character.getLeftKey()) || platform.getKeys().isPressed(character.getRightKey())) {
-//                character.getImageView().tick();
-//            }
+            if(platform.getKeys().isPressed(character.getLeftKey()) || platform.getKeys().isPressed(character.getRightKey())) {
+                character.getImageView().tick();
+            }
 
             if (platform.getKeys().isPressed(character.getUpKey())) {
                 character.jump();

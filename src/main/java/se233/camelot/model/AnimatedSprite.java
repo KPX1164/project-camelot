@@ -28,4 +28,5 @@ public class AnimatedSprite extends ImageView {
         final int x = curColumnIndex * width + offsetX;
         final int y = curRowIndex * height + offsetY;
         this.setViewport(new Rectangle2D(x, y, width, height));
-    } }
+    }
+}

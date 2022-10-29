@@ -81,8 +81,6 @@ public class CharacterViewController {
             }
 
 
-            System.out.println(playerMap);
-
             Platform platform = new Platform(playerMap) ;
             GameLoop gameLoop = new GameLoop(platform);
             DrawingLoop drawingLoop = new DrawingLoop(platform);

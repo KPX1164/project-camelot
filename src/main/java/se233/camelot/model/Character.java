@@ -40,7 +40,7 @@ public class Character extends Pane {
     int yMaxVelocity = 21;
 
     //Animation state
-    private ImageView imageView;
+    private AnimatedSprite  imageView;
 
     // Attack state
     private  boolean isAttack = false ;
@@ -77,11 +77,19 @@ public class Character extends Pane {
         //get image
         if (characterType.equals(CharacterType.saber)){
             this.characterImg = new Image(Launcher.class.getResource("assets/saber.png").toString());
+//            this.getChildren().addAll(new ImageView(characterImg));
             this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,65 ,58);
 
-        }else {
-            this.imageView = new ImageView(Launcher.class.getResource("assets/saberTest.png").toString());
+        }else if (characterType.equals(CharacterType.megaMan)) {
+            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/MegamanSheet.png"));
+            this.imageView = new AnimatedSprite(characterImg, 5, 4, 1, offsetX, offsetY, 550, 500);
+        }else{
+            this.characterImg = new Image(Launcher.class.getResource("assets/MarioSheet.png").toString());
+
+            this.imageView = new AnimatedSprite(characterImg, 4, 4, 1, offsetX, offsetY, 16, 32);
         }
+
+
         this.imageView.setFitHeight(CHARACTER_HEIGHT);
         this.imageView.setFitWidth(CHARACTER_WIDTH);
         this.getChildren().addAll(this.imageView);
@@ -196,6 +204,10 @@ public class Character extends Pane {
 
     public int getStartX() {
         return startX;
+    }
+
+    public AnimatedSprite getImageView() {
+        return imageView;
     }
 
     public int getStartY() {
