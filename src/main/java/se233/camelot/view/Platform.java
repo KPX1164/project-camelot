@@ -27,6 +27,32 @@ public class Platform extends Pane {
     private Keys keys ;
     private Image platformImg ;
 
+    public Platform(ArrayList<CharacterType> characterTypes) {
+        keys = new Keys();
+        platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
+        ImageView backgroundImg = new ImageView(platformImg) ;
+        backgroundImg.setFitHeight(HEIGHT);
+        backgroundImg.setFitWidth(WIDTH);
+        this.setHeight(HEIGHT);
+        this.setWidth(WIDTH);
+
+
+        this.characters = new ArrayList<Character>();
+        characters.add(new Character(140,GROUND-128,620,GROUND-128, KeyCode.A,KeyCode.D,KeyCode.W, characterTypes.get(0),KeyCode.Z,KeyCode.X));
+        characters.add(new Character(920,GROUND-128,620,GROUND-128, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, characterTypes.get(1),KeyCode.K,KeyCode.L));
+
+
+        this.getChildren().addAll(backgroundImg);
+        this.characters.forEach( ch -> {
+            this.getChildren().add(ch) ;
+        });
+
+        this.timer = new Timer(624,20);
+        this.getChildren().add(timer);
+
+        this.ball = new Ball(624,250);
+        this.getChildren().add(ball);
+    }
     public Platform() {
         keys = new Keys();
         platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;

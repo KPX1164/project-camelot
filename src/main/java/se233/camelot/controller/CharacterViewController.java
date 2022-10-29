@@ -6,12 +6,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import se233.camelot.Launcher;
+import se233.camelot.model.Character;
+import se233.camelot.model.CharacterType;
 import se233.camelot.view.Platform;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.*;
 
 public class CharacterViewController {
@@ -32,12 +38,15 @@ public class CharacterViewController {
     private Button homeBtn;
     @FXML
     private Button readyBtn;
+//    ArrayList<CharacterType> player = new ArrayList<>();
+    private Map<String,CharacterType> = new HashMap();
 
     @FXML
     public void initialize() {
 
         readyBtn.setOnAction( event -> {
-            Platform platform = new Platform() ;
+
+            Platform platform = new Platform(player) ;
             GameLoop gameLoop = new GameLoop(platform);
             DrawingLoop drawingLoop = new DrawingLoop(platform);
             GameTimer gameTimer = new GameTimer(platform);
@@ -72,5 +81,25 @@ public class CharacterViewController {
         p2c2.setToggleGroup(player2);
         p2c3.setToggleGroup(player2);
 
+        if (p1c1.isSelected()){
+            player.add(CharacterType.megaMan);
+        }
+        if (p1c2.isSelected()){
+            player.add(CharacterType.zeroMan);
+        }
+        if (p1c3.isSelected()){
+            player.add(CharacterType.saber);
+        }
+        if (p2c1.isSelected()){
+            player.add(CharacterType.megaMan);
+        }
+        if (p2c2.isSelected()){
+            player.add(CharacterType.zeroMan);
+        }
+        if (p2c3.isSelected()){
+            player.add(CharacterType.saber);
+        }
+
     }
+
 }

@@ -1,5 +1,6 @@
 package se233.camelot.model;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -27,6 +28,7 @@ public class Character extends Pane {
     boolean isJumping = false;
     boolean isMovingRight = false;
     boolean isMovingLeft = false;
+
     private int score = 0 ;
 
     //Moving state
@@ -50,6 +52,8 @@ public class Character extends Pane {
     private KeyCode ultimateKey ;
 
     private Logger logger = LogManager.getLogger();
+    private Image characterImg;
+
     public Character(int x, int y,int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, CharacterType characterType, KeyCode attackKey , KeyCode ultiKey) {
         this.characterType = characterType ;
 
@@ -71,7 +75,13 @@ public class Character extends Pane {
 
 
         //get image
-        this.imageView = new ImageView(Launcher.class.getResource("assets/saberTest.png").toString()) ;
+        if (characterType.equals(CharacterType.saber)){
+            this.characterImg = new Image(Launcher.class.getResource("assets/saber.png").toString());
+            this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,65 ,58);
+
+        }else {
+            this.imageView = new ImageView(Launcher.class.getResource("assets/saberTest.png").toString());
+        }
         this.imageView.setFitHeight(CHARACTER_HEIGHT);
         this.imageView.setFitWidth(CHARACTER_WIDTH);
         this.getChildren().addAll(this.imageView);
