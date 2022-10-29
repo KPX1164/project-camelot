@@ -236,6 +236,12 @@ public class Character extends Pane {
     public KeyCode getUpKey() {
         return upKey;
     }
+
+    public boolean isIdle() {
+        return !isMovingLeft && !isMovingRight ;
+    }
+
+
     public void trace() {
         logger.info("x:{} y:{} vx:{} vy:{}", x, y, xVelocity, yVelocity);
     }
