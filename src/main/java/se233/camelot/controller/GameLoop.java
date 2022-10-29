@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import se233.camelot.model.Character;
 import se233.camelot.view.Platform;
+import se233.camelot.view.Score;
 
 import java.util.ArrayList;
 
@@ -52,11 +53,20 @@ public class GameLoop implements Runnable {
         }
     }
 
+    private void updateScore(ArrayList<Score> scoreList , ArrayList<Character> characterList){
+        javafx.application.Platform.runLater( () -> {
+            for (int i = 0; i < scoreList.size(); i++) {
+                scoreList.get(i).setPoint(characterList.get(i).getScore());
+            }
+        });
+    }
+
     @Override
     public void run() {
 
         while (running){
             update(Platform.getCharacters());
+            updateScore(Platform.getScoreList(), Platform.getCharacters());
             try {
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1  ;

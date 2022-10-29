@@ -41,7 +41,7 @@ public class AnimatedSprite extends ImageView {
         jumpIndex = (jumpIndex+1)% (jumpCols*1);
 
         final int x = curJumpColsIndex * width + offsetX;
-        final int y = curJumpRowsIndex * height + 60;
+        final int y = curJumpRowsIndex * height + height;
         this.setViewport(new Rectangle2D(x, y, width, height));
 
     }

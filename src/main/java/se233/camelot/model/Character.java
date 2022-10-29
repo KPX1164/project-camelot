@@ -76,16 +76,17 @@ public class Character extends Pane {
 
         //get image
         if (this.characterType.equals(CharacterType.saber)){
-            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/SaberSheet.png"));
+            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/saber.png"));
 //            this.getChildren().addAll(new ImageView(characterImg));
-            this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,171 ,153);
+            this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,65 ,60);
 
         }else if (characterType.equals(CharacterType.megaMan)) {
             this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/megaMan.png"));
-            this.imageView = new AnimatedSprite(characterImg, 16, 16, 1, offsetX, offsetY, 65, 60);
+            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
         }else{
             this.characterImg = new Image(Launcher.class.getResource("assets/zeroMan.png").toString());
-            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
+
+            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 100, 100);
 
         }
 
@@ -254,6 +255,9 @@ public class Character extends Pane {
         return !isMovingLeft && !isMovingRight ;
     }
 
+    public CharacterType getCharacterType() {
+        return characterType;
+    }
 
     public void trace() {
         logger.info("x:{} y:{} vx:{} vy:{}", x, y, xVelocity, yVelocity);

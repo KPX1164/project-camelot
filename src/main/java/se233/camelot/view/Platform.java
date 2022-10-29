@@ -21,7 +21,7 @@ public class Platform extends Pane {
     public static  final int HEIGHT = 720 ;
     public static final int GROUND = 620 ;
     private static ArrayList<Character> characters ;
-    private Score score ;
+    private static ArrayList<Score> scoreList = new ArrayList<>();
     private ArrayList<UltimateBar> ultimateBars ;
     private Timer timer ;
     private Ball ball ;
@@ -53,6 +53,10 @@ public class Platform extends Pane {
 
         this.ball = new Ball(624,250);
         this.getChildren().add(ball);
+
+        scoreList.add(new Score(30 , 64, characters.get(0) ));
+        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
+        scoreList.forEach( list -> { this.getChildren().add(list) ; });
     }
     public Platform() {
         keys = new Keys();
@@ -81,6 +85,10 @@ public class Platform extends Pane {
 
         this.ball = new Ball(624,250);
         this.getChildren().add(ball);
+
+        scoreList.add(new Score(30 , 64, characters.get(0) ));
+        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
+        scoreList.forEach( list -> { this.getChildren().add(list) ; });
     }
     public Keys getKeys() {
         return keys;
@@ -99,6 +107,10 @@ public class Platform extends Pane {
 
     public Timer getTimer() {
         return this.timer;
+    }
+
+    public static ArrayList<Score> getScoreList() {
+        return scoreList;
     }
 
     public void endPlatform(){
