@@ -81,12 +81,11 @@ public class Character extends Pane {
             this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,65 ,58);
 
         }else if (characterType.equals(CharacterType.megaMan)) {
-            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/MegamanSheet.png"));
-            this.imageView = new AnimatedSprite(characterImg, 5, 4, 1, offsetX, offsetY, 550, 500);
+            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/megaMan.png"));
+            this.imageView = new AnimatedSprite(characterImg, 16, 16, 1, offsetX, offsetY, 65, 60);
         }else{
-            this.characterImg = new Image(Launcher.class.getResource("assets/MarioSheet.png").toString());
-
-            this.imageView = new AnimatedSprite(characterImg, 4, 4, 1, offsetX, offsetY, 16, 32);
+            this.characterImg = new Image(Launcher.class.getResource("assets/zeroMan.png").toString());
+            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
         }
 
 
