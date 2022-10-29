@@ -39,7 +39,6 @@ public class GameLoop implements Runnable {
 
             if (!platform.getKeys().isPressed(character.getLeftKey()) && !platform.getKeys().isPressed(character.getRightKey())) {
                 character.stop();
-//                character.getImageView().tick();
             }
 
             if(platform.getKeys().isPressed(character.getLeftKey()) || platform.getKeys().isPressed(character.getRightKey())) {

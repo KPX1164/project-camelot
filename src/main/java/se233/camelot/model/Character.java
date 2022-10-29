@@ -80,13 +80,13 @@ public class Character extends Pane {
 //            this.getChildren().addAll(new ImageView(characterImg));
             this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,171 ,153);
 
-        }else if (this.characterType.equals(CharacterType.megaMan)) {
+        }else if (characterType.equals(CharacterType.megaMan)) {
             this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/megaMan.png"));
-            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
+            this.imageView = new AnimatedSprite(characterImg, 16, 16, 1, offsetX, offsetY, 65, 60);
         }else{
-            this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
-//            this.getChildren().addAll(new ImageView(characterImg));
-            this.imageView = new AnimatedSprite(characterImg, 4, 4, 1, offsetX, offsetY, 16, 32);
+            this.characterImg = new Image(Launcher.class.getResource("assets/zeroMan.png").toString());
+            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
+
         }
 
 
@@ -123,6 +123,7 @@ public class Character extends Pane {
             canJump = true;
             yVelocity = 0;
             this.y = Platform.GROUND - CHARACTER_HEIGHT ;
+            imageView.landing();
         }
     }
 

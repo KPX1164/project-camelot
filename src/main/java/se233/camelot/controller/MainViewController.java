@@ -51,7 +51,8 @@ public class MainViewController {
             Launcher.musicController.play("game");
             Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
             Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
-            Launcher.stage.getScene().setRoot(platform);        });
+            Launcher.stage.getScene().setRoot(platform);
+        });
 
     }
 }
