@@ -159,11 +159,11 @@ public class Character extends Pane {
 
         if (isMovingLeft) {
             x = this.x + c.getxVelocity();
-            c.setX(c.getX() - this.xVelocity*(4));
+            c.setX((int)(c.getX() - this.xVelocity*(1.5)));
             stop();
         } else if (isMovingRight) {
             x = this.x - c.getxVelocity();
-            c.setX(c.getX() + this.xVelocity*(4));
+            c.setX((int)(c.getX() + this.xVelocity*(1.5)));
             stop();
         }
     }

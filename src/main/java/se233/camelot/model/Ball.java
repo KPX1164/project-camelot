@@ -3,10 +3,13 @@ package se233.camelot.model;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se233.camelot.Launcher;
 import se233.camelot.view.Platform;
 
 public class Ball extends Pane {
+    private Logger logger = LogManager.getLogger();
     private int startX , startY;
     int x , y ;
 
@@ -26,6 +29,7 @@ public class Ball extends Pane {
         this.startX = x ;
         this.startY = y ;
 
+        this.xVelocity = 10 ;
         this.setTranslateX(x);
         this.setTranslateY(y);
 
@@ -38,16 +42,18 @@ public class Ball extends Pane {
 
     public void repaint() {
         moveY();
+        moveX();
+//        this.ballRolling();
     }
 
     public void checkReachFloor() {
         if (y >= Platform.GROUND - BALL_HEIGHT) {
-            if(Math.floor(yVelocity) >= 1){
+            if( Math.floor(yVelocity) >= 5){
                 yVelocity = - yVelocity * 0.65 ;
             }else{
                 yVelocity = 0;
                 this.y = Platform.GROUND - BALL_HEIGHT ;
-                rotate = 0 ;
+//                rotate = 0 ;
             }
 
         }
@@ -73,9 +79,48 @@ public class Ball extends Pane {
 
     public void moveY() {
         setTranslateY(y);
-        this.setRotate(this.getRotate() + rotate);
+        this.ballRolling();
         y = (int)(y + yVelocity);
         yVelocity += gravity ;
+    }
+
+    public void moveX() {
+        this.trace();
+        setTranslateX(x);
+        this.ballRolling();
+        x = (int)(x + xVelocity) ;
+        ballAirResistance();
+    }
+
+    public void ballRolling() {
+//        double ballForce = Math.abs(this.xVelocity) + Math.abs(this.yVelocity) ;
+//        if(this.xVelocity == 0 && Math.round(this.yVelocity) == 0 ){
+//            this.rotate = 0 ;
+//        }else{
+//            if(yVelocity == 0){
+//                if(xVelocity > 0){
+//                    this.rotate = 2 ;
+//
+//                }else if(xVelocity < 0){
+//                    this.rotate = -2 ;
+//                }
+//            }else{
+//                this.rotate = 0.5 ;
+//            }
+//
+//        }
+            this.setRotate(this.getRotate() + rotate);
+    }
+
+    public void ballAirResistance() {
+        if( Math.floor(this.xVelocity) > 1 ){
+            this.xVelocity = 0.95 * (this.xVelocity) ;
+        }else if (Math.floor(this.xVelocity) < 1){
+            this.xVelocity = 0.95 * (this.xVelocity) ;
+        }else{
+            this.xVelocity = 0 ;
+        }
+
     }
 
     public int getX() {
@@ -110,5 +155,9 @@ public class Ball extends Pane {
         this.xVelocity = xVelocity;
     }
 
+
+    public void trace() {
+        logger.info("x:{} y:{} vx:{} vy:{}",x,y,xVelocity,yVelocity);
+    }
 
 }
