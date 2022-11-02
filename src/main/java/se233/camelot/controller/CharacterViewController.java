@@ -68,16 +68,16 @@ public class CharacterViewController {
                 playerMap.set(0, CharacterType.zeroMan);
             }
             if (p1c3.isSelected()){
-                playerMap.set(0,CharacterType.saber );
+                playerMap.set(0,CharacterType.saber);
             }
             if (p2c1.isSelected()){
-                playerMap.set(1,CharacterType.megaMan );
+                playerMap.set(1,CharacterType.megaMan);
             }
             if (p2c2.isSelected()){
-                playerMap.set(1,CharacterType.zeroMan );
+                playerMap.set(1,CharacterType.zeroMan);
             }
             if (p2c3.isSelected()){
-                playerMap.set(1,CharacterType.saber );
+                playerMap.set(1,CharacterType.saber);
             }
 
 

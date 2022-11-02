@@ -91,9 +91,9 @@ public class Character extends Pane {
             this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
         }else{
             this.characterImg = new Image(Launcher.class.getResource("assets/zeroMan.png").toString());
-
             this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 80);
-
+            CHARACTER_WIDTH = 138;
+            CHARACTER_HEIGHT = 158;
         }
 
 
