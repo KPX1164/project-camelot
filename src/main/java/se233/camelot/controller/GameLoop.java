@@ -61,7 +61,7 @@ public class GameLoop implements Runnable {
     private void updateScore(ArrayList<Score> scoreList , ArrayList<Character> characterList){
         javafx.application.Platform.runLater( () -> {
             for (int i = 0; i < scoreList.size(); i++) {
-                System.out.println(characterList.get(i).getScore());
+//                System.out.println(characterList.get(i).getScore());
                 scoreList.get(i).setPoint(characterList.get(i).getScore());
             }
         });

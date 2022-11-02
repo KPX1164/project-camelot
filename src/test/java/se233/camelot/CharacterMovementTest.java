@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import se233.camelot.model.Goal;
 import se233.camelot.view.Platform;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,12 +22,14 @@ import java.util.ArrayList;
 public class CharacterMovementTest {
     private ArrayList<CharacterType> playerMap = new ArrayList<>() ;
     private ArrayList<Character> charactersUnderTest = new ArrayList<>() ;
+    private ArrayList<Goal> goalListUnderTest;
     private Platform platformUnderTest ;
     private GameLoop gameLoopUnderTest ;
     private DrawingLoop drawingLoopUnderTest ;
     private GameTimer gameTimerUnderTest ;
     private Ball ballUnderTest ;
     private Method updateMethod, redrawMethod ;
+
 
     @Before
     public void setup() {
@@ -42,6 +45,7 @@ public class CharacterMovementTest {
 
 
         charactersUnderTest = platformUnderTest.getCharacters() ;
+        goalListUnderTest = platformUnderTest.getGoalList();
         ballUnderTest = platformUnderTest.getBall();
 
         try{
@@ -107,11 +111,9 @@ public class CharacterMovementTest {
     @Test
     public void characterShouldNotFallWhenOnGround() {
         Character character = new Character(0,620-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.zeroMan,KeyCode.Z,KeyCode.X);
-
-        int startY = character.getY();
         character.checkReachFloor();
 
-        assertEquals("Character Position should be same ",character.getY(),startY);
+        assertEquals("Character Position should be same ",character.getY(),platformUnderTest.GROUND - character.CHARACTER_HEIGHT);
         assertFalse("Character is falling", character.isFalling());
     }
 
@@ -142,4 +144,51 @@ public class CharacterMovementTest {
         assertTrue("Character Position should be not same after jump",character.getY() < startY);
     }
 
+    @Test
+    public void characterShouldBounceWhenReachGameWall() {
+        Character character = charactersUnderTest.get(0);
+        character.setX(0);
+        int startX = character.getX() ;
+        platformUnderTest.getKeys().add(KeyCode.A);
+
+        try{
+            clockTickHelper();
+            clockTickHelper();
+            character.checkReachGameWall();
+        }catch (Exception e){
+
+        }
+
+        assertEquals(character.getX(), startX);
+    }
+
+    @Test
+    public void characterShouldBounceEachCharacter() {
+        Character character1 = charactersUnderTest.get(0);
+        Character character2 = charactersUnderTest.get(1);
+
+        character1.setX(20);
+        character2.setX(150);
+
+        int[] characterStartLocation = { character1.getX() , character2.getX() };
+
+        platformUnderTest.getKeys().add(KeyCode.LEFT);
+        try{
+            clockTickHelper();
+            clockTickHelper();
+            clockTickHelper();
+            clockTickHelper();
+        }catch (Exception e){
+
+        }
+        character2.collided(character1);
+        character1.collided(character2);
+
+        assertNotEquals(character1.getX(),characterStartLocation[0]);
+        assertNotEquals(character2.getX(),characterStartLocation[1]);
+
+
+    }
 }
+
+

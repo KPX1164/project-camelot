@@ -73,7 +73,7 @@ public class Ball extends Pane {
             //if ulti
             if(c.isInUltimate()){
                 c.useUltimateSkill();
-                this.yVelocity = c.getxVelocity() * -0.7 ;
+                this.yVelocity = c.getxVelocity() * -0.1 ;
                 this.xVelocity += c.getxVelocity() * 5.1 ;
             }else{
                 this.yVelocity = c.getxVelocity() * -0.7 ;
@@ -86,7 +86,7 @@ public class Ball extends Pane {
             //if ulti
             if(c.isInUltimate()) {
                 c.useUltimateSkill();
-                this.yVelocity = c.getxVelocity() * -0.7;
+                this.yVelocity = c.getxVelocity() * -0.1;
                 this.xVelocity -= c.getxVelocity() * 5.1;
             }else{
                 this.yVelocity = c.getxVelocity() * -0.7 ;
@@ -110,7 +110,7 @@ public class Ball extends Pane {
     }
 
     public void moveX() {
-//        this.trace();
+        this.trace();
         setTranslateX(x);
         if(xVelocity > 0){
             xVelocity = xVelocity >= MAX_XVELOCITY ? MAX_XVELOCITY : xVelocity ;
@@ -150,7 +150,7 @@ public class Ball extends Pane {
 
         }
         this.setRotate( this.getRotate() + rotate);
-        this.trace();
+//        this.trace();
     }
 
     public void ballAirResistance() {
@@ -201,6 +201,10 @@ public class Ball extends Pane {
         this.xVelocity = xVelocity;
     }
 
+    public boolean isFalling() {
+        if(this.xVelocity > 0.35) return true;
+        return  false ;
+    }
 
     public void trace() {
         logger.info("x:{} y:{} vx:{} vy:{} rotate:{}",x,y,xVelocity,yVelocity,rotate);

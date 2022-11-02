@@ -2,6 +2,7 @@ package se233.camelot.controller;
 
 import se233.camelot.model.Ball;
 import se233.camelot.model.Character;
+import se233.camelot.model.Goal;
 import se233.camelot.view.Platform;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class DrawingLoop implements Runnable {
         this.frameFlag = 0 ;
     }
 
-    private void checkDrawCollisions(ArrayList<Character> characters, Ball ball){
+    private void checkDrawCollisions(ArrayList<Character> characters, Ball ball, ArrayList<Goal> goalList){
         for(Character character : characters){
             character.checkReachGameWall();
             character.checkReachHighest();
@@ -49,6 +50,18 @@ public class DrawingLoop implements Runnable {
                 }
             }
         }
+
+        for( Goal goal : goalList){
+            for (Character character : characters){
+                if(goal.getBoundsInParent().intersects(character.getBoundsInParent())){
+                    goal.intersect(character);
+                }
+            }
+
+            if(goal.getBoundsInParent().intersects(ball.getBoundsInParent())){
+                goal.intersect(ball);
+            }
+        }
     }
     private void paint(ArrayList<Character> characters, Ball ball){
         for(Character character : characters){
@@ -60,7 +73,7 @@ public class DrawingLoop implements Runnable {
     @Override
     public void run() {
         while (running) {
-            checkDrawCollisions(platform.getCharacters(),platform.getBall());
+            checkDrawCollisions(platform.getCharacters(),platform.getBall(), platform.getGoalList());
             paint(platform.getCharacters(),platform.getBall());
             try {
                 Thread.sleep(1000/this.frameRate);

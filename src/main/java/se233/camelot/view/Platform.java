@@ -6,13 +6,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
 import se233.camelot.Launcher;
-import se233.camelot.model.Ball;
+import se233.camelot.model.*;
 import se233.camelot.model.Character;
-import se233.camelot.model.CharacterType;
-import se233.camelot.model.Keys;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 
 public class Platform extends Pane {
@@ -29,8 +26,8 @@ public class Platform extends Pane {
     private Ball ball ;
     private Keys keys ;
     private Image platformImg ;
-    private Image leftGoalInPlatform;
-    private Image rightGoalInPlatform;
+    private Goal playerOneGoal;
+    private Goal playerTwoGoal;
 
 
     public Platform(ArrayList<CharacterType> characterTypes) {
@@ -62,13 +59,16 @@ public class Platform extends Pane {
         scoreList.add(new Score(30 , 64, characters.get(0) ));
         scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
         scoreList.forEach( list -> { this.getChildren().add(list) ; });
+
+        playerOneGoal = new Goal(0,Platform.GROUND - 200,"Player1");
+        playerTwoGoal = new Goal(Platform.WIDTH - 100,Platform.GROUND - 200,"Player2");
+        goalList.add(playerOneGoal);
+        goalList.add(playerTwoGoal);
+
+        this.getChildren().addAll(playerOneGoal,playerTwoGoal);
     }
     //Test
     public Platform() {
-        leftGoalInPlatform = new Image(Launcher.class.getResourceAsStream("assets/leftGoal.png"));
-        rightGoalInPlatform = new Image(Launcher.class.getResourceAsStream("assets/rightGoal.png"));
-        goalList.add(leftGoalInPlatform);
-        goalList.add(rightGoalInPlatform);
         keys = new Keys();
         platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
         ImageView backgroundImg = new ImageView(platformImg) ;
@@ -99,6 +99,14 @@ public class Platform extends Pane {
         scoreList.add(new Score(30 , 64, characters.get(0) ));
         scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
         scoreList.forEach( list -> { this.getChildren().add(list) ; });
+
+        playerOneGoal = new Goal(0,Platform.GROUND - 200,"Player1");
+        playerTwoGoal = new Goal(Platform.WIDTH - 100,Platform.GROUND - 200,"Player2");
+        goalList.add(playerOneGoal);
+        goalList.add(playerTwoGoal);
+
+        this.getChildren().addAll(playerOneGoal,playerTwoGoal);
+
     }
     public Keys getKeys() {
         return keys;
@@ -121,6 +129,10 @@ public class Platform extends Pane {
 
     public static ArrayList<Score> getScoreList() {
         return scoreList;
+    }
+
+    public ArrayList<Goal> getGoalList() {
+        return goalList;
     }
 
     public void endPlatform(){
