@@ -114,6 +114,7 @@ public class Platform extends Pane {
     }
 
     public void endPlatform(){
+        scoreList = new ArrayList<>() ;
         keys = new Keys() ;
         this.characters.forEach( ch -> {
             ch.stop();

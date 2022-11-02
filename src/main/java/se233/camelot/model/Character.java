@@ -41,10 +41,11 @@ public class Character extends Pane {
 
     //Animation state
     private AnimatedSprite  imageView;
+    private ImageView ultimateAura ;
 
     // Attack state
-    private  boolean isAttack = false ;
-    private KeyCode attackKey ;
+//    private  boolean isAttack = false ;
+//    private KeyCode attackKey ;
 
     // Ultimate state
     private int ultimateCharge ;
@@ -70,9 +71,14 @@ public class Character extends Pane {
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.upKey = upKey;
-        this.attackKey = attackKey;
+//        this.attackKey = attackKey;
         this.ultimateKey = ultiKey ;
 
+
+        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/UltiEffect.png").toString()));
+        ultimateAura.setFitWidth(128);
+        ultimateAura.setFitHeight(128);
+        ultimateAura.setVisible(false);
 
         //get image
         if (this.characterType.equals(CharacterType.saber)){
@@ -93,7 +99,7 @@ public class Character extends Pane {
 
         this.imageView.setFitHeight(CHARACTER_HEIGHT);
         this.imageView.setFitWidth(CHARACTER_WIDTH);
-        this.getChildren().addAll(this.imageView);
+        this.getChildren().addAll(this.imageView, this.ultimateAura);
 
     }
 
@@ -179,12 +185,28 @@ public class Character extends Pane {
 
         if (isMovingLeft) {
             x = this.x + c.getxVelocity();
-            c.setX((int)(c.getX() - this.xVelocity*(1.5)));
+            c.setX((int)(c.getX() - this.xVelocity));
             stop();
         } else if (isMovingRight) {
             x = this.x - c.getxVelocity();
-            c.setX((int)(c.getX() + this.xVelocity*(1.5)));
+            c.setX((int)(c.getX() + this.xVelocity));
             stop();
+        }
+    }
+
+    public void ultimateActive(){
+        if(this.ultimateCharge == 100 && !this.isInUltimate){
+            this.isInUltimate = true ;
+            this.ultimateAura.setVisible(true);
+            this.ultimateCharge = 0 ;
+        }else{
+            this.ultimateCharge = 100 ;
+        }
+    }
+    public void useUltimateSkill() {
+        if(this.isInUltimate){
+            this.isInUltimate = false ;
+            this.ultimateAura.setVisible(false);
         }
     }
 
@@ -257,6 +279,42 @@ public class Character extends Pane {
 
     public CharacterType getCharacterType() {
         return characterType;
+    }
+
+    public boolean isFalling() {
+        return isFalling;
+    }
+
+    public boolean isJumping() {
+        return isJumping;
+    }
+
+    public boolean isCanJump() {
+        return canJump;
+    }
+
+//    public boolean isAttack() {
+//        return isAttack;
+//    }
+//
+//    public KeyCode getAttackKey() {
+//        return attackKey;
+//    }
+
+    public boolean isInUltimate() {
+        return isInUltimate;
+    }
+
+    public KeyCode getUltimateKey() {
+        return ultimateKey;
+    }
+
+    public int getUltimateCharge() {
+        return ultimateCharge;
+    }
+
+    public void setUltimateCharge(int ultimateCharge) {
+        this.ultimateCharge = ultimateCharge;
     }
 
     public void trace() {

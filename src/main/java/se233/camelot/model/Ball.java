@@ -17,7 +17,8 @@ public class Ball extends Pane {
     private double xVelocity = 0;
     private double gravity =  0.35 ;
 
-    private double rotate = 3;
+    private int MAX_XVELOCITY = 40 ;
+    private double rotate = 1;
 
     private ImageView imageView ;
     public final int BALL_HEIGHT = 32 ;
@@ -47,10 +48,10 @@ public class Ball extends Pane {
 
     public void checkReachFloor() {
         if (y >= Platform.GROUND - BALL_HEIGHT) {
-            if( Math.floor(yVelocity) >= 5){
-                yVelocity = - yVelocity * 0.65 ;
+            if( Math.floor(yVelocity) >= 3){
+                yVelocity = - yVelocity * 0.55 ;
             }else{
-                yVelocity = 0;
+//                yVelocity = 0;
                 this.y = Platform.GROUND - BALL_HEIGHT ;
             }
 
@@ -69,13 +70,29 @@ public class Ball extends Pane {
 
     public void collided(Character c) {
         if(c.isMovingRight()){
-            this.yVelocity = c.getxVelocity() * -0.7 ;
-            this.xVelocity += c.getxVelocity() * 1.2 ;
+            //if ulti
+            if(c.isInUltimate()){
+                c.useUltimateSkill();
+                this.yVelocity = c.getxVelocity() * -0.7 ;
+                this.xVelocity += c.getxVelocity() * 5.1 ;
+            }else{
+                this.yVelocity = c.getxVelocity() * -0.7 ;
+                this.xVelocity += c.getxVelocity() * 1.1 ;
+            }
+
         }
 
         if(c.isMovingLeft()){
-            this.yVelocity = c.getxVelocity() * -0.7 ;
-            this.xVelocity -= c.getxVelocity() * 1.2 ;
+            //if ulti
+            if(c.isInUltimate()) {
+                c.useUltimateSkill();
+                this.yVelocity = c.getxVelocity() * -0.7;
+                this.xVelocity -= c.getxVelocity() * 5.1;
+            }else{
+                this.yVelocity = c.getxVelocity() * -0.7 ;
+                this.xVelocity -= c.getxVelocity() * 1.1 ;
+            }
+
         }
 
         if(c.isIdle()){
@@ -95,6 +112,11 @@ public class Ball extends Pane {
     public void moveX() {
 //        this.trace();
         setTranslateX(x);
+        if(xVelocity > 0){
+            xVelocity = xVelocity >= MAX_XVELOCITY ? MAX_XVELOCITY : xVelocity ;
+        }else{
+            xVelocity = xVelocity <= -MAX_XVELOCITY ? -MAX_XVELOCITY : xVelocity ;
+        }
         x = (int)(x + xVelocity) ;
         ballAirResistance();
     }
@@ -104,21 +126,36 @@ public class Ball extends Pane {
         if(this.xVelocity != 0 ){
 
             if(xVelocity > 0){
-                this.rotate = 5 ;
+                if(Math.abs(xVelocity) < 3){
+                    this.rotate = 4 ;
+                }else{
+                    this.rotate = 10 ;
+                }
             }else if(xVelocity < 0){
-                this.rotate = -5 ;
+                if(Math.abs(xVelocity) < 3){
+                    this.rotate = -4 ;
+                }else{
+                    this.rotate = -10 ;
+                }
+
             }
 
         }else{
-            this.rotate = 0 ;
+
+            if(Math.abs(yVelocity) > 0.5){
+                this.rotate = yVelocity ;
+            }else{
+                this.rotate = 0 ;
+            }
 
         }
-        this.setRotate(this.getRotate() + rotate);
+        this.setRotate( this.getRotate() + rotate);
+        this.trace();
     }
 
     public void ballAirResistance() {
         if( (Math.abs(this.xVelocity)) >= 1){
-            this.xVelocity = 0.98 * (this.xVelocity) ;
+            this.xVelocity = 0.99 * (this.xVelocity) ;
         }else{
             this.xVelocity = 0 ;
         }
@@ -166,7 +203,7 @@ public class Ball extends Pane {
 
 
     public void trace() {
-        logger.info("x:{} y:{} vx:{} vy:{}",x,y,xVelocity,yVelocity);
+        logger.info("x:{} y:{} vx:{} vy:{} rotate:{}",x,y,xVelocity,yVelocity,rotate);
     }
 
 }

@@ -40,6 +40,7 @@ public class DrawingLoop implements Runnable {
         for (Character cA : characters){
             for(Character cB: characters){
                 if(cA != cB){
+
                     if(cA.getBoundsInParent().intersects(cB.getBoundsInParent())){
                         cA.collided(cB);
                         cB.collided(cA);
