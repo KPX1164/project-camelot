@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import se233.camelot.model.Character;
 import se233.camelot.view.Platform;
 import se233.camelot.view.Score;
+import se233.camelot.view.UltimateBar;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -79,6 +80,14 @@ public class GameLoop implements Runnable {
         });
     }
 
+    private void updateUltimate(UltimateBar ulti){
+        javafx.application.Platform.runLater( () -> {
+            ulti.getP1().update();
+            ulti.getP2().update();
+        });
+    }
+
+
     private void chargeUltimateThread(ArrayList<Character> characters){
         javafx.application.Platform.runLater( () -> {
             if(frameFlag % 10 == 0){
@@ -94,8 +103,9 @@ public class GameLoop implements Runnable {
 
         while (running){
             update(Platform.getCharacters());
-            updateScore(Platform.getScoreList(), Platform.getCharacters());
             chargeUltimateThread(Platform.getCharacters());
+            updateScore(Platform.getScoreList(), Platform.getCharacters());
+            updateUltimate(Platform.getUltimateBar());
             try {
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1  ;

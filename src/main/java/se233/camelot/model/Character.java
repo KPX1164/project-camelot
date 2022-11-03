@@ -75,7 +75,7 @@ public class Character extends Pane {
         this.ultimateKey = ultiKey ;
 
 
-        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/UltiEffect.png").toString()));
+        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/ultiEffect.gif").toString()));
         ultimateAura.setFitWidth(128);
         ultimateAura.setFitHeight(128);
         ultimateAura.setVisible(false);

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import se233.camelot.Launcher;
 import se233.camelot.view.Platform;
+import se233.camelot.view.UltimateBar;
 
 public class Goal extends Pane {
 
@@ -74,12 +75,14 @@ public class Goal extends Pane {
                 if(ball.getX() < 20){
                     logger.info("Player 2 got point");
                     Platform.getCharacters().get(1).addScore() ;
+                    Platform.getCharacters().get(0).chargeUltimate();
                     Platform.respawn() ;
                 }
             }else{
                 if(ball.getX() > Platform.WIDTH - this.WIDTH + 20){
                     logger.info("Player 1 got point");
                     Platform.getCharacters().get(0).addScore() ;
+                    Platform.getCharacters().get(1).chargeUltimate();
                     Platform.respawn() ;
                 }
             }

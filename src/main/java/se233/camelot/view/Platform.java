@@ -21,13 +21,13 @@ public class Platform extends Pane {
     private static ArrayList<Score> scoreList = new ArrayList<>();
     private  ArrayList<Goal> goalList = new ArrayList<>();
 
-    private ArrayList<UltimateBar> ultimateBars ;
     private Timer timer ;
     private static Ball ball ;
     private Keys keys ;
     private Image platformImg ;
     private Goal playerOneGoal;
     private Goal playerTwoGoal;
+    private static UltimateBar ultimateBar;
 
 
     public Platform(ArrayList<CharacterType> characterTypes) {
@@ -50,6 +50,8 @@ public class Platform extends Pane {
             this.getChildren().add(ch) ;
         });
 
+
+
         this.timer = new Timer(624,20);
         this.getChildren().add(timer);
 
@@ -65,8 +67,8 @@ public class Platform extends Pane {
         goalList.add(playerOneGoal);
         goalList.add(playerTwoGoal);
 
-        this.getChildren().addAll(playerOneGoal,playerTwoGoal);
-    }
+        this.ultimateBar = new UltimateBar(characters);
+        this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);    }
     //Test
     public Platform() {
         keys = new Keys();
@@ -82,7 +84,6 @@ public class Platform extends Pane {
 
         characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.zeroMan,KeyCode.Z,KeyCode.X));
         characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.saber,KeyCode.K,KeyCode.L));
-
 
 
         this.getChildren().addAll(backgroundImg);
@@ -105,7 +106,8 @@ public class Platform extends Pane {
         goalList.add(playerOneGoal);
         goalList.add(playerTwoGoal);
 
-        this.getChildren().addAll(playerOneGoal,playerTwoGoal);
+        this.ultimateBar = new UltimateBar(characters);
+        this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);
 
     }
     public Keys getKeys() {
@@ -141,6 +143,10 @@ public class Platform extends Pane {
         this.characters.forEach( ch -> {
             ch.stop();
         });
+    }
+
+    public static UltimateBar getUltimateBar() {
+        return ultimateBar;
     }
 
     public static void respawn() {
