@@ -59,8 +59,8 @@ public class Ball extends Pane {
         }
     }
     public void checkReachGameWall() {
-        if (x <= 0) {
-            x = 0;
+        if (x <= -30) {
+            x = -30;
             ballBouncing();
         } else if (x + this.getWidth() >= Platform.WIDTH) {
             x = Platform.WIDTH - (int) (this.getWidth());

@@ -3,10 +3,14 @@ package se233.camelot.model;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se233.camelot.Launcher;
 import se233.camelot.view.Platform;
 
 public class Goal extends Pane {
+
+    private Logger logger = LogManager.getLogger();
     private int x ;
     private int y ;
 
@@ -49,37 +53,37 @@ public class Goal extends Pane {
 
 
         // bouncing the goal frame from top front
-        if(ball.getX() >= Platform.WIDTH - this.WIDTH){
-            if(ball.getY() < 400 && ball.getY() >= 395 ){
-                ball.ballBouncing();
+        if(owner.equals("Player1")){
+            if(ball.getX() <= Platform.WIDTH - this.WIDTH){
+                if(ball.getY() < 400 && ball.getY() >= 395 ){
+                    ball.ballBouncing();
+                }
+            }
+        }else{
+            if(ball.getX() >= Platform.WIDTH - this.WIDTH){
+                if(ball.getY() < 400 && ball.getY() >= 395 ){
+                    ball.ballBouncing();
+                }
             }
         }
-
 
         int goalHeight = Platform.GROUND - this.HEIGHT ;
         // ball coming inside goal
         if(ball.getY() > goalHeight && ball.getY() < Platform.HEIGHT){
             if(owner.equals("Player1")){
-                if(ball.getX() < Platform.WIDTH - this.WIDTH - 20){
-                    System.out.println("P2 got point");
+                if(ball.getX() < 20){
+                    logger.info("Player 2 got point");
                     Platform.getCharacters().get(1).addScore() ;
                     Platform.respawn() ;
                 }
-
-
             }else{
                 if(ball.getX() > Platform.WIDTH - this.WIDTH + 20){
-                    System.out.println("P1 got point");
+                    logger.info("Player 1 got point");
                     Platform.getCharacters().get(0).addScore() ;
                     Platform.respawn() ;
-
                 }
             }
-
-
         }
-
-
 
     }
 

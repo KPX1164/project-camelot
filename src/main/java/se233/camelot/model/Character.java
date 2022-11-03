@@ -194,14 +194,20 @@ public class Character extends Pane {
         }
     }
 
+    public void chargeUltimate() {
+        if(this.ultimateCharge < 100){
+            this.ultimateCharge += 10;
+        }else{
+            this.ultimateCharge = 100 ;
+        }
+    }
     public void ultimateActive(){
         if(this.ultimateCharge == 100 && !this.isInUltimate){
             this.isInUltimate = true ;
             this.ultimateAura.setVisible(true);
             this.ultimateCharge = 0 ;
-        }else{
-            this.ultimateCharge = 100 ;
         }
+
     }
     public void useUltimateSkill() {
         if(this.isInUltimate){
@@ -327,7 +333,7 @@ public class Character extends Pane {
     }
 
     public void trace() {
-        logger.info("x:{} y:{} vx:{} vy:{}", x, y, xVelocity, yVelocity);
+        logger.info("x:{} y:{} vx:{} vy:{} ulti:{}", x, y, xVelocity, yVelocity, ultimateCharge);
     }
 
 

@@ -8,6 +8,7 @@ import se233.camelot.view.Platform;
 import se233.camelot.view.Score;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class GameLoop implements Runnable {
@@ -64,14 +65,26 @@ public class GameLoop implements Runnable {
             if(platform.getKeys().isPressed(KeyCode.U)){
                 platform.getBall().setxVelocity(platform.getBall().getxVelocity() - 2);
             }
+            if(platform.getKeys().isPressed(KeyCode.O)){
+                platform.getBall().setxVelocity(platform.getBall().getxVelocity() + 2);
+            }
         }
     }
 
     private void updateScore(ArrayList<Score> scoreList , ArrayList<Character> characterList){
         javafx.application.Platform.runLater( () -> {
             for (int i = 0; i < scoreList.size(); i++) {
-//                System.out.println(characterList.get(i).getScore());
                 scoreList.get(i).setPoint(characterList.get(i).getScore());
+            }
+        });
+    }
+
+    private void chargeUltimateThread(ArrayList<Character> characters){
+        javafx.application.Platform.runLater( () -> {
+            if(frameFlag % 10 == 0){
+                for(Character ch: characters) {
+                    ch.chargeUltimate();
+                }
             }
         });
     }
@@ -82,6 +95,7 @@ public class GameLoop implements Runnable {
         while (running){
             update(Platform.getCharacters());
             updateScore(Platform.getScoreList(), Platform.getCharacters());
+            chargeUltimateThread(Platform.getCharacters());
             try {
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1  ;

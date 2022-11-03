@@ -19,7 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-public class CharacterMovementTest {
+public class CharacterTest {
     private ArrayList<CharacterType> playerMap = new ArrayList<>() ;
     private ArrayList<Character> charactersUnderTest = new ArrayList<>() ;
     private ArrayList<Goal> goalListUnderTest;
@@ -58,7 +58,6 @@ public class CharacterMovementTest {
             updateMethod = null ;
             redrawMethod = null ;
         }
-
     }
 
     private void clockTickHelper() throws InvocationTargetException, IllegalAccessException {
@@ -75,34 +74,26 @@ public class CharacterMovementTest {
         assertEquals("Left key", KeyCode.A , character.getLeftKey());
         assertEquals("Right key", KeyCode.D, character.getRightKey());
         assertEquals("Up key", KeyCode.W, character.getUpKey());
-
     }
 
     @Test
-    public void characterShouldMoveWhenKeyIsPressed() {
+    public void characterShouldMoveWhenKeyIsPressed() throws InvocationTargetException, IllegalAccessException  {
         Character character = charactersUnderTest.get(0) ;
 
         int startX = character.getX() ;
         platformUnderTest.getKeys().add(KeyCode.A);
-        try {
-            clockTickHelper();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        clockTickHelper();
+
 
         assertNotEquals("Character Position should be not same after move", startX , character.getX());
     }
 
     @Test
-    public void characterShouldFallWhenNotStayingOnGround() {
+    public void characterShouldFallWhenNotStayingOnGround() throws InvocationTargetException, IllegalAccessException {
         Character character = charactersUnderTest.get(0) ;
 
         int startY = character.getY() ;
-        try {
-            clockTickHelper();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        clockTickHelper();
 
         assertNotEquals("Character Position should be not same after fall", startY , character.getY());
         assertTrue("Character is falling", character.isFalling());
@@ -126,7 +117,7 @@ public class CharacterMovementTest {
     }
 
     @Test
-    public void characterShouldJumpWhenOnGround() {
+    public void characterShouldJumpWhenOnGround() throws InvocationTargetException, IllegalAccessException {
         Character character = charactersUnderTest.get(0);
         character.checkReachFloor();
 
@@ -134,36 +125,30 @@ public class CharacterMovementTest {
 
         platformUnderTest.getKeys().add(KeyCode.W);
         int startY = character.getY();
-        try {
-            clockTickHelper();
-            clockTickHelper();
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        clockTickHelper();
+        clockTickHelper();
+
         assertTrue("Character Position should be not same after jump",character.getY() < startY);
     }
 
     @Test
-    public void characterShouldBounceWhenReachGameWall() {
+    public void characterShouldBounceWhenReachGameWall() throws InvocationTargetException, IllegalAccessException  {
         Character character = charactersUnderTest.get(0);
         character.setX(0);
         int startX = character.getX() ;
         platformUnderTest.getKeys().add(KeyCode.A);
 
-        try{
-            clockTickHelper();
-            clockTickHelper();
-            character.checkReachGameWall();
-        }catch (Exception e){
+        clockTickHelper();
+        clockTickHelper();
+        character.checkReachGameWall();
 
-        }
 
         assertEquals(character.getX(), startX);
     }
 
     @Test
-    public void characterShouldBounceEachCharacter() {
+    public void characterShouldBounceEachCharacter() throws InvocationTargetException, IllegalAccessException {
         Character character1 = charactersUnderTest.get(0);
         Character character2 = charactersUnderTest.get(1);
 
@@ -173,21 +158,39 @@ public class CharacterMovementTest {
         int[] characterStartLocation = { character1.getX() , character2.getX() };
 
         platformUnderTest.getKeys().add(KeyCode.LEFT);
-        try{
-            clockTickHelper();
-            clockTickHelper();
-            clockTickHelper();
-            clockTickHelper();
-        }catch (Exception e){
 
-        }
+        clockTickHelper();
+        clockTickHelper();
+        clockTickHelper();
+        clockTickHelper();
+
         character2.collided(character1);
         character1.collided(character2);
 
         assertNotEquals(character1.getX(),characterStartLocation[0]);
         assertNotEquals(character2.getX(),characterStartLocation[1]);
+    }
 
+    @Test
+    public void characterShouldNotUseUltimateWhenTheChargeIsNotFull() throws InvocationTargetException, IllegalAccessException {
+        Character character = charactersUnderTest.get(0);
 
+        character.setUltimateCharge(0);
+        platformUnderTest.getKeys().add(KeyCode.X);
+
+        clockTickHelper();
+        assertFalse("Ultimate status should not be active",character.isInUltimate());
+    }
+
+    @Test
+    public void characterShouldUseUltimateWhenTheChargeIsFull() throws InvocationTargetException, IllegalAccessException {
+        Character character = charactersUnderTest.get(0);
+
+        character.setUltimateCharge(100);
+        platformUnderTest.getKeys().add(KeyCode.X);
+
+        clockTickHelper();
+        assertTrue("Ultimate status should be active",character.isInUltimate());
     }
 }
 
