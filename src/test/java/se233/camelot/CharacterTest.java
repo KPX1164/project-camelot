@@ -146,7 +146,6 @@ public class CharacterTest {
 
         assertEquals(character.getX(), startX);
     }
-
     @Test
     public void characterShouldBounceEachCharacter() throws InvocationTargetException, IllegalAccessException {
         Character character1 = charactersUnderTest.get(0);
@@ -170,28 +169,50 @@ public class CharacterTest {
         assertNotEquals(character1.getX(),characterStartLocation[0]);
         assertNotEquals(character2.getX(),characterStartLocation[1]);
     }
+    @Test
+    public void characterShouldRespawnOnStartLocation() {
+        Character characterUnderTest = charactersUnderTest.get(0);
+        characterUnderTest.setX(500);
+        characterUnderTest.setY(500);
+
+        characterUnderTest.respawn();
+        assertEquals(characterUnderTest.getStartX() , characterUnderTest.getX());
+        assertEquals(characterUnderTest.getStartY(), characterUnderTest.getY());
+    }
 
     @Test
     public void characterShouldNotUseUltimateWhenTheChargeIsNotFull() throws InvocationTargetException, IllegalAccessException {
-        Character character = charactersUnderTest.get(0);
-
-        character.setUltimateCharge(0);
+        Character characterUnderTest = charactersUnderTest.get(0);
+        characterUnderTest.setUltimateCharge(0);
         platformUnderTest.getKeys().add(KeyCode.X);
 
         clockTickHelper();
-        assertFalse("Ultimate status should not be active",character.isInUltimate());
+        assertFalse("Ultimate status should not be active",characterUnderTest.isInUltimate());
     }
 
     @Test
     public void characterShouldUseUltimateWhenTheChargeIsFull() throws InvocationTargetException, IllegalAccessException {
-        Character character = charactersUnderTest.get(0);
-
-        character.setUltimateCharge(100);
+        Character characterUnderTest = charactersUnderTest.get(0);
+        characterUnderTest.setUltimateCharge(100);
         platformUnderTest.getKeys().add(KeyCode.X);
 
         clockTickHelper();
-        assertTrue("Ultimate status should be active",character.isInUltimate());
+        assertTrue("Ultimate status should be active",characterUnderTest.isInUltimate());
     }
+
+    @Test
+    public void characterShouldChargeUltimateByTen() {
+        Character characterUnderTest = charactersUnderTest.get(0);
+
+        characterUnderTest.setUltimateCharge(0);
+        characterUnderTest.chargeUltimate();
+        assertEquals("Ultimate charge should be added by 10",10, characterUnderTest.getUltimateCharge());
+
+        characterUnderTest.setUltimateCharge(100);
+        characterUnderTest.chargeUltimate();
+        assertEquals("Ultimate charge should not over 100",100, characterUnderTest.getUltimateCharge());
+    }
+
 }
 
 

@@ -1,9 +1,9 @@
 package se233.camelot;
 
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.input.KeyCode;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Timeout;
 import se233.camelot.controller.DrawingLoop;
 import se233.camelot.controller.GameLoop;
 import se233.camelot.controller.GameTimer;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class ScoringTest {
+public class GameLoopTest {
     private ArrayList<CharacterType> playerMap = new ArrayList<>() ;
     private ArrayList<Character> charactersUnderTest = new ArrayList<>() ;
     private ArrayList<Goal> goalListUnderTest;
@@ -80,7 +80,6 @@ public class ScoringTest {
             character.setX(0);
         }
 
-//        int scoreUnderTest = characterUnderTest.getScore() ;
         ballUnderTest.setX(1200);
         ballUnderTest.setY(Platform.GROUND - ballUnderTest.BALL_HEIGHT);
         ballUnderTest.setxVelocity(10);
@@ -94,7 +93,7 @@ public class ScoringTest {
         }
 
         assertEquals("Player 1 should get score", 1 , characterUnderTest.getScore() );
-
+        assertEquals("Player 2's score should be same", 0 , charactersUnderTest.get(1).getScore());
     }
 
 }
