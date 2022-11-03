@@ -206,6 +206,7 @@ public class Character extends Pane {
             this.isInUltimate = true ;
             this.ultimateAura.setVisible(true);
             this.ultimateCharge = 0 ;
+            logger.info("Active Ultimate Skill");
         }
 
     }
