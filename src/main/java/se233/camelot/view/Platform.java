@@ -23,7 +23,7 @@ public class Platform extends Pane {
 
     private ArrayList<UltimateBar> ultimateBars ;
     private Timer timer ;
-    private Ball ball ;
+    private static Ball ball ;
     private Keys keys ;
     private Image platformImg ;
     private Goal playerOneGoal;
@@ -60,8 +60,8 @@ public class Platform extends Pane {
         scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
         scoreList.forEach( list -> { this.getChildren().add(list) ; });
 
-        playerOneGoal = new Goal(0,Platform.GROUND - 200,"Player1");
-        playerTwoGoal = new Goal(Platform.WIDTH - 100,Platform.GROUND - 200,"Player2");
+        playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
+        playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
         goalList.add(playerOneGoal);
         goalList.add(playerTwoGoal);
 
@@ -100,8 +100,8 @@ public class Platform extends Pane {
         scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
         scoreList.forEach( list -> { this.getChildren().add(list) ; });
 
-        playerOneGoal = new Goal(0,Platform.GROUND - 200,"Player1");
-        playerTwoGoal = new Goal(Platform.WIDTH - 100,Platform.GROUND - 200,"Player2");
+        playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
+        playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
         goalList.add(playerOneGoal);
         goalList.add(playerTwoGoal);
 
@@ -141,5 +141,12 @@ public class Platform extends Pane {
         this.characters.forEach( ch -> {
             ch.stop();
         });
+    }
+
+    public static void respawn() {
+        ball.respawn();
+        for(Character character : characters){
+            character.respawn() ;
+        }
     }
 }

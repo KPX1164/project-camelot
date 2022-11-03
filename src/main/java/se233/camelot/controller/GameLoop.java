@@ -1,5 +1,6 @@
 package se233.camelot.controller;
 
+import javafx.scene.input.KeyCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import se233.camelot.model.Character;
@@ -54,6 +55,14 @@ public class GameLoop implements Runnable {
 
             if(platform.getKeys().isPressed(character.getUltimateKey())){
                 character.ultimateActive();
+            }
+
+            if(platform.getKeys().isPressed(KeyCode.I)){
+                platform.getBall().setyVelocity(platform.getBall().getyVelocity() - 2);
+            }
+
+            if(platform.getKeys().isPressed(KeyCode.U)){
+                platform.getBall().setxVelocity(platform.getBall().getxVelocity() - 2);
             }
         }
     }

@@ -13,7 +13,7 @@ public class Ball extends Pane {
     private int startX , startY;
     int x , y ;
 
-    private double yVelocity = 3;
+    private double yVelocity = 0;
     private double xVelocity = 0;
     private double gravity =  0.35 ;
 
@@ -51,7 +51,8 @@ public class Ball extends Pane {
             if( Math.floor(yVelocity) >= 3){
                 yVelocity = - yVelocity * 0.55 ;
             }else{
-//                yVelocity = 0;
+                yVelocity = (int)(yVelocity);
+                this.rotate = 0 ;
                 this.y = Platform.GROUND - BALL_HEIGHT ;
             }
 
@@ -98,7 +99,6 @@ public class Ball extends Pane {
         if(c.isIdle()){
             this.xVelocity = -0.2 * (this.xVelocity) ;
             c.setX((int) (c.getX() + Math.round(xVelocity * -2))) ;
-//            this.xVelocity = 0 ;
         }
 
     }
@@ -110,7 +110,6 @@ public class Ball extends Pane {
     }
 
     public void moveX() {
-        this.trace();
         setTranslateX(x);
         if(xVelocity > 0){
             xVelocity = xVelocity >= MAX_XVELOCITY ? MAX_XVELOCITY : xVelocity ;
@@ -122,7 +121,6 @@ public class Ball extends Pane {
     }
 
     public void ballRolling() {
-//        double ballForce = Math.abs(this.xVelocity) + Math.abs(this.yVelocity) ;
         if(this.xVelocity != 0 ){
 
             if(xVelocity > 0){
@@ -141,7 +139,6 @@ public class Ball extends Pane {
             }
 
         }else{
-
             if(Math.abs(yVelocity) > 0.5){
                 this.rotate = yVelocity ;
             }else{
@@ -150,7 +147,6 @@ public class Ball extends Pane {
 
         }
         this.setRotate( this.getRotate() + rotate);
-//        this.trace();
     }
 
     public void ballAirResistance() {
@@ -167,7 +163,9 @@ public class Ball extends Pane {
         }else{
             this.xVelocity = 0 ;
         }
+
     }
+
 
     public int getX() {
         return x;
@@ -204,6 +202,13 @@ public class Ball extends Pane {
     public boolean isFalling() {
         if(this.xVelocity > 0.35) return true;
         return  false ;
+    }
+
+    public void respawn() {
+        this.x = startX ;
+        this.y = startY ;
+        this.xVelocity = 0 ;
+        this.yVelocity = 0 ;
     }
 
     public void trace() {

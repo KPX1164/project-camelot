@@ -210,6 +210,15 @@ public class Character extends Pane {
         }
     }
 
+    public void addScore(){
+        this.score += 1 ;
+    }
+
+    public void respawn() {
+        this.x = startX ;
+        this.y = startY ;
+    }
+
     public boolean isMovingRight() {
         return isMovingRight;
     }
