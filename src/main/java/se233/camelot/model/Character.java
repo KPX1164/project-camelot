@@ -214,6 +214,14 @@ public class Character extends Pane {
         if(this.isInUltimate){
             this.isInUltimate = false ;
             this.ultimateAura.setVisible(false);
+            Platform.getUltiField().setVisible(true);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Platform.getUltiField().setVisible(false);
+
         }
     }
 
