@@ -55,15 +55,19 @@ public class Goal extends Pane {
 
         // bouncing the goal frame from top front
         if(owner.equals("Player1")){
-            if(ball.getX() <= Platform.WIDTH - this.WIDTH){
+            if(ball.getX() <= this.WIDTH){
                 if(ball.getY() < 400 && ball.getY() >= 395 ){
-                    ball.ballBouncing();
+//                    ball.ballBouncing();
+                    ball.setxVelocity(2);
+                    ball.setyVelocity(0);
                 }
             }
         }else{
             if(ball.getX() >= Platform.WIDTH - this.WIDTH){
                 if(ball.getY() < 400 && ball.getY() >= 395 ){
-                    ball.ballBouncing();
+//                    ball.ballBouncing();
+                    ball.setxVelocity(-2);
+                    ball.setyVelocity(0);
                 }
             }
         }

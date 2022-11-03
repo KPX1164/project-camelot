@@ -41,12 +41,27 @@ public class AnimatedSprite extends ImageView {
         jumpIndex = (jumpIndex+1)% (jumpCols*1);
 
         final int x = curJumpColsIndex * width + offsetX;
-        final int y = curJumpRowsIndex * height + (height+5);
+        final int y = curJumpRowsIndex * height + (height + 5 + offsetY) ;
         this.setViewport(new Rectangle2D(x, y, width, height));
 
     }
 
     public void landing() {
         this.setViewport(new Rectangle2D(0, 0, width, height));
+    }
+
+    public void activeUltimate() {
+        int ultiCols = 8 ;
+        int ultiRows = 1 ;
+        int ultiIndex = 0 ;
+
+        int currColsIndex = ultiIndex % ultiCols ;
+        int currRowsIndex = ultiIndex / ultiCols ;
+        ultiIndex = (ultiIndex + 1) % (ultiCols * ultiRows);
+
+        final int x = currColsIndex * width + offsetX;
+        final int y = currRowsIndex * height + (2 * height + 5 + offsetY);
+        this.setViewport(new Rectangle2D(x, y, width, height));
+
     }
 }
