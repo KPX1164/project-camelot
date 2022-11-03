@@ -28,6 +28,7 @@ public class Platform extends Pane {
     private Goal playerOneGoal;
     private Goal playerTwoGoal;
     private static UltimateBar ultimateBar;
+    private static ImageView ultiField;
 
 
     public Platform(ArrayList<CharacterType> characterTypes) {
@@ -43,47 +44,6 @@ public class Platform extends Pane {
         this.characters = new ArrayList<Character>();
         characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, characterTypes.get(0),KeyCode.Z,KeyCode.X));
         characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, characterTypes.get(1),KeyCode.K,KeyCode.L));
-
-
-        this.getChildren().addAll(backgroundImg);
-        this.characters.forEach( ch -> {
-            this.getChildren().add(ch) ;
-        });
-
-
-
-        this.timer = new Timer(624,20);
-        this.getChildren().add(timer);
-
-        this.ball = new Ball(624,250);
-        this.getChildren().add(ball);
-
-        scoreList.add(new Score(30 , 64, characters.get(0) ));
-        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
-        scoreList.forEach( list -> { this.getChildren().add(list) ; });
-
-        playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
-        playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
-        goalList.add(playerOneGoal);
-        goalList.add(playerTwoGoal);
-
-        this.ultimateBar = new UltimateBar(characters);
-        this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);    }
-    //Test
-    public Platform() {
-        keys = new Keys();
-        platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
-        ImageView backgroundImg = new ImageView(platformImg) ;
-        backgroundImg.setFitHeight(HEIGHT);
-        backgroundImg.setFitWidth(WIDTH);
-        this.setHeight(HEIGHT);
-        this.setWidth(WIDTH);
-
-
-        this.characters = new ArrayList<Character>();
-
-        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.zeroMan,KeyCode.Z,KeyCode.X));
-        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.saber,KeyCode.K,KeyCode.L));
 
 
         this.getChildren().addAll(backgroundImg);
@@ -108,7 +68,52 @@ public class Platform extends Pane {
 
         this.ultimateBar = new UltimateBar(characters);
         this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);
+    }
+    //Test
+    public Platform() {
+        keys = new Keys();
+        platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
+        ImageView backgroundImg = new ImageView(platformImg) ;
+        backgroundImg.setFitHeight(HEIGHT);
+        backgroundImg.setFitWidth(WIDTH);
+        this.setHeight(HEIGHT);
+        this.setWidth(WIDTH);
 
+
+        this.characters = new ArrayList<Character>();
+
+        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.zeroMan,KeyCode.Z,KeyCode.X));
+        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.saber,KeyCode.K,KeyCode.L));
+
+        this.getChildren().addAll(backgroundImg);
+        this.characters.forEach( ch -> {
+            this.getChildren().add(ch) ;
+        });
+
+        this.timer = new Timer(624,20);
+        this.getChildren().add(timer);
+
+
+        this.ball = new Ball(624,250);
+        this.getChildren().add(ball);
+
+        scoreList.add(new Score(30 , 64, characters.get(0) ));
+        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
+        scoreList.forEach( list -> { this.getChildren().add(list) ; });
+
+        playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
+        playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
+        goalList.add(playerOneGoal);
+        goalList.add(playerTwoGoal);
+
+        this.ultimateBar = new UltimateBar(characters);
+        this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);
+
+        ultiField = new ImageView(new Image(Launcher.class.getResourceAsStream("Images/ultimateField.png")));
+        ultiField.setFitWidth(1280);
+        ultiField.setFitHeight(720);
+        ultiField.setVisible(false);
+        this.getChildren().add(ultiField);
     }
     public Keys getKeys() {
         return keys;
@@ -147,6 +152,10 @@ public class Platform extends Pane {
 
     public static UltimateBar getUltimateBar() {
         return ultimateBar;
+    }
+
+    public static ImageView getUltiField() {
+        return ultiField;
     }
 
     public static void respawn() {
