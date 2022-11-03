@@ -29,6 +29,7 @@ public class Character extends Pane {
     boolean isMovingRight = false;
     boolean isMovingLeft = false;
 
+    private Direction headingDirection = Direction.idle;
     private int score = 0 ;
 
     //Moving state
@@ -44,8 +45,8 @@ public class Character extends Pane {
     private ImageView ultimateAura ;
 
     // Attack state
-//    private  boolean isAttack = false ;
-//    private KeyCode attackKey ;
+    private  boolean isAttack = false ;
+    private KeyCode attackKey ;
 
     // Ultimate state
     private int ultimateCharge ;
@@ -71,7 +72,7 @@ public class Character extends Pane {
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.upKey = upKey;
-//        this.attackKey = attackKey;
+        this.attackKey = attackKey;
         this.ultimateKey = ultiKey ;
 
 
@@ -143,11 +144,13 @@ public class Character extends Pane {
     }
 
     public void moveLeft() {
+        this.headingDirection = Direction.left ;
         this.isMovingLeft = true;
         this.isMovingRight = false;
     }
 
     public void moveRight() {
+        this.headingDirection = Direction.right ;
         this.isMovingLeft = false;
         this.isMovingRight = true;
     }
@@ -317,13 +320,17 @@ public class Character extends Pane {
         return canJump;
     }
 
-//    public boolean isAttack() {
-//        return isAttack;
-//    }
-//
-//    public KeyCode getAttackKey() {
-//        return attackKey;
-//    }
+    public boolean isAttack() {
+        return isAttack;
+    }
+
+    public KeyCode getAttackKey() {
+        return attackKey;
+    }
+
+    public Direction getHeadingDirection() {
+        return this.headingDirection ;
+    }
 
     public boolean isInUltimate() {
         return isInUltimate;

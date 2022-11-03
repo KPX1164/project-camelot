@@ -21,33 +21,35 @@ public class Score extends Pane {
     Character character;
 
     public Score(int x , int y, Character character){
+        this.setTranslateX(x);
+        this.setTranslateY(y);
+
         this.character = character;
         point = new Label("0");
-        flameEffect = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/ultiEffect.gif")));
-        flameEffect.setVisible(false);
+
+        this.flameEffect = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/ultiEffect.gif")));
+        this.flameEffect.setVisible(false);
+        flameEffect.setFitWidth(128);
+        flameEffect.setFitHeight(128);
+//        flameEffect.setTranslateX(this.getTranslateX());
+        flameEffect.setY(this.getTranslateY());
         if(character.getCharacterType().equals(CharacterType.megaMan)){
             this.characterImg = new Image(Launcher.class.getResourceAsStream("Images/character1.png"));
         }else if(character.getCharacterType().equals(CharacterType.zeroMan)){
             this.characterImg = new Image(Launcher.class.getResourceAsStream("Images/character2.png"));
-
         }else{
             this.characterImg = new Image(Launcher.class.getResourceAsStream("Images/character3.png"));
         }
 
         this.characterIcon = new ImageView(characterImg);
-        this.setTranslateX(x);
-        this.setTranslateY(y);
         point.setFont(Font.font("Verdana", FontWeight.BOLD , 30));
         point.setTextFill(Color.web("#FFF"));
 
         VBox box = new VBox();
-        flameEffect.setTranslateY(y);
-        flameEffect.setTranslateX(x);
-        flameEffect.setFitWidth(128);
-        flameEffect.setFitHeight(128);
         box.getChildren().addAll(point , characterIcon);
+        this.getChildren().addAll(box);
+        this.getChildren().add(flameEffect);
 
-        this.getChildren().addAll(box,flameEffect);
     }
 
     public void update(){

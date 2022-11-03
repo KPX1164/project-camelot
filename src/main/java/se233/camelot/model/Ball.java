@@ -70,35 +70,39 @@ public class Ball extends Pane {
     }
 
     public void collided(Character c) {
-        if(c.isMovingRight()){
-            //if ulti
+
+        if(c.getHeadingDirection().equals(Direction.idle)){
+            this.setxVelocity(this.xVelocity * -1);
+        }
+
+        if(c.getHeadingDirection().equals(Direction.right)){
             if(c.isInUltimate()){
+                this.setX(c.getX() + c.CHARACTER_WIDTH + 20);
                 c.useUltimateSkill();
+
                 this.yVelocity = c.getxVelocity() * -0.1 ;
-                this.xVelocity += c.getxVelocity() * 5.1 ;
-            }else{
+                this.xVelocity += 100.1 ;
+            }
+            else if(c.isAttack()){
                 this.yVelocity = c.getxVelocity() * -0.7 ;
+                this.xVelocity += c.getxVelocity() * 1.3 ;
+            }else{
                 this.xVelocity += c.getxVelocity() * 1.1 ;
             }
 
-        }
-
-        if(c.isMovingLeft()){
-            //if ulti
-            if(c.isInUltimate()) {
+        }else if(c.getHeadingDirection().equals(Direction.left)){
+            if(c.isInUltimate()){
+                this.setX(c.getX()- c.CHARACTER_WIDTH - 20);
                 c.useUltimateSkill();
                 this.yVelocity = c.getxVelocity() * -0.1;
-                this.xVelocity -= c.getxVelocity() * 5.1;
-            }else{
+                this.xVelocity -= 100.1;
+            }
+            else if(c.isAttack()){
                 this.yVelocity = c.getxVelocity() * -0.7 ;
+                this.xVelocity -= c.getxVelocity() * 1.3 ;
+            }else{
                 this.xVelocity -= c.getxVelocity() * 1.1 ;
             }
-
-        }
-
-        if(c.isIdle()){
-            this.xVelocity = -0.2 * (this.xVelocity) ;
-            c.setX((int) (c.getX() + Math.round(xVelocity * -2))) ;
         }
 
     }

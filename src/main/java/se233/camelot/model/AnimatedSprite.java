@@ -50,14 +50,14 @@ public class AnimatedSprite extends ImageView {
         this.setViewport(new Rectangle2D(0, 0, width, height));
     }
 
-    public void activeUltimate() {
-        int ultiCols = 8 ;
-        int ultiRows = 1 ;
+    public void attack() {
+        int attCols = 8 ;
+        int attRows = 1 ;
         int ultiIndex = 0 ;
 
-        int currColsIndex = ultiIndex % ultiCols ;
-        int currRowsIndex = ultiIndex / ultiCols ;
-        ultiIndex = (ultiIndex + 1) % (ultiCols * ultiRows);
+        int currColsIndex = ultiIndex % attCols ;
+        int currRowsIndex = ultiIndex / attCols ;
+        ultiIndex = (ultiIndex + 1) % (attCols * attRows);
 
         final int x = currColsIndex * width + offsetX;
         final int y = currRowsIndex * height + (2 * height + 5 + offsetY);
