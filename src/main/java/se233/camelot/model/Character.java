@@ -76,7 +76,7 @@ public class Character extends Pane {
         this.ultimateKey = ultiKey ;
 
 
-        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/ultiEffect.gif").toString()));
+        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/UltiEffect.png").toString()));
         ultimateAura.setFitWidth(128);
         ultimateAura.setFitHeight(128);
         ultimateAura.setVisible(false);
@@ -84,17 +84,14 @@ public class Character extends Pane {
         //get image
         if (this.characterType.equals(CharacterType.saber)){
             this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/saber.png"));
-//            this.getChildren().addAll(new ImageView(characterImg));
             this.imageView = new AnimatedSprite(characterImg,8,8,1,offsetX,offsetY,65 ,60);
 
         }else if (characterType.equals(CharacterType.megaMan)) {
             this.characterImg = new Image(Launcher.class.getResourceAsStream("assets/megaMan.png"));
             this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 60);
         }else{
-            this.characterImg = new Image(Launcher.class.getResource("assets/zeroMan.png").toString());
-            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 65, 80);
-            CHARACTER_WIDTH = 138;
-            CHARACTER_HEIGHT = 158;
+            this.characterImg = new Image(Launcher.class.getResource("assets/mashu.png").toString());
+            this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 300, 420);
         }
 
 
@@ -223,14 +220,14 @@ public class Character extends Pane {
             this.isInUltimate = false ;
             this.ultimateAura.setVisible(false);
             Platform.getUltiField().setVisible(true);
+            Platform.getCutScene().trigger(this);
             try {
                 Thread.sleep(1000);
                 imageView.attack();
-
-
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            Platform.getCutScene().hide();
             Platform.getUltiField().setVisible(false);
         }
     }
@@ -247,7 +244,8 @@ public class Character extends Pane {
 
     public void respawn() {
         this.x = startX ;
-        this.y = startY ;
+        this.y = Platform.GROUND - this.CHARACTER_HEIGHT ;
+        this.checkReachFloor();
     }
 
     public boolean isMovingRight() {

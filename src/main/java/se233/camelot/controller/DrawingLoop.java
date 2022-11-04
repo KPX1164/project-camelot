@@ -3,6 +3,7 @@ package se233.camelot.controller;
 import se233.camelot.model.Ball;
 import se233.camelot.model.Character;
 import se233.camelot.model.Goal;
+import se233.camelot.view.CharacterIcon;
 import se233.camelot.view.Platform;
 
 import java.util.ArrayList;
@@ -70,11 +71,18 @@ public class DrawingLoop implements Runnable {
         ball.repaint();
     }
 
+    private void paintCharacterIcon(ArrayList<CharacterIcon> characterIcons) {
+        javafx.application.Platform.runLater( () -> {
+            characterIcons.forEach( characterIcon -> characterIcon.update() );
+        });
+    }
+
     @Override
     public void run() {
         while (running) {
             checkDrawCollisions(platform.getCharacters(),platform.getBall(), platform.getGoalList());
             paint(platform.getCharacters(),platform.getBall());
+            paintCharacterIcon(platform.getCharacterIcons());
             try{
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1 ;

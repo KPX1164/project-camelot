@@ -4,6 +4,7 @@ import javafx.scene.input.KeyCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import se233.camelot.model.Character;
+import se233.camelot.view.CutScene;
 import se233.camelot.view.Platform;
 import se233.camelot.view.Score;
 import se233.camelot.view.UltimateBar;
@@ -28,7 +29,9 @@ public class GameLoop implements Runnable {
     }
 
     private void update(ArrayList<Character> characters ) {
-        for (Character character : characters) {
+        for (int i = 0 ; i < characters.size(); i++) {
+            Character character = characters.get(i);
+
             if (platform.getKeys().isPressed(character.getLeftKey())) {
                 character.setScaleX(-1);
                 character.moveLeft();
@@ -104,6 +107,8 @@ public class GameLoop implements Runnable {
             }
         });
     }
+
+
 
     @Override
     public void run() {

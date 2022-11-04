@@ -38,7 +38,7 @@ public class GameLoopTest {
         JFXPanel jfxPanel = new JFXPanel() ;
 
         playerMap.add(CharacterType.megaMan);
-        playerMap.add(CharacterType.zeroMan);
+        playerMap.add(CharacterType.mashu);
 
         platformUnderTest = new Platform(playerMap) ;
         gameLoopUnderTest = new GameLoop(platformUnderTest);

@@ -14,49 +14,26 @@ import se233.camelot.model.CharacterType;
 
 public class Score extends Pane {
     private Label point ;
-    private Image characterImg ;
-    private ImageView characterIcon ;
-    private ImageView flameEffect ;
-    private Character character;
+    private int x ;
+    private int y ;
 
-    public Score(int x , int y, Character character){
-        this.setTranslateX(x);
-        this.setTranslateY(y);
+    public Score(int x , int y){
+        this.x = x ;
+        this.y = y ;
+        this.setTranslateX(this.x);
+        this.setTranslateY(this.y);
 
-        this.character = character;
         point = new Label("0");
 
-        this.flameEffect = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/UltiEffect.png")));
-        this.flameEffect.setVisible(false);
-        flameEffect.setFitWidth(128);
-        flameEffect.setFitHeight(128);
-//        flameEffect.setTranslateX(this.getTranslateX());
-        flameEffect.setY(this.getTranslateY());
-        if(character.getCharacterType().equals(CharacterType.megaMan)){
-            this.characterImg = new Image(Launcher.class.getResourceAsStream("Images/character1.png"));
-        }else if(character.getCharacterType().equals(CharacterType.zeroMan)){
-            this.characterImg = new Image(Launcher.class.getResourceAsStream("Images/character2.png"));
-        }else{
-            this.characterImg = new Image(Launcher.class.getResourceAsStream("Images/character3.png"));
-        }
 
-        this.characterIcon = new ImageView(characterImg);
         point.setFont(Font.font("Verdana", FontWeight.BOLD , 30));
         point.setTextFill(Color.web("#FFF"));
 
-        VBox box = new VBox();
-        box.getChildren().addAll(point , characterIcon);
-        this.getChildren().addAll(box);
-        this.getChildren().add(flameEffect);
-
+        this.getChildren().addAll(point);
     }
 
     public void update(){
-        if (this.character.getUltimateCharge() == 100){
-            this.flameEffect.setVisible(true);
-        }else {
-            this.flameEffect.setVisible(false);
-        }
+
     }
     public void setPoint(int score){
         this.point.setText(Integer.toString(score));

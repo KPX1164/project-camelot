@@ -36,7 +36,7 @@ public class CharacterTest {
         JFXPanel jfxPanel = new JFXPanel() ;
 
         playerMap.add(CharacterType.megaMan);
-        playerMap.add(CharacterType.zeroMan);
+        playerMap.add(CharacterType.mashu);
 
         platformUnderTest = new Platform(playerMap) ;
         gameLoopUnderTest = new GameLoop(platformUnderTest);
@@ -101,7 +101,7 @@ public class CharacterTest {
 
     @Test
     public void characterShouldNotFallWhenOnGround() {
-        Character character = new Character(0,620-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.zeroMan,KeyCode.Z,KeyCode.X);
+        Character character = new Character(0,620-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.mashu,KeyCode.Z,KeyCode.X);
         character.checkReachFloor();
 
         assertEquals("Character Position should be same ",character.getY(),platformUnderTest.GROUND - character.CHARACTER_HEIGHT);
@@ -110,7 +110,7 @@ public class CharacterTest {
 
     @Test
     public void characterShouldNotEnableToJumpWhenNotOnGround() {
-        Character character = new Character(0,10,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.zeroMan,KeyCode.Z,KeyCode.X);
+        Character character = new Character(0,10,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.mashu,KeyCode.Z,KeyCode.X);
         character.checkReachFloor();
 
         assertFalse("Character can jump", character.isCanJump());

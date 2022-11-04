@@ -19,6 +19,7 @@ public class Platform extends Pane {
     public static final int GROUND = 620 ;
     private static ArrayList<Character> characters ;
     private static ArrayList<Score> scoreList = new ArrayList<>();
+    private static ArrayList<CharacterIcon> characterIcons = new ArrayList<>() ;
     private  ArrayList<Goal> goalList = new ArrayList<>();
 
     private Timer timer ;
@@ -29,6 +30,7 @@ public class Platform extends Pane {
     private Goal playerTwoGoal;
     private static UltimateBar ultimateBar;
     private static ImageView ultiField;
+    private static CutScene cutScene ;
 
 
     public Platform(ArrayList<CharacterType> characterTypes) {
@@ -56,8 +58,8 @@ public class Platform extends Pane {
         this.ball = new Ball(624,250);
         this.getChildren().add(ball);
 
-        scoreList.add(new Score(30 , 64, characters.get(0) ));
-        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
+        scoreList.add(new Score(30 , 64 ));
+        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 ));
         scoreList.forEach( list -> { this.getChildren().add(list) ; });
 
         playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
@@ -91,8 +93,8 @@ public class Platform extends Pane {
 
         this.characters = new ArrayList<Character>();
 
-        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.megaMan,KeyCode.Z,KeyCode.X));
-        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.saber,KeyCode.K,KeyCode.L));
+        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.saber,KeyCode.Z,KeyCode.X));
+        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.mashu,KeyCode.K,KeyCode.L));
 
         this.getChildren().addAll(backgroundImg);
 
@@ -104,9 +106,15 @@ public class Platform extends Pane {
         this.ball = new Ball(624,250);
         this.getChildren().add(ball);
 
-        scoreList.add(new Score(30 , 64, characters.get(0) ));
-        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 , characters.get(1)));
+        scoreList.add(new Score(160 + 32  , 128 ));
+        scoreList.add(new Score(Platform.WIDTH - 192 - 32 ,  128 ));
         scoreList.forEach( list -> { this.getChildren().add(list) ; });
+
+        CharacterIcon playerOneIcon = new CharacterIcon(characters.get(0),32,64) ;
+        CharacterIcon playerTwoIcon = new CharacterIcon(characters.get(1), Platform.WIDTH - 160 ,64);
+        characterIcons.add(playerOneIcon);
+        characterIcons.add(playerTwoIcon);
+
 
         playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
         playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
@@ -122,9 +130,17 @@ public class Platform extends Pane {
         ultiField.setVisible(false);
         this.getChildren().add(ultiField);
 
+        characterIcons.forEach( icon -> {
+            this.getChildren().add(icon);
+        });
+
         this.characters.forEach( ch -> {
             this.getChildren().add(ch) ;
         });
+
+
+        this.cutScene = new CutScene(400,200);
+        this.getChildren().addAll(cutScene);
 
 
     }
@@ -164,6 +180,7 @@ public class Platform extends Pane {
         goalList = new ArrayList<Goal>();
         this.characters = new ArrayList<Character>() ;
         this.ball.freeze();
+        characterIcons = new ArrayList<>() ;
     }
 
     public static UltimateBar getUltimateBar() {
@@ -172,6 +189,13 @@ public class Platform extends Pane {
 
     public static ImageView getUltiField() {
         return ultiField;
+    }
+
+    public static ArrayList<CharacterIcon> getCharacterIcons() {
+        return characterIcons;
+    }
+    public static CutScene getCutScene() {
+        return cutScene;
     }
 
     public static void respawn() {

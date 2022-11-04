@@ -65,7 +65,7 @@ public class CharacterViewController {
                 playerMap.set(0, CharacterType.megaMan);
             }
             if (p1c2.isSelected()){
-                playerMap.set(0, CharacterType.zeroMan);
+                playerMap.set(0, CharacterType.mashu);
             }
             if (p1c3.isSelected()){
                 playerMap.set(0,CharacterType.saber);
@@ -74,7 +74,7 @@ public class CharacterViewController {
                 playerMap.set(1,CharacterType.megaMan);
             }
             if (p2c2.isSelected()){
-                playerMap.set(1,CharacterType.zeroMan);
+                playerMap.set(1,CharacterType.mashu);
             }
             if (p2c3.isSelected()){
                 playerMap.set(1,CharacterType.saber);
