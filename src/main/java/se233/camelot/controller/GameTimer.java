@@ -57,7 +57,7 @@ public class GameTimer implements Runnable {
                     alert.setHeaderText(null);
                     alert.setContentText("Time UP!");
                     alert.showAndWait();
-                    SceneController.navigateTo("HomeView");
+                    SceneController.navigateTo("FinalView");
 
                 }
         );
