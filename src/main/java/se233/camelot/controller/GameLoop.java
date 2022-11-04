@@ -102,20 +102,17 @@ public class GameLoop implements Runnable {
         });
     }
 
-
-
     @Override
     public void run() {
-
         while (running){
-            update(Platform.getCharacters());
-            chargeUltimateThread(Platform.getCharacters());
-            updateScore(Platform.getScoreList(), Platform.getCharacters());
-            updateUltimate(Platform.getUltimateBar());
             try{
+                update(Platform.getCharacters());
+                chargeUltimateThread(Platform.getCharacters());
+                updateScore(Platform.getScoreList(), Platform.getCharacters());
+                updateUltimate(Platform.getUltimateBar());
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1  ;
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             if(frameFlag == (Platform.MATCHDURATION) * this.frameRate){

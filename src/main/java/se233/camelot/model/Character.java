@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se233.camelot.Launcher;
 import se233.camelot.view.Platform;
 
@@ -53,7 +53,7 @@ public class Character extends Pane {
     private boolean isInUltimate = false ;
     private KeyCode ultimateKey ;
 
-    private Logger logger = LogManager.getLogger();
+    private  Logger logger = LoggerFactory.getLogger(Character.class);
     private Image characterImg;
 
     public Character(int x, int y,int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, CharacterType characterType, KeyCode attackKey , KeyCode ultiKey) {

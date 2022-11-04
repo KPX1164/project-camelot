@@ -20,10 +20,11 @@ public class Launcher extends Application {
         launch(args);
     }
     public static MediaPlayer bgPlayer;
-    public static MusicController musicController = new MusicController() ;
+    public static MusicController musicController ;
 
     @Override
     public void start(Stage stage) throws IOException {
+        musicController = new MusicController() ;
         musicController.play("main");
 
         this.stage = stage ;

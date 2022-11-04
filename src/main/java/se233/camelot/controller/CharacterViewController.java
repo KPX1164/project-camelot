@@ -68,22 +68,30 @@ public class CharacterViewController {
                 playerMap.set(1,CharacterType.saber);
             }
 
-            Platform platform = new Platform(playerMap) ;
-            GameLoop gameLoop = new GameLoop(platform);
-            DrawingLoop drawingLoop = new DrawingLoop(platform);
-            GameTimer gameTimer = new GameTimer(platform);
+            try{
 
-            Thread gameLoopThread = new Thread(gameLoop);
-            gameLoopThread.setDaemon(true);
-            gameLoopThread.start();
+                Platform platform = new Platform(playerMap) ;
+                GameLoop gameLoop = new GameLoop(platform);
+                DrawingLoop drawingLoop = new DrawingLoop(platform);
+                GameTimer gameTimer = new GameTimer(platform);
 
-            new Thread(drawingLoop).start();
-            new Thread(gameTimer).start();
+                Thread gameLoopThread = new Thread(gameLoop);
+                gameLoopThread.setDaemon(true);
+                gameLoopThread.start();
 
-            Launcher.musicController.play("game");
-            Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
-            Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
-            Launcher.stage.getScene().setRoot(platform);
+                new Thread(drawingLoop).start();
+                new Thread(gameTimer).start();
+
+                Launcher.musicController.play("game");
+                Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
+                Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
+                Launcher.stage.getScene().setRoot(platform);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
 
         });
 

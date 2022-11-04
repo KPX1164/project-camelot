@@ -33,9 +33,14 @@ public class DrawingLoop implements Runnable {
         ball.checkReachFloor();
         ball.checkReachGameWall();
         characters.forEach( character ->  {
-            if(ball.getBoundsInParent().intersects(character.getBoundsInParent())){
-                ball.collided(character);
+            try{
+                if(ball.getBoundsInParent().intersects(character.getBoundsInParent())){
+                    ball.collided(character);
+                }
+            }catch(IndexOutOfBoundsException ex){
+                throw new RuntimeException(ex);
             }
+
         });
 
         for (Character cA : characters){
@@ -79,13 +84,13 @@ public class DrawingLoop implements Runnable {
     @Override
     public void run() {
         while (running) {
-            checkDrawCollisions(platform.getCharacters(),platform.getBall(), platform.getGoalList());
-            paint(platform.getCharacters(),platform.getBall());
-            paintCharacterIcon(platform.getCharacterIcons());
             try{
+                checkDrawCollisions(platform.getCharacters(),platform.getBall(), platform.getGoalList());
+                paint(platform.getCharacters(),platform.getBall());
+                paintCharacterIcon(platform.getCharacterIcons());
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1 ;
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
