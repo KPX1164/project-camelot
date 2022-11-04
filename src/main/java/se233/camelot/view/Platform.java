@@ -47,9 +47,7 @@ public class Platform extends Pane {
         characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, characterTypes.get(0),KeyCode.Z,KeyCode.X));
         characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, characterTypes.get(1),KeyCode.K,KeyCode.L));
 
-
         this.getChildren().addAll(backgroundImg);
-
 
         this.timer = new Timer(624,20);
         this.getChildren().add(timer);
@@ -58,9 +56,15 @@ public class Platform extends Pane {
         this.ball = new Ball(624,250);
         this.getChildren().add(ball);
 
-        scoreList.add(new Score(30 , 64 ));
-        scoreList.add(new Score(Platform.WIDTH - 180 ,  64 ));
+        scoreList.add(new Score(160 + 32  , 128 ));
+        scoreList.add(new Score(Platform.WIDTH - 192 - 32 ,  128 ));
         scoreList.forEach( list -> { this.getChildren().add(list) ; });
+
+        CharacterIcon playerOneIcon = new CharacterIcon(characters.get(0),32,64) ;
+        CharacterIcon playerTwoIcon = new CharacterIcon(characters.get(1), Platform.WIDTH - 160 ,64);
+        characterIcons.add(playerOneIcon);
+        characterIcons.add(playerTwoIcon);
+
 
         playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
         playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
@@ -76,9 +80,17 @@ public class Platform extends Pane {
         ultiField.setVisible(false);
         this.getChildren().add(ultiField);
 
+        characterIcons.forEach( icon -> {
+            this.getChildren().add(icon);
+        });
+
         this.characters.forEach( ch -> {
             this.getChildren().add(ch) ;
         });
+
+
+        this.cutScene = new CutScene(400,200);
+        this.getChildren().addAll(cutScene);
     }
     //Test
     public Platform() {
@@ -141,7 +153,6 @@ public class Platform extends Pane {
 
         this.cutScene = new CutScene(400,200);
         this.getChildren().addAll(cutScene);
-
 
     }
     public Keys getKeys() {
