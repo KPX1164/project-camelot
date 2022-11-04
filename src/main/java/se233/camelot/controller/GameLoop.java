@@ -59,6 +59,12 @@ public class GameLoop implements Runnable {
                 character.ultimateActive();
             }
 
+            if(platform.getKeys().isPressed(character.getAttackKey())){
+                character.attack();
+                character.getImageView().attack();
+                platform.getKeys().remove(character.getAttackKey());
+            }
+
             if(platform.getKeys().isPressed(KeyCode.I)){
                 platform.getBall().setyVelocity(platform.getBall().getyVelocity() - 2);
             }

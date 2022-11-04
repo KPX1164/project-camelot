@@ -76,7 +76,7 @@ public class Character extends Pane {
         this.ultimateKey = ultiKey ;
 
 
-        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/ultiEffect.gif").toString()));
+        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/UltiEffect.png").toString()));
         ultimateAura.setFitWidth(128);
         ultimateAura.setFitHeight(128);
         ultimateAura.setVisible(false);
@@ -145,12 +145,14 @@ public class Character extends Pane {
 
     public void moveLeft() {
         this.headingDirection = Direction.left ;
+        this.isAttack = false ;
         this.isMovingLeft = true;
         this.isMovingRight = false;
     }
 
     public void moveRight() {
         this.headingDirection = Direction.right ;
+        this.isAttack = false ;
         this.isMovingLeft = false;
         this.isMovingRight = true;
     }
@@ -160,6 +162,7 @@ public class Character extends Pane {
         this.isMovingRight = false;
     }
     public void moveX() {
+        if(isAttack) return;
         setTranslateX(x);
 
         if (isMovingLeft) {
@@ -190,6 +193,7 @@ public class Character extends Pane {
             x = this.x + c.getxVelocity();
             c.setX((int)(c.getX() - this.xVelocity));
             stop();
+
         } else if (isMovingRight) {
             x = this.x - c.getxVelocity();
             c.setX((int)(c.getX() + this.xVelocity));
@@ -220,13 +224,18 @@ public class Character extends Pane {
             Platform.getUltiField().setVisible(true);
             try {
                 Thread.sleep(1000);
+                imageView.attack();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             Platform.getUltiField().setVisible(false);
-
         }
     }
+
+    public void attack() {
+        this.isAttack = true ;
+    }
+
 
     public void addScore(){
         this.score += 1 ;
@@ -353,4 +362,7 @@ public class Character extends Pane {
     }
 
 
+    public void setIsAttack(boolean b) {
+        this.isAttack = b ;
+    }
 }

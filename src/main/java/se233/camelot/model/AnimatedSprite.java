@@ -50,18 +50,29 @@ public class AnimatedSprite extends ImageView {
         this.setViewport(new Rectangle2D(0, 0, width, height));
     }
 
+    int attCols = 8 ;
+    int attRows = 1 ;
+    int ultiIndex = 0 ;
+    int currColsIndex;
+    int currRowsIndex;
     public void attack() {
-        int attCols = 8 ;
-        int attRows = 1 ;
-        int ultiIndex = 0 ;
 
-        int currColsIndex = ultiIndex % attCols ;
-        int currRowsIndex = ultiIndex / attCols ;
-        ultiIndex = (ultiIndex + 1) % (attCols * attRows);
+        for(int i = 0 ; i < 7 ; i++){
+            currColsIndex = ultiIndex % attCols ;
+            currRowsIndex = ultiIndex / attCols ;
+            ultiIndex = (ultiIndex + 1) % (attCols * attRows);
 
-        final int x = currColsIndex * width + offsetX;
-        final int y = currRowsIndex * height + (2 * height + 5 + offsetY);
-        this.setViewport(new Rectangle2D(x, y, width, height));
+            final int x = currColsIndex * width + offsetX;
+            final int y = currRowsIndex * height + (2 * height + 5 + offsetY);
+            this.setViewport(new Rectangle2D(x, y, width, height));
+            try{
+                Thread.sleep(60);
+            }catch (InterruptedException e){
+
+            }
+
+            landing();
+        }
 
     }
 }

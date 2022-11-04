@@ -76,14 +76,14 @@ public class Goal extends Pane {
         // ball coming inside goal
         if(ball.getY() > goalHeight && ball.getY() < Platform.HEIGHT){
             if(owner.equals("Player1")){
-                if(ball.getX() < 20){
+                if(ball.getX() < 45){
                     logger.info("Player 2 got point");
                     Platform.getCharacters().get(1).addScore() ;
                     Platform.getCharacters().get(0).chargeUltimate();
                     Platform.respawn() ;
                 }
             }else{
-                if(ball.getX() > Platform.WIDTH - this.WIDTH + 20){
+                if(ball.getX() > Platform.WIDTH - this.WIDTH + 5){
                     logger.info("Player 1 got point");
                     Platform.getCharacters().get(0).addScore() ;
                     Platform.getCharacters().get(1).chargeUltimate();

@@ -27,7 +27,7 @@ public class Score extends Pane {
         this.character = character;
         point = new Label("0");
 
-        this.flameEffect = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/ultiEffect.gif")));
+        this.flameEffect = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/UltiEffect.png")));
         this.flameEffect.setVisible(false);
         flameEffect.setFitWidth(128);
         flameEffect.setFitHeight(128);
