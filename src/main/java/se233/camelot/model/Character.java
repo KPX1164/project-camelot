@@ -75,7 +75,6 @@ public class Character extends Pane {
         this.attackKey = attackKey;
         this.ultimateKey = ultiKey ;
 
-
         ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/UltiEffect.png").toString()));
         ultimateAura.setFitWidth(128);
         ultimateAura.setFitHeight(128);
@@ -93,13 +92,9 @@ public class Character extends Pane {
             this.characterImg = new Image(Launcher.class.getResource("assets/mashu.png").toString());
             this.imageView = new AnimatedSprite(characterImg, 8, 8, 1, offsetX, offsetY, 300, 420);
         }
-
-
         this.imageView.setFitHeight(CHARACTER_HEIGHT);
         this.imageView.setFitWidth(CHARACTER_WIDTH);
         this.getChildren().addAll(this.imageView, this.ultimateAura);
-
-
     }
 
     public void repaint() {
@@ -171,7 +166,6 @@ public class Character extends Pane {
             xVelocity = xVelocity >= xMaxVelocity ? xMaxVelocity : xMaxVelocity + xAcceleration;
             x = x + xVelocity;
         }
-
     }
 
     public void moveY() {
@@ -213,7 +207,6 @@ public class Character extends Pane {
             this.ultimateCharge = 0 ;
             logger.info("Active Ultimate Skill");
         }
-
     }
     public void useUltimateSkill() {
         if(this.isInUltimate){
@@ -322,49 +315,39 @@ public class Character extends Pane {
     public boolean isFalling() {
         return isFalling;
     }
-
     public boolean isJumping() {
         return isJumping;
     }
-
     public boolean isCanJump() {
         return canJump;
     }
-
     public boolean isAttack() {
         return isAttack;
     }
-
     public KeyCode getAttackKey() {
         return attackKey;
     }
-
     public Direction getHeadingDirection() {
         return this.headingDirection ;
     }
-
     public boolean isInUltimate() {
         return isInUltimate;
     }
-
     public KeyCode getUltimateKey() {
         return ultimateKey;
     }
-
     public int getUltimateCharge() {
         return ultimateCharge;
     }
-
     public void setUltimateCharge(int ultimateCharge) {
         this.ultimateCharge = ultimateCharge;
+    }
+    public void setIsAttack(boolean b) {
+        this.isAttack = b ;
     }
 
     public void trace() {
         logger.info("x:{} y:{} vx:{} vy:{} ulti:{}", x, y, xVelocity, yVelocity, ultimateCharge);
     }
 
-
-    public void setIsAttack(boolean b) {
-        this.isAttack = b ;
-    }
 }

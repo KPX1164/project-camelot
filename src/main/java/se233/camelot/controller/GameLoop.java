@@ -1,16 +1,12 @@
 package se233.camelot.controller;
 
 import javafx.scene.input.KeyCode;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import se233.camelot.model.Character;
-import se233.camelot.view.CutScene;
 import se233.camelot.view.Platform;
 import se233.camelot.view.Score;
 import se233.camelot.view.UltimateBar;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 
 public class GameLoop implements Runnable {
@@ -85,7 +81,6 @@ public class GameLoop implements Runnable {
         javafx.application.Platform.runLater( () -> {
             for (int i = 0; i < scoreList.size(); i++) {
                 scoreList.get(i).setPoint(characterList.get(i).getScore());
-                scoreList.get(i).update();
             }
         });
     }
@@ -96,7 +91,6 @@ public class GameLoop implements Runnable {
             ulti.getP2().update();
         });
     }
-
 
     private void chargeUltimateThread(ArrayList<Character> characters){
         javafx.application.Platform.runLater( () -> {

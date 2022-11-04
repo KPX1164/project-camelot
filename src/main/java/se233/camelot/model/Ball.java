@@ -1,6 +1,5 @@
 package se233.camelot.model;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +24,6 @@ public class Ball extends Pane {
     public final int BALL_WIDTH = 32 ;
     private boolean stop = false ;
     public Ball(int x , int y) {
-
         this.x = x ;
         this.y = y ;
         this.startX = x ;
@@ -38,7 +36,6 @@ public class Ball extends Pane {
         this.imageView.setFitHeight(BALL_HEIGHT);
         this.imageView.setFitWidth(BALL_WIDTH);
         this.getChildren().addAll(this.imageView);
-
     }
 
     public void repaint() {
@@ -57,7 +54,6 @@ public class Ball extends Pane {
                 this.rotate = 0 ;
                 this.y = Platform.GROUND - BALL_HEIGHT ;
             }
-
         }
     }
     public void checkReachGameWall() {
@@ -102,6 +98,7 @@ public class Ball extends Pane {
                 this.yVelocity = c.getxVelocity() * -0.7;
                 this.xVelocity -= 30;
             }
+
             c.setIsAttack(false) ;
             return;
         }
@@ -141,7 +138,6 @@ public class Ball extends Pane {
 
     public void ballRolling() {
         if(this.xVelocity != 0 ){
-
             if(xVelocity > 0){
                 if(Math.abs(xVelocity) < 3){
                     this.rotate = 4 ;
@@ -154,16 +150,13 @@ public class Ball extends Pane {
                 }else{
                     this.rotate = -10 ;
                 }
-
             }
-
         }else{
             if(Math.abs(yVelocity) > 0.5){
                 this.rotate = yVelocity ;
             }else{
                 this.rotate = 0 ;
             }
-
         }
         this.setRotate( this.getRotate() + rotate);
     }
@@ -182,9 +175,7 @@ public class Ball extends Pane {
         }else{
             this.xVelocity = 0 ;
         }
-
     }
-
 
     public int getX() {
         return x;
@@ -237,7 +228,6 @@ public class Ball extends Pane {
         this.setTranslateX(this.x);
         this.setTranslateY(this.y);
     }
-
     public void trace() {
         logger.info("x:{} y:{} vx:{} vy:{} rotate:{}",x,y,xVelocity,yVelocity,rotate);
     }

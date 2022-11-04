@@ -68,9 +68,8 @@ public class AnimatedSprite extends ImageView {
             try{
                 Thread.sleep(60);
             }catch (InterruptedException e){
-
+                throw new RuntimeException(e);
             }
-
             landing();
         }
 

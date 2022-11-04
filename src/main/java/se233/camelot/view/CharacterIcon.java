@@ -20,7 +20,6 @@ public class CharacterIcon extends Pane {
     private Map<String , Image> characterImgMap ;
     private ImageView ultimateAura ;
 
-
     public CharacterIcon(Character character , int x , int y) {
 
         this.character = character ;

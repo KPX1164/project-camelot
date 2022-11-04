@@ -4,20 +4,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import se233.camelot.Launcher;
-import se233.camelot.model.AnimatedSprite;
 import se233.camelot.model.Character;
 import se233.camelot.model.CharacterType;
 import se233.camelot.model.Direction;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CutScene extends Pane {
     private ImageView cutSceneImage ;
     private Map<CharacterType , Image> charaImageMap = new HashMap<>();
+    private Image goalCutSceneImage ;
 
     public CutScene(int x , int y ) {
+        this.goalCutSceneImage = new Image(Launcher.class.getResourceAsStream("Images/goal.jpg"));
         loadImage();
         this.setTranslateX(x);
         this.setTranslateY(y);
@@ -28,9 +28,17 @@ public class CutScene extends Pane {
         this.getChildren().add(cutSceneImage);
     }
 
+    public void goalTrigger(){
+        this.cutSceneImage.setImage(goalCutSceneImage);
+        this.setTranslateY(128);
+        this.setTranslateX(624);
+        cutSceneImage.setFitHeight(512);
+        cutSceneImage.setFitWidth(512);
+        this.setVisible(true);
+    }
+
     public void trigger(Character character) {
         this.cutSceneImage.setImage(charaImageMap.get(character.getCharacterType()));
-
 
         this.setTranslateY(character.getY()-288);
 

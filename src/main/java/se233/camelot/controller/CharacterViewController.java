@@ -1,28 +1,17 @@
 package se233.camelot.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.KeyCode;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 import se233.camelot.Launcher;
-import se233.camelot.model.Character;
 import se233.camelot.model.CharacterType;
 import se233.camelot.view.Platform;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.*;
 
 public class CharacterViewController {
 
-//    private Map<String, CharacterType> playerMap = new HashMap<>();
     private ArrayList<CharacterType> playerMap = new ArrayList<>() ;
     @FXML
     private Toggle p1c1;
@@ -60,7 +49,6 @@ public class CharacterViewController {
 
         readyBtn.setOnAction( event -> {
 
-
             if (p1c1.isSelected()){
                 playerMap.set(0, CharacterType.megaMan);
             }
@@ -80,7 +68,6 @@ public class CharacterViewController {
                 playerMap.set(1,CharacterType.saber);
             }
 
-
             Platform platform = new Platform(playerMap) ;
             GameLoop gameLoop = new GameLoop(platform);
             DrawingLoop drawingLoop = new DrawingLoop(platform);
@@ -93,7 +80,6 @@ public class CharacterViewController {
             new Thread(drawingLoop).start();
             new Thread(gameTimer).start();
 
-
             Launcher.musicController.play("game");
             Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
             Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
@@ -101,12 +87,9 @@ public class CharacterViewController {
 
         });
 
-
         homeBtn.setOnAction(event -> {
             SceneController.navigateTo("MenuView");
         });
-
-
 
     }
 

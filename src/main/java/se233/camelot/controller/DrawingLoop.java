@@ -7,7 +7,6 @@ import se233.camelot.view.CharacterIcon;
 import se233.camelot.view.Platform;
 
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 
 public class DrawingLoop implements Runnable {
     private Platform platform;

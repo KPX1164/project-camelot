@@ -1,17 +1,11 @@
 package se233.camelot.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import se233.camelot.Launcher;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import se233.camelot.view.Platform;
 
-import java.awt.*;
-import java.io.IOException;
 
 
 public class MainViewController {
@@ -22,8 +16,6 @@ public class MainViewController {
     private ImageView changeScene;
     @FXML
     private Button moon;
-
-
 
     @FXML
     public void initialize()  {
@@ -46,7 +38,6 @@ public class MainViewController {
 
             new Thread(drawingLoop).start();
             new Thread(gameTimer).start();
-
 
             Launcher.musicController.play("game");
             Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));

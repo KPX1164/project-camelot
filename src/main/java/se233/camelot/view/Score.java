@@ -25,15 +25,10 @@ public class Score extends Pane {
 
         point = new Label("0");
 
-
         point.setFont(Font.font("Verdana", FontWeight.BOLD , 30));
         point.setTextFill(Color.web("#FFF"));
 
         this.getChildren().addAll(point);
-    }
-
-    public void update(){
-
     }
     public void setPoint(int score){
         this.point.setText(Integer.toString(score));

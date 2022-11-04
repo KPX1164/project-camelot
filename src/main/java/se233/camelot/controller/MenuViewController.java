@@ -67,7 +67,6 @@ public class MenuViewController {
         });
 
         settingBtn.setOnAction(event -> {
-//            SceneController.navigateTo("SettingView");
             settingView.setVisible(true);
         });
 

@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import se233.camelot.Launcher;
 import se233.camelot.view.Platform;
-import se233.camelot.view.UltimateBar;
 
 public class Goal extends Pane {
 
@@ -52,12 +51,10 @@ public class Goal extends Pane {
             }
         }
 
-
         // bouncing the goal frame from top front
         if(owner.equals("Player1")){
             if(ball.getX() <= this.WIDTH){
                 if(ball.getY() < 400 && ball.getY() >= 395 ){
-//                    ball.ballBouncing();
                     ball.setxVelocity(2);
                     ball.setyVelocity(0);
                 }
@@ -65,7 +62,6 @@ public class Goal extends Pane {
         }else{
             if(ball.getX() >= Platform.WIDTH - this.WIDTH){
                 if(ball.getY() < 400 && ball.getY() >= 395 ){
-//                    ball.ballBouncing();
                     ball.setxVelocity(-2);
                     ball.setyVelocity(0);
                 }
@@ -78,23 +74,39 @@ public class Goal extends Pane {
             if(owner.equals("Player1")){
                 if(ball.getX() < 45){
                     logger.info("Player 2 got point");
+                    Platform.getCutScene().goalTrigger();
                     Platform.getCharacters().get(1).addScore() ;
                     Platform.getCharacters().get(0).chargeUltimate();
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    Platform.getCutScene().hide();
                     Platform.respawn() ;
                 }
             }else{
                 if(ball.getX() > Platform.WIDTH - this.WIDTH + 5){
                     logger.info("Player 1 got point");
+                    Platform.getCutScene().goalTrigger();
                     Platform.getCharacters().get(0).addScore() ;
                     Platform.getCharacters().get(1).chargeUltimate();
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    Platform.getCutScene().hide();
                     Platform.respawn() ;
                 }
             }
         }
 
     }
-
-
 
     public void intersect(Character character){
         if(character.getY() < Platform.GROUND-this.HEIGHT ){
@@ -104,7 +116,6 @@ public class Goal extends Pane {
             }else{
                 character.setY(Platform.GROUND-this.HEIGHT-character.CHARACTER_HEIGHT);
             }
-
         }
     }
 
