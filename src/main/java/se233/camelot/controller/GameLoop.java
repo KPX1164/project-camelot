@@ -113,13 +113,13 @@ public class GameLoop implements Runnable {
             chargeUltimateThread(Platform.getCharacters());
             updateScore(Platform.getScoreList(), Platform.getCharacters());
             updateUltimate(Platform.getUltimateBar());
-            try {
+            try{
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1  ;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if(frameFlag == (platform.MATCHDURATION ) * this.frameRate){
+            if(frameFlag == (Platform.MATCHDURATION) * this.frameRate){
                 break;
             }
         }

@@ -23,13 +23,14 @@ public class Ball extends Pane {
     private ImageView imageView ;
     public final int BALL_HEIGHT = 32 ;
     public final int BALL_WIDTH = 32 ;
+    private boolean stop = false ;
     public Ball(int x , int y) {
 
         this.x = x ;
         this.y = y ;
         this.startX = x ;
         this.startY = y ;
-
+        this.stop = false ;
         this.setTranslateX(x);
         this.setTranslateY(y);
 
@@ -41,6 +42,7 @@ public class Ball extends Pane {
     }
 
     public void repaint() {
+        if(stop) return;
         moveY();
         moveX();
         this.ballRolling();
@@ -118,50 +120,6 @@ public class Ball extends Pane {
             this.xVelocity = -0.2 * (this.xVelocity) ;
             c.setX((int) (c.getX() + Math.round(xVelocity * -2))) ;
         }
-
-
-//        if(c.getHeadingDirection().equals(Direction.right)){
-//            if(c.isInUltimate()){
-//                this.setX(c.getX() + c.CHARACTER_WIDTH + 20);
-//                c.useUltimateSkill();
-//
-//                this.yVelocity = c.getxVelocity() * -0.1 ;
-//                this.xVelocity += 100.1 ;
-//            }
-//            else if(c.isAttack()){
-//                this.yVelocity = c.getxVelocity() * -0.7 ;
-//                this.xVelocity += c.getxVelocity() * 1.3 ;
-//            }else{
-//                if(c.isMovingRight()){
-//                    this.xVelocity += c.getxVelocity() * 1.1 ;
-//                }else{
-//                    this.xVelocity = -0.2 * (this.xVelocity);
-//                    c.setX((int) (c.getX() + Math.round(xVelocity * -2)));
-//                }
-//            }
-//
-//        }else if(c.getHeadingDirection().equals(Direction.left)){
-//            if(c.isInUltimate()){
-//                this.setX(c.getX()- c.CHARACTER_WIDTH - 20);
-//                c.useUltimateSkill();
-//                this.yVelocity = c.getxVelocity() * -0.1;
-//                this.xVelocity -= 100.1;
-//            }
-//            else if(c.isAttack()){
-//                this.yVelocity = c.getxVelocity() * -0.7 ;
-//                this.xVelocity -= c.getxVelocity() * 1.3 ;
-//            }else{
-//
-//                if(c.isMovingLeft()){
-//                    this.xVelocity -= c.getxVelocity() * 1.1 ;
-//                }else{
-//                    this.xVelocity = -0.2 * (this.xVelocity) ;
-//                    c.setX((int) (c.getX() + Math.round(xVelocity * -2))) ;
-//                }
-//
-//            }
-//        }
-
     }
 
     public void moveY() {
@@ -270,6 +228,14 @@ public class Ball extends Pane {
         this.y = startY ;
         this.xVelocity = 0 ;
         this.yVelocity = 0 ;
+    }
+
+    public void freeze() {
+        this.stop = true ;
+        this.setxVelocity(0);
+        this.setyVelocity(0);
+        this.setTranslateX(this.x);
+        this.setTranslateY(this.y);
     }
 
     public void trace() {

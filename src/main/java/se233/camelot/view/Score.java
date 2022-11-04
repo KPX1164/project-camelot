@@ -13,12 +13,11 @@ import se233.camelot.model.Character;
 import se233.camelot.model.CharacterType;
 
 public class Score extends Pane {
-    Label point ;
-    Image characterImg ;
-    ImageView characterIcon ;
-    ImageView flameEffect ;
-
-    Character character;
+    private Label point ;
+    private Image characterImg ;
+    private ImageView characterIcon ;
+    private ImageView flameEffect ;
+    private Character character;
 
     public Score(int x , int y, Character character){
         this.setTranslateX(x);

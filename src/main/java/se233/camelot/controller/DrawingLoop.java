@@ -75,14 +75,14 @@ public class DrawingLoop implements Runnable {
         while (running) {
             checkDrawCollisions(platform.getCharacters(),platform.getBall(), platform.getGoalList());
             paint(platform.getCharacters(),platform.getBall());
-            try {
+            try{
                 Thread.sleep(1000/this.frameRate);
                 this.frameFlag += 1 ;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-            if(frameFlag == (platform.MATCHDURATION + 1) * this.frameRate){
+            if(frameFlag == (Platform.MATCHDURATION) * this.frameRate){
                 break;
             }
         }

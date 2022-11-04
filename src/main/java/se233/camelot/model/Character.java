@@ -76,7 +76,7 @@ public class Character extends Pane {
         this.ultimateKey = ultiKey ;
 
 
-        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/UltiEffect.png").toString()));
+        ultimateAura = new ImageView(new Image(Launcher.class.getResource("assets/ultiEffect.gif").toString()));
         ultimateAura.setFitWidth(128);
         ultimateAura.setFitHeight(128);
         ultimateAura.setVisible(false);
@@ -101,6 +101,7 @@ public class Character extends Pane {
         this.imageView.setFitHeight(CHARACTER_HEIGHT);
         this.imageView.setFitWidth(CHARACTER_WIDTH);
         this.getChildren().addAll(this.imageView, this.ultimateAura);
+
 
     }
 
@@ -225,12 +226,15 @@ public class Character extends Pane {
             try {
                 Thread.sleep(1000);
                 imageView.attack();
+
+
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             Platform.getUltiField().setVisible(false);
         }
     }
+
 
     public void attack() {
         this.isAttack = true ;
