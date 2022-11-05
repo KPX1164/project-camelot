@@ -10,37 +10,62 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se233.camelot.controller.FinalViewController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/GeniusBackground.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Images/GeniusSky.gif" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="400.0" fitWidth="494.0" layoutX="398.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="celebrate" fitHeight="400.0" fitWidth="494.0" layoutX="393.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/confetti.gif" />
          </image>
       </ImageView>
-      <Label layoutX="519.0" layoutY="290.0" text="Player 1" fx:id="winnerLabel">
+      <ImageView id="chatWide" fitHeight="380.0" fitWidth="824.0" layoutX="213.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@Images/chatWide.png" />
+         </image>
+      </ImageView>
+      <ImageView id="parinya" fitHeight="213.0" fitWidth="232.0" layoutX="799.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/Parinya.png" />
+         </image>
+      </ImageView>
+      <ImageView id="chat" fitHeight="262.0" fitWidth="464.0" layoutX="415.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@Images/chat.png" />
+         </image>
+      </ImageView>
+      <Label id="p2win" layoutX="519.0" layoutY="290.0" text="Player 2" visible="false">
          <font>
             <Font name="JoystixMonospace-Regular" size="37.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="1.0" height="5.0" layoutX="490.0" layoutY="341.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
-      <Label layoutX="451.0" layoutY="112.0" text="Winner">
+      <Label id="p1win" layoutX="519.0" layoutY="290.0" text="Player 1" visible="false">
+         <font>
+            <Font name="JoystixMonospace-Regular" size="37.0" />
+         </font>
+      </Label>
+      <Label id="2pWin" layoutX="350.0" layoutY="290.0" text="Player 1 and Player 2" visible="false">
+         <font>
+            <Font name="JoystixMonospace-Regular" size="37.0" />
+         </font>
+      </Label>
+      <Rectangle id="line" arcHeight="5.0" arcWidth="1.0" height="5.0" layoutX="490.0" layoutY="341.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
+      <Label id="winnerLabel" layoutX="451.0" layoutY="112.0" text="Winner">
          <font>
             <Font name="JoystixMonospace-Regular" size="77.0" />
          </font>
       </Label>
-      <Label layoutX="500.0" layoutY="366.0" text="Tap anywhere to home">
+      <Label id="suggestLabel" layoutX="500.0" layoutY="366.0" text="Tap anywhere to home">
          <font>
             <Font name="JoystixMonospace-Regular" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="homeBtn" mnemonicParsing="false" prefHeight="720.0" prefWidth="1280.0" style="-fx-opacity: 0;" />
+      <Button id="homeBtn" mnemonicParsing="false" prefHeight="720.0" prefWidth="1280.0" style="-fx-opacity: 0;" visible="false" />
+      <ImageView fitHeight="224.0" fitWidth="336.0" layoutX="60.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/podium.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
