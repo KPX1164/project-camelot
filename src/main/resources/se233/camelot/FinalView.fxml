@@ -20,7 +20,7 @@
             <Image url="@Images/confetti.gif" />
          </image>
       </ImageView>
-      <ImageView id="chatWide" fitHeight="380.0" fitWidth="824.0" layoutX="213.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="chatWide" fx:id="chatWide" fitHeight="380.0" fitWidth="824.0" layoutX="213.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@Images/chatWide.png" />
          </image>
@@ -30,22 +30,22 @@
             <Image url="@Images/Parinya.png" />
          </image>
       </ImageView>
-      <ImageView id="chat" fitHeight="262.0" fitWidth="464.0" layoutX="415.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView id="chat" fx:id="chat" fitHeight="262.0" fitWidth="464.0" layoutX="415.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@Images/chat.png" />
          </image>
       </ImageView>
-      <Label id="p2win" layoutX="519.0" layoutY="290.0" text="Player 2" visible="false">
+      <Label id="p2win" fx:id="p2win" layoutX="519.0" layoutY="290.0" text="Player 2" visible="false">
          <font>
             <Font name="JoystixMonospace-Regular" size="37.0" />
          </font>
       </Label>
-      <Label id="p1win" layoutX="519.0" layoutY="290.0" text="Player 1" visible="false">
+      <Label id="p1win" fx:id="p1win" layoutX="519.0" layoutY="290.0" text="Player 1" visible="false">
          <font>
             <Font name="JoystixMonospace-Regular" size="37.0" />
          </font>
       </Label>
-      <Label id="2pWin" layoutX="350.0" layoutY="290.0" text="Player 1 and Player 2" visible="false">
+      <Label id="2pWin" fx:id="p12win" layoutX="350.0" layoutY="290.0" text="Player 1 and Player 2" visible="false">
          <font>
             <Font name="JoystixMonospace-Regular" size="37.0" />
          </font>
@@ -61,11 +61,11 @@
             <Font name="JoystixMonospace-Regular" size="17.0" />
          </font>
       </Label>
-      <Button id="homeBtn" mnemonicParsing="false" prefHeight="720.0" prefWidth="1280.0" style="-fx-opacity: 0;" visible="false" />
       <ImageView fitHeight="224.0" fitWidth="336.0" layoutX="60.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/podium.png" />
          </image>
       </ImageView>
+      <Button id="homeBtn" fx:id="homeBtn" mnemonicParsing="false" prefHeight="720.0" prefWidth="1280.0" style="-fx-opacity: 0;" visible="true" />
    </children>
 </Pane>

@@ -3,6 +3,7 @@ package se233.camelot.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import se233.camelot.Launcher;
 import se233.camelot.model.Character;
@@ -15,7 +16,15 @@ public class FinalViewController {
     private Button homeBtn;
 
     @FXML
-    private Label winnerLabel ;
+    private Label p1win ;
+    @FXML
+    private Label p2win ;
+    @FXML
+    private Label p12win ;
+    @FXML
+    private ImageView chat ;
+    @FXML
+    private ImageView chatWide ;
 
     private ArrayList<Character> characters ;
 
@@ -28,13 +37,15 @@ public class FinalViewController {
         });
 
         if(characters.get(0).getScore() > characters.get(1).getScore()){
-            winnerLabel.setText("Player 1");
+            p1win.setVisible(true);
+            chat.setVisible(true);
 
         }else if(characters.get(0).getScore() < characters.get(1).getScore()){
-            winnerLabel.setText("Player 2");
-
+            p2win.setVisible(true);
+            chat.setVisible(true);
         }else{
-            winnerLabel.setText("Player 1 and Player 2");
+            p12win.setVisible(true);
+            chatWide.setVisible(true);
         }
 
         homeBtn.setOnAction( e -> {
