@@ -14,10 +14,11 @@ import java.util.Map;
 public class CutScene extends Pane {
     private ImageView cutSceneImage ;
     private Map<CharacterType , Image> charaImageMap = new HashMap<>();
-    private Image goalCutSceneImage ;
+    private Image goalCutSceneImage, timeupCutscene ;
 
     public CutScene(int x , int y ) {
         this.goalCutSceneImage = new Image(Launcher.class.getResourceAsStream("Images/goal.png"));
+        this.timeupCutscene = new Image(Launcher.class.getResourceAsStream("Images/timeup.png"));
         loadImage();
         this.setTranslateX(x);
         this.setTranslateY(y);
@@ -31,6 +32,16 @@ public class CutScene extends Pane {
     public void goalTrigger(){
         this.setScaleX(1);
         this.cutSceneImage.setImage(goalCutSceneImage);
+        this.setTranslateY(150);
+        this.setTranslateX(380);
+        cutSceneImage.setFitHeight(150);
+        cutSceneImage.setFitWidth(505);
+        this.setVisible(true);
+    }
+
+    public void timeupTrigger(){
+        this.setScaleX(1);
+        this.cutSceneImage.setImage(timeupCutscene);
         this.setTranslateY(150);
         this.setTranslateX(380);
         cutSceneImage.setFitHeight(150);
