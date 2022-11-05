@@ -19,9 +19,7 @@ public class Launcher extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public static MediaPlayer bgPlayer;
-    public static MediaPlayer voiceOver;
-    public static MediaPlayer soundEffect;
+
 
 
     public static MusicController musicController ;

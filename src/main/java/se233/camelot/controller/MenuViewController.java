@@ -60,16 +60,16 @@ public class MenuViewController {
 
     @FXML
     public void initialize()  {
-        Double cur_value = Launcher.bgPlayer.getVolume();
-//        Double cur_effect = Launcher.soundEffect.getVolume();
+        Double cur_value = Launcher.musicController.getBgmVolume();
+        Double cur_effect = Launcher.musicController.getEffectVolume();
         soundBar.setValue(cur_value);
-//        effectBar.setValue(cur_effect);
+        effectBar.setValue(cur_effect);
         cur_value = cur_value*100;
-//        cur_effect = cur_effect*100;
+        cur_effect = cur_effect*100;
         String percent_cur_value = String.format("%.0f",cur_value);
-//        String percent_cur_effect = String.format("%.0f",cur_effect);
+        String percent_cur_effect = String.format("%.0f",cur_effect);
         soundPercent.setText(percent_cur_value+"%");
-//        effectPercent.setText(percent_cur_effect+"%");
+        effectPercent.setText(percent_cur_effect+"%");
 
 
         playBtn.setOnAction( e -> {
@@ -118,7 +118,8 @@ public class MenuViewController {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 String new_value = String.format("%.2f",soundBar.getValue());
                 Double double_new_value = Double.parseDouble(new_value);
-                Launcher.bgPlayer.setVolume(double_new_value);
+//                Launcher.musicController.getBgPlayer().setVolume(double_new_value);
+                Launcher.musicController.setBgmVolume(double_new_value);
                 double_new_value = double_new_value*100;
                 String percent_new_value = String.format("%.0f",double_new_value);
                 soundPercent.setText(percent_new_value+"%");
@@ -130,25 +131,38 @@ public class MenuViewController {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 String new_value = String.format("%.2f",effectBar.getValue());
                 Double double_new_value = Double.parseDouble(new_value);
-                Launcher.soundEffect.setVolume(double_new_value);
+//                Launcher.musicController.getSoundEffect().setVolume(double_new_value);
+                Launcher.musicController.setEffectVolume(double_new_value);
                 double_new_value = double_new_value*100;
                 String percent_new_value = String.format("%.0f",double_new_value);
                 effectPercent.setText(percent_new_value+"%");
             }
         });
 
+        voiceBar.valueProperty().addListener( new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                String newValue = String.format("%.2f",voiceBar.getValue());
+                Double calculatedNewValue = Double.parseDouble(newValue);
+                Launcher.musicController.setVoiceOverVolume(calculatedNewValue);
+                calculatedNewValue *= 100 ;
+                String percent_new_value = String.format("%.0f",calculatedNewValue);
+                effectPercent.setText(percent_new_value+"%");
+
+            }
+        });
+
+
         resetBtn.setOnAction(resetEvent -> {
             Launcher.musicController.playEffect("click");
-            Launcher.bgPlayer.setVolume(1);
-            Launcher.soundEffect.setVolume(1);
-//            Launcher.voiceOver.setVolume(1);
+            Launcher.musicController.resetAllSoundVolume();
 
             soundBar.setValue(soundBar.getMax());
             effectBar.setValue(effectBar.getMax());
-//            voiceBar.setValue(voiceBar.getMax());
+            voiceBar.setValue(voiceBar.getMax());
 
             soundPercent.setText("100%");
-//            voicePercent.setText("100%");
+            voicePercent.setText("100%");
             effectPercent.setText("100%");
 
         });
