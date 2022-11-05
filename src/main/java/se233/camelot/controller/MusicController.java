@@ -31,6 +31,10 @@ public class MusicController {
         Media ballKick = new Media(Launcher.class.getResource("Audios/BallKick.mp3").toString());
         Media buttonHover = new Media(Launcher.class.getResource("Audios/ButtonHover.mp3").toString());
         Media buttonClick = new Media(Launcher.class.getResource("Audios/ButtonClick.mp3").toString());
+        Media countDown = new Media(Launcher.class.getResource("Audios/321Done.mp3").toString());
+        Media audience = new Media(Launcher.class.getResource("Audios/Audience.mp3").toString());
+        Media voiceTesting = new Media(Launcher.class.getResource("Audios/VoiceTest.mp3").toString());
+        Media goalCheer = new Media(Launcher.class.getResource("Audios/Goal.mp3").toString());
 
 
         this.musicMap.put("main",mainTheme);
@@ -40,6 +44,10 @@ public class MusicController {
         this.musicMap.put("hover", buttonHover);
         this.musicMap.put("kick", ballKick);
         this.musicMap.put("falling", ballFalling);
+        this.musicMap.put("countDown", countDown);
+        this.musicMap.put("audience", audience);
+        this.musicMap.put("voiceTest", voiceTesting);
+        this.musicMap.put("cheer", goalCheer);
 
         this.bgPlayer = new MediaPlayer(this.musicMap.get("main"));
         this.soundEffect = new MediaPlayer(this.musicMap.get("kick"));
@@ -86,6 +94,15 @@ public class MusicController {
         this.soundEffect.setAutoPlay(true);
         this.soundEffect.setCycleCount(1);
         this.soundEffect.setVolume(this.effectVolume);
+    }
+
+    public void safety(){
+        this.soundEffect.setVolume(0.3);
+        this.voiceOver.setVolume(0.3);
+        this.bgPlayer.setVolume(0.3);
+
+        this.updateAllSoundVolume();
+
     }
 
     public void updateAllSoundVolume() {

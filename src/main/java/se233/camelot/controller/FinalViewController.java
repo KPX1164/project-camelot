@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import se233.camelot.Launcher;
 import se233.camelot.model.Character;
 import se233.camelot.view.Platform;
 
@@ -27,6 +28,8 @@ public class FinalViewController {
 
     @FXML
     public void initialize()  {
+        Launcher.musicController.stop();
+        Launcher.musicController.playEffect("audience");
         this.characters = Platform.getCharacters() ;
 
         if(characters.get(0).getScore() > characters.get(1).getScore()){
@@ -42,6 +45,7 @@ public class FinalViewController {
         }
 
         homeBtn.setOnAction( e -> {
+            Launcher.musicController.playSound("main");
             Platform.setCharacters(new ArrayList<>());
             SceneController.navigateTo("MenuView");
         });

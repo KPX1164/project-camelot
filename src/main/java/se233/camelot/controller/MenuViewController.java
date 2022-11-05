@@ -11,6 +11,8 @@ import javafx.scene.layout.Pane;
 import se233.camelot.Launcher;
 
 import java.text.DecimalFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MenuViewController {
 
@@ -53,6 +55,12 @@ public class MenuViewController {
     private Label effectPercent;
     @FXML
     private Label voicePercent;
+    @FXML
+    private Label decibelDetail;
+    @FXML
+    private Label decibel;
+    @FXML
+    private Button safetyBtn;
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
@@ -62,14 +70,23 @@ public class MenuViewController {
     public void initialize()  {
         Double cur_value = Launcher.musicController.getBgmVolume();
         Double cur_effect = Launcher.musicController.getEffectVolume();
+        Double cur_voice = Launcher.musicController.getVoiceOverVolume();
+
         soundBar.setValue(cur_value);
         effectBar.setValue(cur_effect);
+        voiceBar.setValue(cur_voice);
+
         cur_value = cur_value*100;
         cur_effect = cur_effect*100;
+        cur_voice = cur_voice*100;
+
         String percent_cur_value = String.format("%.0f",cur_value);
         String percent_cur_effect = String.format("%.0f",cur_effect);
+        String percent_cur_voice = String.format("%.0f",cur_voice);
+
         soundPercent.setText(percent_cur_value+"%");
         effectPercent.setText(percent_cur_effect+"%");
+        voicePercent.setText(percent_cur_voice+"%");
 
 
         playBtn.setOnAction( e -> {
@@ -113,16 +130,37 @@ public class MenuViewController {
             settingView.setVisible(false);
         });
 
+        safetyBtn.setOnAction( e -> {
+            Launcher.musicController.playEffect("click");
+            Launcher.musicController.safety();
+
+            voicePercent.setText("40%");
+            soundPercent.setText("40%");
+            effectPercent.setText("40%");
+
+            voiceBar.setValue(0.4);
+            effectBar.setValue(0.4);
+            soundBar.setValue(0.4);
+
+
+            decibel.setVisible(true);
+            decibelDetail.setVisible(true);
+
+        });
+
         soundBar.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 String new_value = String.format("%.2f",soundBar.getValue());
                 Double double_new_value = Double.parseDouble(new_value);
-//                Launcher.musicController.getBgPlayer().setVolume(double_new_value);
                 Launcher.musicController.setBgmVolume(double_new_value);
                 double_new_value = double_new_value*100;
                 String percent_new_value = String.format("%.0f",double_new_value);
                 soundPercent.setText(percent_new_value+"%");
+                if(percent_new_value != "40"){
+                    decibel.setVisible(false);
+                    decibelDetail.setVisible(false);
+                }
             }
         });
 
@@ -131,11 +169,15 @@ public class MenuViewController {
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 String new_value = String.format("%.2f",effectBar.getValue());
                 Double double_new_value = Double.parseDouble(new_value);
-//                Launcher.musicController.getSoundEffect().setVolume(double_new_value);
                 Launcher.musicController.setEffectVolume(double_new_value);
                 double_new_value = double_new_value*100;
                 String percent_new_value = String.format("%.0f",double_new_value);
                 effectPercent.setText(percent_new_value+"%");
+                Launcher.musicController.playEffect("hover");
+                if(percent_new_value != "40"){
+                    decibel.setVisible(false);
+                    decibelDetail.setVisible(false);
+                }
             }
         });
 
@@ -147,8 +189,12 @@ public class MenuViewController {
                 Launcher.musicController.setVoiceOverVolume(calculatedNewValue);
                 calculatedNewValue *= 100 ;
                 String percent_new_value = String.format("%.0f",calculatedNewValue);
-                effectPercent.setText(percent_new_value+"%");
-
+                voicePercent.setText(percent_new_value+"%");
+                Launcher.musicController.playVoice("voiceTest");
+                if(percent_new_value != "40"){
+                    decibel.setVisible(false);
+                    decibelDetail.setVisible(false);
+                }
             }
         });
 
@@ -161,10 +207,14 @@ public class MenuViewController {
             effectBar.setValue(effectBar.getMax());
             voiceBar.setValue(voiceBar.getMax());
 
+            decibel.setVisible(false);
+            decibelDetail.setVisible(false);
+
             soundPercent.setText("100%");
             voicePercent.setText("100%");
             effectPercent.setText("100%");
 
         });
     }
+
 }

@@ -1,5 +1,6 @@
 package se233.camelot.controller;
 
+import se233.camelot.Launcher;
 import se233.camelot.model.Ball;
 import se233.camelot.model.Character;
 import se233.camelot.model.Goal;
@@ -35,6 +36,7 @@ public class DrawingLoop implements Runnable {
         characters.forEach( character ->  {
             try{
                 if(ball.getBoundsInParent().intersects(character.getBoundsInParent())){
+                    Launcher.musicController.playEffect("kick");
                     ball.collided(character);
                 }
             }catch(IndexOutOfBoundsException ex){

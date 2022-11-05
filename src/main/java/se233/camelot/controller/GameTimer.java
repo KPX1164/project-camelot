@@ -41,11 +41,22 @@ public class GameTimer implements Runnable {
                 throw new RuntimeException(e);
             }
 
-            if(this.duration <= 1){
+            if(this.duration == 6 ){
+                Launcher.musicController.playVoice("countDown");
+            }
+            if (this.duration == 5){
+                Launcher.musicController.stop();
+            }
+
+            if(this.duration < 1){
                 Platform.getCutScene().timeupTrigger();
             }
 
-            if(this.duration == 0){
+            if(this.duration < 0){
+
+            }
+
+            if(this.duration == -2){
                 this.running = false;
             }
         }
@@ -56,11 +67,7 @@ public class GameTimer implements Runnable {
                     this.platform.endPlatform();
                     Launcher.musicController.playSound("main");
 
-//                    Alert alert = new Alert(Alert.AlertType.WARNING);
-//                    alert.setTitle("Time UP!");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Time UP!");
-//                    alert.showAndWait();
+
                     try{
                         Thread.sleep(1000);
                     }catch (Exception e){

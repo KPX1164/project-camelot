@@ -123,6 +123,21 @@
                   <Font name="JoystixMonospace-Regular" size="17.0" />
                </font>
             </Button>
+            <Button id="safetyBtn" fx:id="safetyBtn" layoutX="860.0" layoutY="620.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" stylesheets="@UIController.css" text="Sound Safety">
+               <font>
+                  <Font name="JoystixMonospace-Regular" size="17.0" />
+               </font>
+            </Button>
+            <Label id="decibel" fx:id="decibel" layoutX="309.0" layoutY="481.0" text="Reduce Loud Sounds is already trun on" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="JoystixMonospace-Regular" size="23.0" />
+               </font>
+            </Label>
+            <Label id="decibelDetail" fx:id="decibelDetail" layoutX="374.0" layoutY="523.0" text="40 percent as loud as heavy to the ear" textFill="#cdcdcd" visible="false">
+               <font>
+                  <Font name="JoystixMonospace-Regular" size="17.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

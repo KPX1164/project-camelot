@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class Platform extends Pane {
-    public static final long MATCHDURATION = 60 ;
+    public static final long MATCHDURATION = 10 ;
     public static final int WIDTH = 1280 ;
     public static  final int HEIGHT = 720 ;
     public static final int GROUND = 620 ;
