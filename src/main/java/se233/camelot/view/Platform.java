@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class Platform extends Pane {
-    public static final long MATCHDURATION = 10 ;
+    public static final long MATCHDURATION = 20 ;
     public static final int WIDTH = 1280 ;
     public static  final int HEIGHT = 720 ;
     public static final int GROUND = 620 ;
@@ -31,128 +31,139 @@ public class Platform extends Pane {
     private static UltimateBar ultimateBar;
     private static ImageView ultiField;
     private static CutScene cutScene ;
+    private static Alert alertPopup;
 
 
     public Platform(ArrayList<CharacterType> characterTypes) {
-        keys = new Keys();
-        platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
-        ImageView backgroundImg = new ImageView(platformImg) ;
-        backgroundImg.setFitHeight(HEIGHT);
-        backgroundImg.setFitWidth(WIDTH);
-        this.setHeight(HEIGHT);
-        this.setWidth(WIDTH);
+        try{
+            keys = new Keys();
+            platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
+            ImageView backgroundImg = new ImageView(platformImg) ;
+            backgroundImg.setFitHeight(HEIGHT);
+            backgroundImg.setFitWidth(WIDTH);
+            this.setHeight(HEIGHT);
+            this.setWidth(WIDTH);
 
 
-        this.characters = new ArrayList<Character>();
-        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, characterTypes.get(0),KeyCode.Z,KeyCode.X));
-        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, characterTypes.get(1),KeyCode.K,KeyCode.L));
+            this.characters = new ArrayList<Character>();
+            characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, characterTypes.get(0),KeyCode.Z,KeyCode.X));
+            characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, characterTypes.get(1),KeyCode.K,KeyCode.L));
 
-        this.getChildren().addAll(backgroundImg);
+            this.getChildren().addAll(backgroundImg);
 
-        this.timer = new Timer(624,20);
-        this.getChildren().add(timer);
-
-
-        this.ball = new Ball(624,250);
-        this.getChildren().add(ball);
-
-        scoreList.add(new Score(160 + 32  , 128 ));
-        scoreList.add(new Score(Platform.WIDTH - 192 - 32 ,  128 ));
-        scoreList.forEach( list -> { this.getChildren().add(list) ; });
-
-        CharacterIcon playerOneIcon = new CharacterIcon(characters.get(0),32,64) ;
-        CharacterIcon playerTwoIcon = new CharacterIcon(characters.get(1), Platform.WIDTH - 160 ,64);
-        characterIcons.add(playerOneIcon);
-        characterIcons.add(playerTwoIcon);
+            this.timer = new Timer(624,20);
+            this.getChildren().add(timer);
 
 
-        playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
-        playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
-        goalList.add(playerOneGoal);
-        goalList.add(playerTwoGoal);
+            this.ball = new Ball(624,250);
+            this.getChildren().add(ball);
 
-        this.ultimateBar = new UltimateBar(characters);
-        this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);
+            scoreList.add(new Score(160 + 32  , 128 ));
+            scoreList.add(new Score(Platform.WIDTH - 192 - 32 ,  128 ));
+            scoreList.forEach( list -> { this.getChildren().add(list) ; });
 
-        ultiField = new ImageView(new Image(Launcher.class.getResourceAsStream("Images/ultimateField.png")));
-        ultiField.setFitWidth(1280);
-        ultiField.setFitHeight(720);
-        ultiField.setVisible(false);
-        this.getChildren().add(ultiField);
-
-        characterIcons.forEach( icon -> {
-            this.getChildren().add(icon);
-        });
-
-        this.characters.forEach( ch -> {
-            this.getChildren().add(ch) ;
-        });
+            CharacterIcon playerOneIcon = new CharacterIcon(characters.get(0),32,64) ;
+            CharacterIcon playerTwoIcon = new CharacterIcon(characters.get(1), Platform.WIDTH - 160 ,64);
+            characterIcons.add(playerOneIcon);
+            characterIcons.add(playerTwoIcon);
 
 
-        this.cutScene = new CutScene(400,200);
-        this.getChildren().addAll(cutScene);
+            playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
+            playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
+            goalList.add(playerOneGoal);
+            goalList.add(playerTwoGoal);
+
+            this.ultimateBar = new UltimateBar(characters);
+            this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);
+
+            ultiField = new ImageView(new Image(Launcher.class.getResourceAsStream("Images/ultimateField.png")));
+            ultiField.setFitWidth(1280);
+            ultiField.setFitHeight(720);
+            ultiField.setVisible(false);
+            this.getChildren().add(ultiField);
+
+            characterIcons.forEach( icon -> {
+                this.getChildren().add(icon);
+            });
+
+            this.characters.forEach( ch -> {
+                this.getChildren().add(ch) ;
+            });
+
+
+            this.cutScene = new CutScene(400,200);
+            this.alertPopup = new Alert(150,380);
+            this.getChildren().addAll(cutScene,alertPopup);
+        } catch (Throwable e){
+            e.printStackTrace();
+        }
     }
     //Test
     public Platform() {
-        keys = new Keys();
-        platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
-        ImageView backgroundImg = new ImageView(platformImg) ;
-        backgroundImg.setFitHeight(HEIGHT);
-        backgroundImg.setFitWidth(WIDTH);
-        this.setHeight(HEIGHT);
-        this.setWidth(WIDTH);
+        try{
+            keys = new Keys();
+            platformImg = new Image(Launcher.class.getResourceAsStream("assets/Background.jpg")) ;
+            ImageView backgroundImg = new ImageView(platformImg) ;
+            backgroundImg.setFitHeight(HEIGHT);
+            backgroundImg.setFitWidth(WIDTH);
+            this.setHeight(HEIGHT);
+            this.setWidth(WIDTH);
 
 
-        this.characters = new ArrayList<Character>();
+            this.characters = new ArrayList<Character>();
 
-        characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.saber,KeyCode.Z,KeyCode.X));
-        characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.mashu,KeyCode.K,KeyCode.L));
+            characters.add(new Character(140,GROUND-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.saber,KeyCode.Z,KeyCode.X));
+            characters.add(new Character(920,GROUND-128,0,0, KeyCode.LEFT,KeyCode.RIGHT,KeyCode.UP, CharacterType.mashu,KeyCode.K,KeyCode.L));
 
-        this.getChildren().addAll(backgroundImg);
-
-
-        this.timer = new Timer(624,20);
-        this.getChildren().add(timer);
+            this.getChildren().addAll(backgroundImg);
 
 
-        this.ball = new Ball(624,250);
-        this.getChildren().add(ball);
-
-        scoreList.add(new Score(160 + 32  , 128 ));
-        scoreList.add(new Score(Platform.WIDTH - 192 - 32 ,  128 ));
-        scoreList.forEach( list -> { this.getChildren().add(list) ; });
-
-        CharacterIcon playerOneIcon = new CharacterIcon(characters.get(0),32,64) ;
-        CharacterIcon playerTwoIcon = new CharacterIcon(characters.get(1), Platform.WIDTH - 160 ,64);
-        characterIcons.add(playerOneIcon);
-        characterIcons.add(playerTwoIcon);
+            this.timer = new Timer(624,20);
+            this.getChildren().add(timer);
 
 
-        playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
-        playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
-        goalList.add(playerOneGoal);
-        goalList.add(playerTwoGoal);
+            this.ball = new Ball(624,250);
+            this.getChildren().add(ball);
 
-        this.ultimateBar = new UltimateBar(characters);
-        this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);
+            scoreList.add(new Score(160 + 32  , 128 ));
+            scoreList.add(new Score(Platform.WIDTH - 192 - 32 ,  128 ));
+            scoreList.forEach( list -> { this.getChildren().add(list) ; });
 
-        ultiField = new ImageView(new Image(Launcher.class.getResourceAsStream("Images/ultimateField.png")));
-        ultiField.setFitWidth(1280);
-        ultiField.setFitHeight(720);
-        ultiField.setVisible(false);
-        this.getChildren().add(ultiField);
-
-        characterIcons.forEach( icon -> {
-            this.getChildren().add(icon);
-        });
-
-        this.characters.forEach( ch -> {
-            this.getChildren().add(ch) ;
-        });
+            CharacterIcon playerOneIcon = new CharacterIcon(characters.get(0),32,64) ;
+            CharacterIcon playerTwoIcon = new CharacterIcon(characters.get(1), Platform.WIDTH - 160 ,64);
+            characterIcons.add(playerOneIcon);
+            characterIcons.add(playerTwoIcon);
 
 
-        this.cutScene = new CutScene(400,200);
-        this.getChildren().addAll(cutScene);
+            playerOneGoal = new Goal(-20,Platform.GROUND - 200,"Player1");
+            playerTwoGoal = new Goal(Platform.WIDTH - 90,Platform.GROUND - 200,"Player2");
+            goalList.add(playerOneGoal);
+            goalList.add(playerTwoGoal);
+
+            this.ultimateBar = new UltimateBar(characters);
+            this.getChildren().addAll(playerOneGoal,playerTwoGoal, ultimateBar);
+
+            ultiField = new ImageView(new Image(Launcher.class.getResourceAsStream("Images/ultimateField.png")));
+            ultiField.setFitWidth(1280);
+            ultiField.setFitHeight(720);
+            ultiField.setVisible(false);
+            this.getChildren().add(ultiField);
+
+            characterIcons.forEach( icon -> {
+                this.getChildren().add(icon);
+            });
+
+            this.characters.forEach( ch -> {
+                this.getChildren().add(ch) ;
+            });
+
+            this.cutScene = new CutScene(400,200);
+            this.alertPopup = new Alert(150,380);
+            this.getChildren().addAll(cutScene,alertPopup);
+
+        } catch (Throwable e){
+            e.printStackTrace();
+        }
 
     }
     public Keys getKeys() {
@@ -211,6 +222,10 @@ public class Platform extends Pane {
 
     public static void setCharacters(ArrayList<Character> characters) {
         Platform.characters = characters;
+    }
+
+    public static Alert getAlertPopup() {
+        return alertPopup;
     }
 
     public static void respawn() {

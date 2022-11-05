@@ -14,11 +14,10 @@ import java.util.Map;
 public class CutScene extends Pane {
     private ImageView cutSceneImage ;
     private Map<CharacterType , Image> charaImageMap = new HashMap<>();
-    private Image goalCutSceneImage, timeupCutscene ;
 
-    public CutScene(int x , int y ) {
-        this.goalCutSceneImage = new Image(Launcher.class.getResourceAsStream("Images/goal.png"));
-        this.timeupCutscene = new Image(Launcher.class.getResourceAsStream("Images/timeup.png"));
+
+    public CutScene(int x , int y ) throws NullPointerException {
+
         loadImage();
         this.setTranslateX(x);
         this.setTranslateY(y);
@@ -27,26 +26,6 @@ public class CutScene extends Pane {
         cutSceneImage.setFitWidth(512);
         cutSceneImage.setFitHeight(512);
         this.getChildren().add(cutSceneImage);
-    }
-
-    public void goalTrigger(){
-        this.setScaleX(1);
-        this.cutSceneImage.setImage(goalCutSceneImage);
-        this.setTranslateY(150);
-        this.setTranslateX(380);
-        cutSceneImage.setFitHeight(150);
-        cutSceneImage.setFitWidth(505);
-        this.setVisible(true);
-    }
-
-    public void timeupTrigger(){
-        this.setScaleX(1);
-        this.cutSceneImage.setImage(timeupCutscene);
-        this.setTranslateY(150);
-        this.setTranslateX(380);
-        cutSceneImage.setFitHeight(150);
-        cutSceneImage.setFitWidth(505);
-        this.setVisible(true);
     }
 
     public void trigger(Character character) {
@@ -71,7 +50,7 @@ public class CutScene extends Pane {
         this.cutSceneImage.setFitHeight(512);
     }
 
-    public void loadImage() {
+    public void loadImage() throws NullPointerException {
         this.charaImageMap.put(CharacterType.megaMan , new Image(Launcher.class.getResourceAsStream("assets/ultimateArcueid.png")));
         this.charaImageMap.put(CharacterType.mashu,new Image(Launcher.class.getResourceAsStream("assets/ultimateMashu.png")));
         this.charaImageMap.put(CharacterType.saber, new Image(Launcher.class.getResourceAsStream("assets/ultimateSaber.png")));

@@ -74,7 +74,8 @@ public class Goal extends Pane {
             if(owner.equals("Player1")){
                 if(ball.getX() < 45){
                     logger.info("Player 2 got point");
-                    Platform.getCutScene().goalTrigger();
+//                    Platform.getCutScene().goalTrigger();
+                    Platform.getAlertPopup().goalTrigger();
                     Platform.getCharacters().get(1).addScore() ;
                     Platform.getCharacters().get(0).chargeUltimate();
 
@@ -84,13 +85,14 @@ public class Goal extends Pane {
                         throw new RuntimeException(e);
                     }
 
-                    Platform.getCutScene().hide();
+                    Platform.getAlertPopup().hide();
                     Platform.respawn() ;
                 }
             }else{
                 if(ball.getX() > Platform.WIDTH - this.WIDTH + 5){
                     logger.info("Player 1 got point");
-                    Platform.getCutScene().goalTrigger();
+//                    Platform.getCutScene().goalTrigger();
+                    Platform.getAlertPopup().goalTrigger();
                     Platform.getCharacters().get(0).addScore() ;
                     Platform.getCharacters().get(1).chargeUltimate();
 
@@ -100,7 +102,7 @@ public class Goal extends Pane {
                         throw new RuntimeException(e);
                     }
 
-                    Platform.getCutScene().hide();
+                    Platform.getAlertPopup().hide();
                     Platform.respawn() ;
                 }
             }

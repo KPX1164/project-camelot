@@ -24,7 +24,9 @@ public class GameTimer implements Runnable {
 
         javafx.application.Platform.runLater(
                 () -> {
-                    this.platform.getTimer().setTime((int)duration);
+                    if(this.duration >= 0){
+                        this.platform.getTimer().setTime((int)duration);
+                    }
                 }
         );
     }
@@ -49,7 +51,8 @@ public class GameTimer implements Runnable {
             }
 
             if(this.duration < 1){
-                Platform.getCutScene().timeupTrigger();
+                Platform.getAlertPopup().timeupTrigger();
+//                Platform.getCutScene().timeupTrigger();
             }
 
             if(this.duration < 0){
