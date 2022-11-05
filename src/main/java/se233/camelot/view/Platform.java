@@ -189,7 +189,7 @@ public class Platform extends Pane {
         });
         scoreList = new ArrayList<>() ;
         goalList = new ArrayList<Goal>();
-        this.characters = new ArrayList<Character>() ;
+//        this.characters = new ArrayList<Character>() ;
         this.ball.freeze();
         characterIcons = new ArrayList<>() ;
     }
@@ -207,6 +207,10 @@ public class Platform extends Pane {
     }
     public static CutScene getCutScene() {
         return cutScene;
+    }
+
+    public static void setCharacters(ArrayList<Character> characters) {
+        Platform.characters = characters;
     }
 
     public static void respawn() {

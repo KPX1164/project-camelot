@@ -17,7 +17,7 @@ public class CutScene extends Pane {
     private Image goalCutSceneImage ;
 
     public CutScene(int x , int y ) {
-        this.goalCutSceneImage = new Image(Launcher.class.getResourceAsStream("Images/goal.jpg"));
+        this.goalCutSceneImage = new Image(Launcher.class.getResourceAsStream("Images/goal.png"));
         loadImage();
         this.setTranslateX(x);
         this.setTranslateY(y);
@@ -29,11 +29,12 @@ public class CutScene extends Pane {
     }
 
     public void goalTrigger(){
+        this.setScaleX(1);
         this.cutSceneImage.setImage(goalCutSceneImage);
         this.setTranslateY(128);
-        this.setTranslateX(624);
-        cutSceneImage.setFitHeight(512);
-        cutSceneImage.setFitWidth(512);
+        this.setTranslateX(524);
+        cutSceneImage.setFitHeight(256);
+        cutSceneImage.setFitWidth(256);
         this.setVisible(true);
     }
 
@@ -55,6 +56,8 @@ public class CutScene extends Pane {
 
     public void hide() {
         this.setVisible(false);
+        this.cutSceneImage.setFitWidth(512);
+        this.cutSceneImage.setFitHeight(512);
     }
 
     public void loadImage() {
