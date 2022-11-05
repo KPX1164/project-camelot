@@ -23,7 +23,7 @@ public class SceneLoader {
         class RemindTask extends TimerTask {
             public void run() {
                 timer.cancel(); //Terminate the timer thread
-                Launcher.musicController.play("main");
+                Launcher.musicController.playSound("main");
                 SceneController.navigateTo("MenuView");
             }
         }

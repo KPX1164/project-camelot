@@ -21,7 +21,7 @@ public class MainViewController {
     public void initialize()  {
 
         tapBtn.setOnAction( e -> {
-            Launcher.musicController.play("load");
+            Launcher.musicController.playSound("load");
             SceneController.navigateTo("SceneLoaderView");
 
         });
@@ -39,7 +39,7 @@ public class MainViewController {
             new Thread(drawingLoop).start();
             new Thread(gameTimer).start();
 
-            Launcher.musicController.play("game");
+            Launcher.musicController.playSound("game");
             Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
             Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
             Launcher.stage.getScene().setRoot(platform);

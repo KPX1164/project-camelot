@@ -48,6 +48,7 @@ public class CharacterViewController {
         p1c1.setSelected(true);
 
         readyBtn.setOnAction( event -> {
+            Launcher.musicController.playEffect("click");
 
             if (p1c1.isSelected()){
                 playerMap.set(0, CharacterType.megaMan);
@@ -82,7 +83,7 @@ public class CharacterViewController {
                 new Thread(drawingLoop).start();
                 new Thread(gameTimer).start();
 
-                Launcher.musicController.play("game");
+                Launcher.musicController.playSound("game");
                 Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
                 Launcher.stage.getScene().setOnKeyReleased( keyEvent -> platform.getKeys().remove(keyEvent.getCode()));
                 Launcher.stage.getScene().setRoot(platform);
@@ -94,6 +95,8 @@ public class CharacterViewController {
         });
 
         homeBtn.setOnAction(event -> {
+            Launcher.musicController.playEffect("click");
+
             SceneController.navigateTo("MenuView");
         });
 

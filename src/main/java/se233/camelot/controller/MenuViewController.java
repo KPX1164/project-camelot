@@ -49,6 +49,10 @@ public class MenuViewController {
     private Slider effectBar;
     @FXML
     private Label soundPercent;
+    @FXML
+    private Label effectPercent;
+    @FXML
+    private Label voicePercent;
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
@@ -57,21 +61,30 @@ public class MenuViewController {
     @FXML
     public void initialize()  {
         Double cur_value = Launcher.bgPlayer.getVolume();
+//        Double cur_effect = Launcher.soundEffect.getVolume();
         soundBar.setValue(cur_value);
+//        effectBar.setValue(cur_effect);
         cur_value = cur_value*100;
+//        cur_effect = cur_effect*100;
         String percent_cur_value = String.format("%.0f",cur_value);
+//        String percent_cur_effect = String.format("%.0f",cur_effect);
         soundPercent.setText(percent_cur_value+"%");
+//        effectPercent.setText(percent_cur_effect+"%");
+
 
         playBtn.setOnAction( e -> {
+            Launcher.musicController.playEffect("click");
             SceneController.navigateTo("CharacterView");
         });
 
         settingBtn.setOnAction(event -> {
+            Launcher.musicController.playEffect("click");
             settingView.setVisible(true);
         });
 
 
         quitBtn.setOnAction(event -> {
+            Launcher.musicController.playEffect("click");
             overLayerH.setVisible(true);
             askLayer.setVisible(true);
             parinyaLayer.setVisible(true);
@@ -81,9 +94,11 @@ public class MenuViewController {
             noBtn.setVisible(true);
 
             yesBtn.setOnAction(yesEvent ->{
+                Launcher.musicController.playEffect("click");
                 System.exit(0);
             });
             noBtn.setOnAction(noEvent ->{
+                Launcher.musicController.playEffect("click");
                 overLayerH.setVisible(false);
                 askLayer.setVisible(false);
                 parinyaLayer.setVisible(false);
@@ -94,6 +109,7 @@ public class MenuViewController {
             });
         });
         homeBtn.setOnAction( e -> {
+            Launcher.musicController.playEffect("click");
             settingView.setVisible(false);
         });
 
@@ -109,10 +125,32 @@ public class MenuViewController {
             }
         });
 
+        effectBar.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                String new_value = String.format("%.2f",effectBar.getValue());
+                Double double_new_value = Double.parseDouble(new_value);
+                Launcher.soundEffect.setVolume(double_new_value);
+                double_new_value = double_new_value*100;
+                String percent_new_value = String.format("%.0f",double_new_value);
+                effectPercent.setText(percent_new_value+"%");
+            }
+        });
+
         resetBtn.setOnAction(resetEvent -> {
+            Launcher.musicController.playEffect("click");
             Launcher.bgPlayer.setVolume(1);
+            Launcher.soundEffect.setVolume(1);
+//            Launcher.voiceOver.setVolume(1);
+
             soundBar.setValue(soundBar.getMax());
+            effectBar.setValue(effectBar.getMax());
+//            voiceBar.setValue(voiceBar.getMax());
+
             soundPercent.setText("100%");
+//            voicePercent.setText("100%");
+            effectPercent.setText("100%");
+
         });
     }
 }

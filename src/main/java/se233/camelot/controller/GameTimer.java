@@ -50,7 +50,7 @@ public class GameTimer implements Runnable {
         javafx.application.Platform.runLater(
                 () -> {
                     this.platform.endPlatform();
-                    Launcher.musicController.play("main");
+                    Launcher.musicController.playSound("main");
 
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Time UP!");

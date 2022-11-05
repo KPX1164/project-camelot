@@ -20,12 +20,16 @@ public class Launcher extends Application {
         launch(args);
     }
     public static MediaPlayer bgPlayer;
+    public static MediaPlayer voiceOver;
+    public static MediaPlayer soundEffect;
+
+
     public static MusicController musicController ;
 
     @Override
     public void start(Stage stage) throws IOException {
         musicController = new MusicController() ;
-        musicController.play("main");
+        musicController.playSound("main");
 
         this.stage = stage ;
         hs = getHostServices();
