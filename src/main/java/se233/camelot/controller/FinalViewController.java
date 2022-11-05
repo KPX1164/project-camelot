@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-import se233.camelot.Launcher;
 import se233.camelot.model.Character;
 import se233.camelot.view.Platform;
 
@@ -25,16 +23,11 @@ public class FinalViewController {
     @FXML
     private Label bothWin ;
 
-
     private ArrayList<Character> characters ;
 
     @FXML
     public void initialize()  {
         this.characters = Platform.getCharacters() ;
-
-        characters.forEach( character -> {
-            System.out.println(character.getScore());
-        });
 
         if(characters.get(0).getScore() > characters.get(1).getScore()){
             chat.setVisible(true);

@@ -31,10 +31,10 @@ public class CutScene extends Pane {
     public void goalTrigger(){
         this.setScaleX(1);
         this.cutSceneImage.setImage(goalCutSceneImage);
-        this.setTranslateY(128);
-        this.setTranslateX(524);
-        cutSceneImage.setFitHeight(256);
-        cutSceneImage.setFitWidth(256);
+        this.setTranslateY(150);
+        this.setTranslateX(380);
+        cutSceneImage.setFitHeight(150);
+        cutSceneImage.setFitWidth(505);
         this.setVisible(true);
     }
 
