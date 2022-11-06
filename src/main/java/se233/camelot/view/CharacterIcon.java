@@ -20,7 +20,7 @@ public class CharacterIcon extends Pane {
     private Map<String , Image> characterImgMap ;
     private ImageView ultimateAura ;
 
-    public CharacterIcon(Character character , int x , int y) {
+    public CharacterIcon(Character character , int x , int y) throws NullPointerException{
 
         this.character = character ;
         this.x = x ;
@@ -63,7 +63,7 @@ public class CharacterIcon extends Pane {
 
     }
 
-    public void loadImage() {
+    public void loadImage() throws NullPointerException {
 
         if(character.getCharacterType().equals(CharacterType.megaMan)){
             Image normalImg = new Image(Launcher.class.getResourceAsStream("Images/character1.png"));

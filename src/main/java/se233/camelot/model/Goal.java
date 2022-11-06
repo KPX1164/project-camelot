@@ -26,10 +26,14 @@ public class Goal extends Pane {
         this.setTranslateX(x);
         this.setTranslateY(y);
 
-        if(owner.equals("Player1")){
-            this.imageView = new ImageView(Launcher.class.getResource("assets/leftGoal.png").toString());
-        }else{
-            this.imageView = new ImageView(Launcher.class.getResource("assets/rightGoal.png").toString());
+        try{
+            if(owner.equals("Player1")){
+                this.imageView = new ImageView(Launcher.class.getResource("assets/leftGoal.png").toString());
+            }else{
+                this.imageView = new ImageView(Launcher.class.getResource("assets/rightGoal.png").toString());
+            }
+        }catch (NullPointerException ex){
+            logger.error(ex.getMessage());
         }
 
         this.imageView.setFitHeight(HEIGHT);

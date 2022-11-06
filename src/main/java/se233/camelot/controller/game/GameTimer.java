@@ -1,8 +1,11 @@
-package se233.camelot.controller;
+package se233.camelot.controller.game;
 
 
 import javafx.scene.control.Alert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se233.camelot.Launcher;
+import se233.camelot.controller.SceneController;
 import se233.camelot.view.Platform;
 
 import java.util.concurrent.TimeUnit;
@@ -11,7 +14,7 @@ public class GameTimer implements Runnable {
     private long duration ;
     private boolean running ;
     Platform platform ;
-
+    private Logger logger = LoggerFactory.getLogger(GameTimer.class);
 
     public GameTimer(Platform platform) {
         this.running = true ;
@@ -24,9 +27,14 @@ public class GameTimer implements Runnable {
 
         javafx.application.Platform.runLater(
                 () -> {
-                    if(this.duration >= 0){
-                        this.platform.getTimer().setTime((int)duration);
+                    try {
+                        if(this.duration >= 0){
+                            this.platform.getTimer().setTime((int)duration);
+                        }
+                    }catch (NullPointerException e){
+                        logger.error(e.getMessage());
                     }
+
                 }
         );
     }
@@ -40,7 +48,7 @@ public class GameTimer implements Runnable {
                 updateTimeCountDown();
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                logger.warn(e.getMessage());
             }
 
             if(this.duration == 6 ){
@@ -51,7 +59,11 @@ public class GameTimer implements Runnable {
             }
 
             if(this.duration < 1){
-                Platform.getAlertPopup().timeupTrigger();
+                try {
+                    Platform.getAlertPopup().timeupTrigger();
+                }catch (NullPointerException ex){
+                    logger.warn(ex.getMessage());
+                }
 //                Platform.getCutScene().timeupTrigger();
             }
 
@@ -70,11 +82,10 @@ public class GameTimer implements Runnable {
                     this.platform.endPlatform();
                     Launcher.musicController.playSound("main");
 
-
                     try{
                         Thread.sleep(1000);
                     }catch (Exception e){
-                        throw new RuntimeException(e);
+                        logger.warn(e.getMessage());
                     }
                     SceneController.navigateTo("FinalView");
 

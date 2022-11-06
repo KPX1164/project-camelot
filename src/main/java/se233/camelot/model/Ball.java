@@ -23,7 +23,7 @@ public class Ball extends Pane {
     public final int BALL_HEIGHT = 32 ;
     public final int BALL_WIDTH = 32 ;
     private boolean stop = false ;
-    public Ball(int x , int y) {
+    public Ball(int x , int y) throws NullPointerException{
         this.x = x ;
         this.y = y ;
         this.startX = x ;
@@ -67,7 +67,7 @@ public class Ball extends Pane {
 
     }
 
-    public void collided(Character c) {
+    public void collided(Character c) throws Exception {
 
         if(c.isInUltimate()){
             if(c.getHeadingDirection().equals(Direction.right)){

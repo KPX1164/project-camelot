@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
+
 import se233.camelot.Launcher;
 import se233.camelot.model.*;
 import se233.camelot.model.Character;
@@ -95,7 +96,7 @@ public class Platform extends Pane {
             this.alertPopup = new Alert(150,380);
             this.getChildren().addAll(cutScene,alertPopup);
         } catch (Throwable e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     //Test
@@ -162,7 +163,7 @@ public class Platform extends Pane {
             this.getChildren().addAll(cutScene,alertPopup);
 
         } catch (Throwable e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }

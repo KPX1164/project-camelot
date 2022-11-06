@@ -1,10 +1,16 @@
 package se233.camelot.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se233.camelot.Launcher;
+import se233.camelot.controller.game.DrawingLoop;
+import se233.camelot.controller.game.GameLoop;
+import se233.camelot.controller.game.GameTimer;
 import se233.camelot.model.CharacterType;
 import se233.camelot.view.Platform;
 
@@ -29,6 +35,7 @@ public class CharacterViewController {
     private Button homeBtn;
     @FXML
     private Button readyBtn;
+    private Logger logger = LoggerFactory.getLogger(CharacterViewController.class);
     @FXML
     public void initialize() {
 
@@ -89,14 +96,16 @@ public class CharacterViewController {
                 Launcher.stage.getScene().setRoot(platform);
 
             }catch (Exception e){
-                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Sorry bro there is a critical error please restart the program");
+                logger.error(e.getMessage());
+                alert.showAndWait();
+                System.exit(0);
             }
 
         });
 
         homeBtn.setOnAction(event -> {
             Launcher.musicController.playEffect("click");
-
             SceneController.navigateTo("MenuView");
         });
 

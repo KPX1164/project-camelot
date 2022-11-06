@@ -1,5 +1,7 @@
-package se233.camelot.controller;
+package se233.camelot.controller.game;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se233.camelot.Launcher;
 import se233.camelot.model.Ball;
 import se233.camelot.model.Character;
@@ -15,6 +17,7 @@ public class DrawingLoop implements Runnable {
     private float interval ;
     private boolean running ;
     private int frameFlag ;
+    private Logger logger = LoggerFactory.getLogger(DrawingLoop.class);
 
     public DrawingLoop(Platform platform){
 
@@ -25,7 +28,7 @@ public class DrawingLoop implements Runnable {
         this.frameFlag = 0 ;
     }
 
-    private void checkDrawCollisions(ArrayList<Character> characters, Ball ball, ArrayList<Goal> goalList){
+    private void checkDrawCollisions(ArrayList<Character> characters, Ball ball, ArrayList<Goal> goalList) throws Exception{
         for(Character character : characters){
             character.checkReachGameWall();
             character.checkReachHighest();
@@ -34,15 +37,14 @@ public class DrawingLoop implements Runnable {
         ball.checkReachFloor();
         ball.checkReachGameWall();
         characters.forEach( character ->  {
-            try{
-                if(ball.getBoundsInParent().intersects(character.getBoundsInParent())){
-                    Launcher.musicController.playEffect("kick");
+            if(ball.getBoundsInParent().intersects(character.getBoundsInParent())){
+                Launcher.musicController.playEffect("kick");
+                try {
                     ball.collided(character);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
-            }catch(IndexOutOfBoundsException ex){
-                throw new RuntimeException(ex);
             }
-
         });
 
         for (Character cA : characters){
@@ -86,14 +88,17 @@ public class DrawingLoop implements Runnable {
     @Override
     public void run() {
         while (running) {
-            try{
-                checkDrawCollisions(platform.getCharacters(),platform.getBall(), platform.getGoalList());
-                paint(platform.getCharacters(),platform.getBall());
+            try {
+                checkDrawCollisions(platform.getCharacters(), platform.getBall(), platform.getGoalList());
+                paint(platform.getCharacters(), platform.getBall());
                 paintCharacterIcon(platform.getCharacterIcons());
-                Thread.sleep(1000/this.frameRate);
-                this.frameFlag += 1 ;
+                Thread.sleep(1000 / this.frameRate);
+                this.frameFlag += 1;
+            }catch (InterruptedException ex){
+                logger.warn(ex.getMessage());
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                logger.error(e.getMessage());
+//                System.exit(0);
             }
 
             if(frameFlag == (Platform.MATCHDURATION) * this.frameRate){

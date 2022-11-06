@@ -1,8 +1,8 @@
 package se233.camelot;
 
-import se233.camelot.controller.DrawingLoop;
-import se233.camelot.controller.GameLoop;
-import se233.camelot.controller.GameTimer;
+import se233.camelot.controller.game.DrawingLoop;
+import se233.camelot.controller.game.GameLoop;
+import se233.camelot.controller.game.GameTimer;
 import se233.camelot.model.Ball;
 import se233.camelot.model.Character;
 import se233.camelot.model.CharacterType;
@@ -100,7 +100,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void characterShouldNotFallWhenOnGround() {
+    public void characterShouldNotFallWhenOnGround() throws Exception {
         Character character = new Character(0,620-128,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.mashu,KeyCode.Z,KeyCode.X);
         character.checkReachFloor();
 
@@ -109,7 +109,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void characterShouldNotEnableToJumpWhenNotOnGround() {
+    public void characterShouldNotEnableToJumpWhenNotOnGround() throws Exception {
         Character character = new Character(0,10,0,0, KeyCode.A,KeyCode.D,KeyCode.W, CharacterType.mashu,KeyCode.Z,KeyCode.X);
         character.checkReachFloor();
 

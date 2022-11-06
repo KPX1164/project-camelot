@@ -8,7 +8,7 @@ import se233.camelot.model.Character;
 public class Ultimate extends Pane {
     private Character owner;
     private ProgressBar ultiGate;
-    public Ultimate(int x, int y, Character owner){
+    public Ultimate(int x, int y, Character owner) throws Exception{
         this.owner = owner;
         setTranslateX(x);
         setTranslateY(y);
@@ -18,7 +18,7 @@ public class Ultimate extends Pane {
         this.getChildren().addAll(box);
     }
 
-    public void update(){
+    public void update() throws Exception {
         Double gate = owner.getUltimateCharge()/100.0;
         ultiGate.setProgress(gate);
     }

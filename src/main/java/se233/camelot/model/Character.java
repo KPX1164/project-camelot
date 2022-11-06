@@ -56,7 +56,7 @@ public class Character extends Pane {
     private  Logger logger = LoggerFactory.getLogger(Character.class);
     private Image characterImg;
 
-    public Character(int x, int y,int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, CharacterType characterType, KeyCode attackKey , KeyCode ultiKey) {
+    public Character(int x, int y,int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey, CharacterType characterType, KeyCode attackKey , KeyCode ultiKey) throws Exception {
         this.characterType = characterType ;
 
         this.startX = x ;
@@ -200,7 +200,7 @@ public class Character extends Pane {
             this.ultimateCharge = 100 ;
         }
     }
-    public void ultimateActive(){
+    public void ultimateActive() {
         if(this.ultimateCharge == 100 && !this.isInUltimate){
             this.isInUltimate = true ;
             this.ultimateAura.setVisible(true);
@@ -208,7 +208,7 @@ public class Character extends Pane {
             logger.info("Active Ultimate Skill");
         }
     }
-    public void useUltimateSkill() {
+    public void useUltimateSkill() throws Exception {
         if(this.isInUltimate){
             this.isInUltimate = false ;
             this.ultimateAura.setVisible(false);
