@@ -94,7 +94,7 @@ public class GameLoopTest {
         }catch (NullPointerException ex){
 
         }
-        
+
         assertEquals("Player 1 should get score", 1 , characterUnderTest.getScore() );
         assertEquals("Player 2's score should be same", 0 , charactersUnderTest.get(1).getScore());
     }
