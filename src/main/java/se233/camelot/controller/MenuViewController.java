@@ -2,6 +2,7 @@ package se233.camelot.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se233.camelot.Launcher;
 
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -97,9 +99,27 @@ public class MenuViewController {
                 SceneController.navigateTo("CharacterView");
             });
 
+            playBtn.setOnMouseEntered(new EventHandler<javafx.scene.input.MouseEvent>() {
+                @Override
+                public void handle(javafx.scene.input.MouseEvent mouseEvent) {
+                    Launcher.musicController.playEffect("hover");
+                }
+            });
+
             settingBtn.setOnAction(event -> {
                 Launcher.musicController.playEffect("click");
                 settingView.setVisible(true);
+                if(Launcher.musicController.getBgmVolume() == 0.4 && Launcher.musicController.getEffectVolume() == 0.4 && Launcher.musicController.getVoiceOverVolume() == 0.4){
+                    decibel.setVisible(true);
+                    decibelDetail.setVisible(true);
+                }
+            });
+
+            settingBtn.setOnMouseEntered(new EventHandler<javafx.scene.input.MouseEvent>() {
+                @Override
+                public void handle(javafx.scene.input.MouseEvent mouseEvent) {
+                    Launcher.musicController.playEffect("hover");
+                }
             });
 
 
@@ -128,6 +148,14 @@ public class MenuViewController {
                     noBtn.setVisible(false);
                 });
             });
+
+            quitBtn.setOnMouseEntered(new EventHandler<javafx.scene.input.MouseEvent>() {
+                @Override
+                public void handle(javafx.scene.input.MouseEvent mouseEvent) {
+                    Launcher.musicController.playEffect("hover");
+                }
+            });
+
             homeBtn.setOnAction( e -> {
                 Launcher.musicController.playEffect("click");
                 settingView.setVisible(false);

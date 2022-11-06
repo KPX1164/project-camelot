@@ -53,6 +53,7 @@ public class Ball extends Pane {
                 yVelocity = (int)(yVelocity);
                 this.rotate = 0 ;
                 this.y = Platform.GROUND - BALL_HEIGHT ;
+                Launcher.musicController.playEffect("falling");
             }
         }
     }

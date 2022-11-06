@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import se233.camelot.Launcher;
 import se233.camelot.model.Character;
 import se233.camelot.view.Platform;
 import se233.camelot.view.Score;
@@ -65,6 +66,7 @@ public class GameLoop implements Runnable {
 
             if(platform.getKeys().isPressed(character.getAttackKey())){
                 character.attack();
+                Launcher.musicController.playEffect("kick");
                 character.getImageView().attack();
                 platform.getKeys().remove(character.getAttackKey());
             }
