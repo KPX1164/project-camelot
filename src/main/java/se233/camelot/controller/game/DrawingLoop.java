@@ -29,14 +29,15 @@ public class DrawingLoop implements Runnable {
     }
 
     private void checkDrawCollisions(ArrayList<Character> characters, Ball ball, ArrayList<Goal> goalList) throws Exception{
+
+        ball.checkReachFloor();
+        ball.checkReachGameWall();
+
         for(Character character : characters){
             character.checkReachGameWall();
             character.checkReachHighest();
             character.checkReachFloor();
-        }
-        ball.checkReachFloor();
-        ball.checkReachGameWall();
-        characters.forEach( character ->  {
+
             if(ball.getBoundsInParent().intersects(character.getBoundsInParent())){
                 Launcher.musicController.playEffect("kick");
                 try {
@@ -45,10 +46,9 @@ public class DrawingLoop implements Runnable {
                     throw new RuntimeException(e);
                 }
             }
-        });
 
-        for (Character cA : characters){
             for(Character cB: characters){
+                Character cA = character ;
                 if(cA != cB){
 
                     if(cA.getBoundsInParent().intersects(cB.getBoundsInParent())){
@@ -89,9 +89,10 @@ public class DrawingLoop implements Runnable {
     public void run() {
         while (running) {
             try {
+                paintCharacterIcon(platform.getCharacterIcons());
                 checkDrawCollisions(platform.getCharacters(), platform.getBall(), platform.getGoalList());
                 paint(platform.getCharacters(), platform.getBall());
-                paintCharacterIcon(platform.getCharacterIcons());
+
                 Thread.sleep(1000 / this.frameRate);
                 this.frameFlag += 1;
             }catch (InterruptedException ex){

@@ -65,7 +65,6 @@ public class GameLoop implements Runnable {
 
             if(platform.getKeys().isPressed(character.getAttackKey())){
                 character.attack();
-                character.getImageView().attack();
                 platform.getKeys().remove(character.getAttackKey());
             }
 
@@ -124,15 +123,13 @@ public class GameLoop implements Runnable {
                 chargeUltimateThread(Platform.getCharacters());
                 updateScore(Platform.getScoreList(), Platform.getCharacters());
                 updateUltimate(Platform.getUltimateBar());
+
                 Thread.sleep(1000 / this.frameRate);
                 this.frameFlag += 1;
             }catch (InterruptedException ex){
                 logger.warn(ex.getMessage());
             } catch (Exception e) {
                 logger.error(e.getMessage());
-//                Alert alert = new Alert(Alert.AlertType.ERROR, "Sorry bro there is a critical error please restart the program");
-//                alert.showAndWait();
-//                System.exit(0);
             }
             if(frameFlag == (Platform.MATCHDURATION) * this.frameRate){
                 break;

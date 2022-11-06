@@ -49,6 +49,7 @@ public class Ball extends Pane {
         if (y >= Platform.GROUND - BALL_HEIGHT) {
             if( Math.floor(yVelocity) >= 3){
                 yVelocity = - yVelocity * 0.55 ;
+                Launcher.musicController.playEffect("falling");
             }else{
                 yVelocity = (int)(yVelocity);
                 this.rotate = 0 ;
@@ -152,7 +153,7 @@ public class Ball extends Pane {
                 }
             }
         }else{
-            if(Math.abs(yVelocity) > 0.5){
+            if(yVelocity > 3.5 || yVelocity < - 3.5){
                 this.rotate = yVelocity ;
             }else{
                 this.rotate = 0 ;
@@ -167,6 +168,7 @@ public class Ball extends Pane {
         }else{
             this.xVelocity = 0 ;
         }
+
     }
 
     public void ballBouncing() {

@@ -15,6 +15,8 @@ import se233.camelot.model.CharacterType;
 import se233.camelot.view.Platform;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CharacterViewController {
 
@@ -35,6 +37,8 @@ public class CharacterViewController {
     private Button homeBtn;
     @FXML
     private Button readyBtn;
+
+
     private Logger logger = LoggerFactory.getLogger(CharacterViewController.class);
     @FXML
     public void initialize() {
@@ -79,16 +83,23 @@ public class CharacterViewController {
             try{
 
                 Platform platform = new Platform(playerMap) ;
+
                 GameLoop gameLoop = new GameLoop(platform);
                 DrawingLoop drawingLoop = new DrawingLoop(platform);
                 GameTimer gameTimer = new GameTimer(platform);
 
-                Thread gameLoopThread = new Thread(gameLoop);
-                gameLoopThread.setDaemon(true);
-                gameLoopThread.start();
+                ExecutorService gameLoopEx = Executors.newSingleThreadExecutor();
+                gameLoopEx.submit(gameLoop);
+                ExecutorService drawingLoopEx = Executors.newFixedThreadPool(3);
+                drawingLoopEx.submit(drawingLoop);
+                ExecutorService gameTimerEx = Executors.newSingleThreadExecutor();
+                gameTimerEx.submit(gameTimer);
 
-                new Thread(drawingLoop).start();
-                new Thread(gameTimer).start();
+
+
+                gameLoopEx.shutdown();
+                drawingLoopEx.shutdown();
+                gameTimerEx.shutdown();
 
                 Launcher.musicController.playSound("game");
                 Launcher.stage.getScene().setOnKeyPressed(keyEvent -> platform.getKeys().add(keyEvent.getCode()));
@@ -101,6 +112,8 @@ public class CharacterViewController {
                 alert.showAndWait();
                 System.exit(0);
             }
+
+
 
         });
 
