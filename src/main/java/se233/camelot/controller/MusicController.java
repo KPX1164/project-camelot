@@ -41,6 +41,7 @@ public class MusicController {
             Media audience = new Media(Launcher.class.getResource("Audios/Audience.mp3").toString());
             Media voiceTesting = new Media(Launcher.class.getResource("Audios/VoiceTest.mp3").toString());
             Media goalCheer = new Media(Launcher.class.getResource("Audios/Goal.mp3").toString());
+            Media playButton = new Media(Launcher.class.getResource("Audios/AccessibilityKits/PlayButton.mp3").toString());
 
             this.musicMap.put("main",mainTheme);
             this.musicMap.put("game", gameTheme);
@@ -53,6 +54,8 @@ public class MusicController {
             this.musicMap.put("audience", audience);
             this.musicMap.put("voiceTest", voiceTesting);
             this.musicMap.put("cheer", goalCheer);
+            this.musicMap.put("play", playButton);
+
 
         } catch (NullPointerException ex){
             logger.warn(ex.getMessage());

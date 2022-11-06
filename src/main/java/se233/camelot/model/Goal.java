@@ -81,6 +81,7 @@ public class Goal extends Pane {
 //                    Platform.getCutScene().goalTrigger();
                     Platform.getAlertPopup().goalTrigger();
                     Platform.getCharacters().get(1).addScore() ;
+                    Launcher.musicController.playEffect("cheer");
                     Platform.getCharacters().get(0).chargeUltimate();
 
                     try {
@@ -98,6 +99,7 @@ public class Goal extends Pane {
 //                    Platform.getCutScene().goalTrigger();
                     Platform.getAlertPopup().goalTrigger();
                     Platform.getCharacters().get(0).addScore() ;
+                    Launcher.musicController.playEffect("cheer");
                     Platform.getCharacters().get(1).chargeUltimate();
 
                     try {

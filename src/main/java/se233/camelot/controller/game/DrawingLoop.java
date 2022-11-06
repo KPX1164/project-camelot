@@ -39,7 +39,6 @@ public class DrawingLoop implements Runnable {
             character.checkReachFloor();
 
             if(ball.getBoundsInParent().intersects(character.getBoundsInParent())){
-                Launcher.musicController.playEffect("kick");
                 try {
                     ball.collided(character);
                 } catch (Exception e) {
