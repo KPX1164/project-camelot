@@ -12,7 +12,7 @@ public class Alert extends Pane {
     private Image goalCutSceneImage, timeupCutscene ;
     private ImageView alertImageView ;
 
-    public Alert(int x , int y ) throws NullPointerException {
+    public Alert(int y , int x ) throws NullPointerException {
 
         this.goalCutSceneImage = new Image(Launcher.class.getResourceAsStream("Images/goal.png"));
         this.timeupCutscene = new Image(Launcher.class.getResourceAsStream("Images/timeup.png"));

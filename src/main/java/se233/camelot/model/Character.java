@@ -227,6 +227,7 @@ public class Character extends Pane {
 
 
     public void attack() throws Exception {
+        logger.info("Attack");
         imageView.attack();
         this.isAttack = true ;
     }
