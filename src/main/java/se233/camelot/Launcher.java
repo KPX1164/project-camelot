@@ -8,7 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import se233.camelot.controller.MusicController;
 
@@ -24,7 +25,7 @@ public class Launcher extends Application {
     }
 
     public static MusicController musicController ;
-    private Logger logger = LoggerFactory.getLogger(Launcher.class);
+    private Logger logger = LogManager.getLogger(Launcher.class);
     @Override
     public void start(Stage stage) throws IOException {
         try{
@@ -42,7 +43,7 @@ public class Launcher extends Application {
 
         }catch (Exception ex){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Sorry bro there is a critical error please restart the program");
-            logger.error(ex.getMessage());
+            logger.fatal(ex.getMessage());
             alert.showAndWait();
             System.exit(0);
         }
